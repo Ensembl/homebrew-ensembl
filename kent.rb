@@ -30,9 +30,11 @@ class Kent < Formula
   def install
     libpng = Formula["libpng"]
     mysql = Formula["mysql-connector-c"]
-    
-    args = ["BINDIR=#{bin}", "SCRIPTS=#{bin}", "PREFIX=#{prefix}"]
+    openssl = Formula["openssl"]
+
+    args = ["BINDIR=#{bin}", "SCRIPTS=#{bin}", "PREFIX=#{prefix}", "USE_SSL=1", "SSL_DIR=#{openssl.opt_prefix}"]
     args << "MACHTYPE=#{`uname -m`.chomp}"
+    args << "CFLAGS=-fPIC"
     args << "PNGLIB=-L#{libpng.opt_lib} -lpng -lz"
     args << "PNGINCL=-I#{libpng.opt_include}"
 
@@ -40,6 +42,8 @@ class Kent < Formula
       args << "MYSQLINC=#{mysql.opt_include}/mysql"
       args << "MYSQLLIBS=-lmysqlclient -lz"
     end
+
+    inreplace "src/inc/common.mk", "CFLAGS=", "CFLAGS=-fPIC"
 
     cd build.head? ? "src" : "src" do
       system "make", "userApps", *args
