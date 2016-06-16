@@ -2,10 +2,13 @@
 
 Core formula for creating and installing Ensembl dependencies.
 
-## How Do I Install these Formula
-brew install andrewyatz/ensembl/<formula>
+## Homebrew/Linuxbrew compatability
+These formula have been developed primarily for Linuxbrew. They may work for OSX, they may not. If you are unsure then look at [Homebrew Science](https://github.com/Homebrew/homebrew-science) for more generic solutions.
 
-Or brew tap andrewyatz/ensembl and then brew install <formula>.
+## How Do I Install these Formula
+`brew install andrewyatz/ensembl/<formula>`
+
+Or brew tap `andrewyatz/ensembl` and then `brew install <formula>`.
 
 ## Troubleshooting
 **IMPORTANT** First read the [Troubleshooting Checklist](https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Troubleshooting.md#troubleshooting).).
