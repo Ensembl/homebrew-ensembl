@@ -51,9 +51,9 @@ class Kent < Formula
     end
 
     cd bin do
-      blat_bin = %w[blat faToTwoBit gfClient gfServer nibFrag pslPretty
-                    pslReps pslSort twoBitInfo twoBitToFa]
-      rm blat_bin
+      #blat_bin = %w[blat faToTwoBit gfClient gfServer nibFrag pslPretty
+      #              pslReps pslSort twoBitInfo twoBitToFa]
+      #rm blat_bin
       mv "calc", "kent-tools-calc"
     end
 
