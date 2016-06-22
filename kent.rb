@@ -50,6 +50,11 @@ class Kent < Formula
       system "make", "install", *args
     end
 
+    cd "src/utils/cpgIslandExt" do
+      system "gcc", "readseq.c", "cpg_lh.c", "-o", "cpglh"
+      bin.install "cpglh"
+    end
+
     cd bin do
       #blat_bin = %w[blat faToTwoBit gfClient gfServer nibFrag pslPretty
       #              pslReps pslSort twoBitInfo twoBitToFa]
