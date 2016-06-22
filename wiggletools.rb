@@ -4,13 +4,13 @@ class Wiggletools < Formula
   url "https://github.com/Ensembl/WiggleTools/archive/v1.1.tar.gz"
   sha256 "201ee53e8ef67ec20043e26e8deab3f254219e0e0262d26e855ffe5041f63051"
 
-  depends_on "andrewyatz/ensembl/kent"
+  depends_on "ensembl/ensembl/kent"
   depends_on "gsl"
-  depends_on 'andrewyatz/ensembl/tabix-lib'
+  depends_on 'ensembl/ensembl/tabix-lib'
 
   def install
-    tabix_lib = Formula["andrewyatz/ensembl/tabix-lib"]
-    kent = Formula["andrewyatz/ensembl/kent"]
+    tabix_lib = Formula["ensembl/ensembl/tabix-lib"]
+    kent = Formula["ensembl/ensembl/kent"]
 
     # remove -ltinfo. Not needed on this OS. It's in ncurses
     inreplace "samtools/Makefile", "-ltinfo", ""
