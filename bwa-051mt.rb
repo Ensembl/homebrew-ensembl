@@ -5,6 +5,7 @@ class Bwa051mt < Formula
   # tag "bioinformatics"
 
   url "https://github.com/lh3/bwa.git", :using => :git, :revision => '0.5.10-mt'
+  version '0.5.10-mt'
 
   keg_only 'bwa 0.5.1-mt creates binaries with the same name as all other bwa installs'
   
