@@ -13,7 +13,7 @@ class Samtools < Formula
   depends_on "ensembl/ensembl/htslib"
 
   def install
-    htslib = Formula["htslib"].opt_prefix
+    htslib = Formula["ensembl/ensembl/htslib"].opt_prefix
     if build.without? "curses"
       ohai "Building without curses"
       system "./configure", "--with-htslib=#{htslib}", "--without-curses"
