@@ -6,7 +6,7 @@ class Libmaus < Formula
   version '0.0.196'
   
   def install
-    system 'autoreconf, '-i', '-f'
+    system 'autoreconf', '-i', '-f'
     system './configure', "--prefix=#{prefix}"
     system 'make'
     system 'make install'
