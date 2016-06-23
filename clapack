@@ -1,0 +1,16 @@
+class Clapack < Formula
+  desc 'Algebra functions'
+  homepage 'https://github.com/CshlSiepelLab/phast'
+  url 'http://www.netlib.org/clapack/clapack-3.2.1.tgz'
+  sha256 ''
+  version '3.2.1'
+  
+  keg_only 'Conflicts with openblas'
+  
+  def install
+    cp 'make.inc.example', 'make.inc'
+    system 'make', 'f2clib'
+    system 'make', 'blaslib'
+    system 'make', 'lib'
+  end
+end
