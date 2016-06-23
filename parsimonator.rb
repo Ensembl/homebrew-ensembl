@@ -6,6 +6,15 @@ class Parsimonator < Formula
   version '1.0.2'
 
   def install
-    system 'make'
+    system 'make -f Makefile.SSE3.gcc'
+    bin.install 'parsimonator-SSE3'
+    system 'make -f Makefile.SSE3.gcc clean'
+
+    system 'make -f Makefile.AVX.gcc'
+    bin.install 'parsimonator-AVX'
+    system 'make -f Makefile.AVX.gcc clean'
+
+    system 'make -f Makefile.gcc'
+    bin.install 'parsimonator'
   end
 end
