@@ -6,6 +6,9 @@ class Sonlib < Formula
 
   def install
     system 'make', 'all'
-    libexec.install Dir['*']
+    lib.install Dir['lib/*.a']
+    include.install Dir['lib/*.h']
+    mkpath (prefix+'sonLib')
+    (prefix+'sonLib').install Dir['*']
   end
 end
