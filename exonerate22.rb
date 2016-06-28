@@ -21,15 +21,17 @@ class Exonerate22 < Formula
     system "make"
     system "make", "install"
 
-    Dir["#{bin}/*"].each do |entry|
-      newEntry = entry+"-"+version
-      mv entry, newEntry
-    end
+    #UNCOMMENT TO CREATE VERSIONED BINARIES
+    #
+    #Dir["#{bin}/*"].each do |entry|
+    #  newEntry = entry+"-"+version
+    #  mv entry, newEntry
+    #end
 
-    Dir["#{man1}/*"].each do |entry|
-      newEntry = entry.sub(/\.1/, '-'+version+'.1')
-      mv entry, newEntry
-    end
+    #Dir["#{man1}/*"].each do |entry|
+    #  newEntry = entry.sub(/\.1/, '-'+version+'.1')
+    #  mv entry, newEntry
+    #end
   end
 
   test do
