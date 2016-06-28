@@ -14,6 +14,9 @@ class Htslib < Formula
     system "./configure", "--enable-plugins", "--enable-libcurl", "--prefix=#{prefix}"
     system "make", "install"
     pkgshare.install "test"
+    (etc+'htslib.bash').write <<-EOF.undent
+      HTSLIB_DIR=#{prefix}
+    EOF
   end
 
   test do

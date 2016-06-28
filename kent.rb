@@ -32,8 +32,10 @@ class Kent < Formula
     mysql = Formula["mysql-connector-c"]
     openssl = Formula["openssl"]
 
+    machtype = `uname -m`.chomp
+
     args = ["BINDIR=#{bin}", "SCRIPTS=#{bin}", "PREFIX=#{prefix}", "USE_SSL=1", "SSL_DIR=#{openssl.opt_prefix}"]
-    args << "MACHTYPE=#{`uname -m`.chomp}"
+    args << "MACHTYPE=#{machtype}"
     args << "CFLAGS=-fPIC"
     args << "PNGLIB=-L#{libpng.opt_lib} -lpng -lz"
     args << "PNGINCL=-I#{libpng.opt_include}"
@@ -56,12 +58,13 @@ class Kent < Formula
     end
 
     cd bin do
-      #blat_bin = %w[blat faToTwoBit gfClient gfServer nibFrag pslPretty
-      #              pslReps pslSort twoBitInfo twoBitToFa]
-      #rm blat_bin
       mv "calc", "kent-tools-calc"
     end
 
+    (etc+'kent.bash').write <<-EOF.undent
+      export MACHTYPE=#{machtype}
+      export KENT_SRC=#{prefix}
+    EOF
   end
 
   
