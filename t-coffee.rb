@@ -6,8 +6,8 @@ class TCoffee < Formula
   # doi "10.1006/jmbi.2000.4042"
 
   depends_on 'poa'
-  depends_on 'dalign-tx'
-  depends_on 'dalign'
+  depends_on 'dialign-tx'
+  depends_on 'dialign-t'
   depends_on 'pcma'
   depends_on 'probcons'
   depends_on 'clustal-w'
@@ -22,7 +22,8 @@ class TCoffee < Formula
       #prefix.install Dir["*"]
       #bin.install_symlink "../compile/t_coffee"
     end
-    prefix.install 'mcoffee'
+    (prefix+'plugins').install 'mcoffee'
+    File.open((etc+'tcoffee.bash'), 'w') { |file| file.write("export MCOFFEE_4_TCOFFEE=#{prefix}/plugins/mcoffee\n") }
   end
 
   test do
