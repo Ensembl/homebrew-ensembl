@@ -18,14 +18,15 @@ class Polyphen < Formula
     ENV.prepend_create_path "PERL5LIB", libexec/"lib/perl5"
     ENV.prepend_create_path 'PPH', prefix
 
+    #PolyPhen claims not to muck around with the install path once there. So we won't
+    prefix.install Dir['*']
+
+    #Install Perl libs
     resource("cpanm").stage do
       mv 'cpanmin.us', 'cpanm'
       system '/usr/bin/env', 'perl', "cpanm", '--notest', '--local-lib-contained', libexec, 'XML::Simple', 'LWP::Simple', 'DBD::SQLite'
     end
 
-    #PolyPhen claims not to muck around with the install path once there. So we won't
-    prefix.install Dir['*']
-    
     #Setting up blast
     blast = Formula['ensembl/ensembl/blast']
     blastdir=(prefix+'blast'+'bin')
@@ -47,7 +48,7 @@ class Polyphen < Formula
       system 'make', 'clean'
     end
     env_file = etc+'polyphen.env'
-    env_file.rm if env_file.exist?
+    rm(env_file) if env_file.exist?
     env_file.write <<-EOF.undent
 export PPH=#{prefix}
 export PERL5LIB=#{libexec}/lib/perl5:#{prefix}/perl:$PERL5LIB
