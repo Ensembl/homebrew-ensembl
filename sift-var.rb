@@ -55,7 +55,9 @@ PERL_LIB=#{libexec}/lib/perl5/
     bin.install Dir['bin/*']
     prefix.install 'db'
     prefix.install 'web'
-    (etc+'sift.bash').write <<-EOF.undent
+    bsh = etc+'sift.bash'
+    rm bsh if bsh.exist?
+    bsh.write <<-EOF.undent
       export PERL5LIB=#{libexec}/lib/perl5:$PERL5LIB
       export SIFT_HOME=#{prefix}
       export PATH=$SIFT_HOME/bin:$PATH
