@@ -53,15 +53,22 @@ class Kent < Formula
     end
 
     cd "src/utils/cpgIslandExt" do
-      system "gcc", "readseq.c", "cpg_lh.c", "-o", "cpglh"
-      bin.install "cpglh"
+      system "make", "compile"
+      bin.install "cpg_lh"
+    end
+
+    cd "src/hg/mouseStuff/axtBest" do
+      system "make", "compile"
+      bin.install 'axtBest'
     end
 
     cd bin do
       mv "calc", "kent-tools-calc"
     end
 
-    (etc+'kent.bash').write <<-EOF.undent
+    kent_bash = (etc+'kent.bash')
+    File.delete(kent_bash) if File.exist?(kent_bash)
+    (kent_bash).write <<-EOF.undent
       export MACHTYPE=#{machtype}
       export KENT_SRC=#{prefix}
     EOF
