@@ -13,7 +13,7 @@ class Interproscan < Formula
   def install
     prefix.install Dir['*']
     resource('panther-models').stage do
-      (prefix+'data').mkdir
+      (prefix+'data'+'panther').mkdir
       (prefix+'data'+'panther').install '10.0'
     end
   end
