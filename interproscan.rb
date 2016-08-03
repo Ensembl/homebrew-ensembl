@@ -29,7 +29,7 @@ class Interproscan < Formula
       s.gsub! 'bin/signalp/4.1/lib', "#{signalp.lib}"
       
       # Handle phobius dependencies
-      s.gsub! 'bin/phobius/1.01/phobius.pl', "#{phobious.prefix}/phobius.pl"
+      s.gsub! 'bin/phobius/1.01/phobius.pl', "#{phobius.prefix}/phobius.pl"
     end
 
     prefix.install Dir['*']
