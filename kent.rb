@@ -14,9 +14,9 @@
 class Kent < Formula
   desc "UCSC Genome Browser source tree"
   homepage "https://genome.ucsc.edu/"
-  url "https://github.com/ucscGenomeBrowser/kent/archive/v331_base.tar.gz"
-  version "v331"
-  sha256 "41991074077bc2fe467e115d03f1fc7a31cf7096fe68112fc065f3071c96bc6c"
+  url "https://github.com/ucscGenomeBrowser/kent/archive/v335_base.tar.gz"
+  version "v335"
+  sha256 "19816b701e3fa947a80714a80197d5148f2f699d56bfa4c1d531c28d9b859748"
 
   depends_on "ncurses"
   # mysql-conneector-c brings in the MySQL libs for less effort. 
@@ -46,6 +46,7 @@ class Kent < Formula
     end
 
     inreplace "src/inc/common.mk", "CFLAGS=", "CFLAGS=-fPIC"
+    #inreplace "src/htslib/sam.c", "int magic_len; // has_EOF;", "int magic_len, has_EOF;"
 
     cd build.head? ? "src" : "src" do
       system "make", "userApps", *args
