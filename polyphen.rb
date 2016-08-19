@@ -13,6 +13,11 @@ class Polyphen < Formula
     url "https://cpanmin.us/"
     sha256 "453e68066f2faba5c9fe04b4ca47f915fe0001f71405560093a23919e5e30d65"
   end
+  
+  resource "polyphen-databases" do
+    url "ftp://genetics.bwh.harvard.edu/pph2/bundled/polyphen-2.2.2-databases-2011_12.tar.bz2"
+    sha256 ""
+  end
 
   def install
     ENV.prepend_create_path "PERL5LIB", libexec/"lib/perl5"
@@ -20,6 +25,10 @@ class Polyphen < Formula
 
     #PolyPhen claims not to muck around with the install path once there. So we won't
     prefix.install Dir['*']
+    
+    resource("polyphen-databases").stage do
+      prefix.install Dir['*']
+    end
 
     #Install Perl libs
     resource("cpanm").stage do
