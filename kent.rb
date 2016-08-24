@@ -14,9 +14,9 @@
 class Kent < Formula
   desc "UCSC Genome Browser source tree"
   homepage "https://genome.ucsc.edu/"
-  url "https://github.com/ucscGenomeBrowser/kent/archive/v335_base.tar.gz"
-  version "v335"
-  sha256 "19816b701e3fa947a80714a80197d5148f2f699d56bfa4c1d531c28d9b859748"
+  url "https://github.com/ucscGenomeBrowser/kent/archive/v337_base.tar.gz"
+  version "v337"
+  sha256 '2c3bde983da15f174e5df0f5ccf513f8964f9564ea88a9c24a95cde553a5e300'
 
   depends_on "ncurses"
   # mysql-conneector-c brings in the MySQL libs for less effort. 
@@ -36,7 +36,6 @@ class Kent < Formula
 
     args = ["BINDIR=#{bin}", "SCRIPTS=#{bin}", "PREFIX=#{prefix}", "USE_SSL=1", "SSL_DIR=#{openssl.opt_prefix}"]
     args << "MACHTYPE=#{machtype}"
-    args << "CFLAGS=-fPIC"
     args << "PNGLIB=-L#{libpng.opt_lib} -lpng -lz"
     args << "PNGINCL=-I#{libpng.opt_include}"
 
@@ -45,10 +44,14 @@ class Kent < Formula
       args << "MYSQLLIBS=-lmysqlclient -lz"
     end
 
-    inreplace "src/inc/common.mk", "CFLAGS=", "CFLAGS=-fPIC"
-    #inreplace "src/htslib/sam.c", "int magic_len; // has_EOF;", "int magic_len, has_EOF;"
+    # Can no longer give -fPIC on the command line. Needs to be in the makefile otherwise htslib goes wrong
+    inreplace "src/inc/common.mk", "CC=gcc", "CC=gcc -fPIC"
+    #htslib does not like command line flags being given. Edit the makefile to bring in -fPIC
+    inreplace "src/htslib/Makefile", "-DUCSC_CRAM", "-DUCSC_CRAM -fPIC"
+    # Need to add zlib onto the compiles
+    inreplace "src/inc/userApp.mk", "-lm", "-lm -lz"
 
-    cd build.head? ? "src" : "src" do
+    cd "src" do
       system "make", "userApps", *args
       system "make", "install", *args
     end
@@ -65,6 +68,10 @@ class Kent < Formula
 
     cd bin do
       mv "calc", "kent-tools-calc"
+    end
+
+    cd 'src' do
+      (prefix+'htslib').install 'htslib/libhts.a'
     end
 
     kent_bash = (etc+'kent.bash')
