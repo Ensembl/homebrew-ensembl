@@ -132,7 +132,7 @@ EOF
     File.chmod(0555, cesar)
 
     cd bin do
-      system 'cesar', '--help'
+      system './cesar', '--help'
     end
   end
 
