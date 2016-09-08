@@ -7,6 +7,9 @@ class Cesar < Formula
 
   depends_on :python if MacOS.version <= :snow_leopard
   depends_on "homebrew/science/openblas"
+  depends_on "homebrew/science/qhull"
+  depends_on "freetype"
+  depends_on "libpng"
   
   keg_only 'Keep the dependency to itself because of oddness'
 
