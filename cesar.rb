@@ -76,6 +76,7 @@ class Cesar < Formula
   def install
     openblas_dir = Formula["openblas"].opt_prefix
     ENV.prepend_create_path "PYTHONPATH", libexec/"vendor/lib/python2.7/site-packages"
+    ENV.append "FFLAGS", "-fPIC"
     ENV.append "LDFLAGS", "-shared"
     ENV["ATLAS"] = "None"
     ENV["BLAS"] = ENV["LAPACK"] = "#{openblas_dir}/lib/libopenblas.so"
