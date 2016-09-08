@@ -130,10 +130,6 @@ PYTHONPATH=#{ENV["PYTHONPATH"]} MPLBACKEND=#{ENV["MPLBACKEND"]} exec "python" "#
 EOF
 
     File.chmod(0555, cesar)
-
-    cd bin do
-      system './cesar', '--help'
-    end
   end
 
   test do
