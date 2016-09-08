@@ -13,6 +13,11 @@ class Cesar < Formula
   
   keg_only 'Keep the dependency to itself because of oddness'
 
+  resource "nose" do
+    url "https://pypi.python.org/packages/source/n/nose/nose-1.3.7.tar.gz"
+    sha256 "f1bffef9cbc82628f6e7d7b40d7e255aefaa1adb6a1b1d26c69a8b79e6208a98"
+  end
+
   resource "numpy" do
     url "https://pypi.python.org/packages/e0/4c/515d7c4ac424ff38cc919f7099bf293dd064ba9a600e1e3835b3edefdb18/numpy-1.11.1.tar.gz"
     sha256 "dc4082c43979cc856a2bf352a8297ea109ccb3244d783ae067eb2ee5b0d577cd"
@@ -88,6 +93,10 @@ class Cesar < Formula
     EOS
     (buildpath/"site.cfg").write config
 
+    resource("nose").stage do
+      system "python", *Language::Python.setup_install_args(libexec/"nose")
+    end
+
     resource("numpy").stage do
       system "python", "setup.py",
         "build", "--fcompiler=gnu95", "--parallel=#{ENV.make_jobs}",
@@ -95,7 +104,7 @@ class Cesar < Formula
         "--single-version-externally-managed", "--record=installed.txt"
     end
 
-    %w[Cycler decorator matplotlib networkx pyparsing python-dateutil pytz scipy six yahmm].each do |r|
+    %w[Cython Cycler decorator matplotlib networkx pyparsing python-dateutil pytz scipy six yahmm].each do |r|
       resource(r).stage do
         system "python", *Language::Python.setup_install_args(libexec/"vendor")
       end
