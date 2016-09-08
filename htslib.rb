@@ -10,11 +10,14 @@ class Htslib < Formula
   patch :DATA
 
   def install
+    inreplace 'Makefile', 'CFLAGS   = -g -Wall -O2', 'CFLAGS   = -g -Wall -O2 -Wno-unused -Wno-unused-result -fPIC'
     system 'autoconf'
     system "./configure", "--enable-plugins", "--enable-libcurl", "--prefix=#{prefix}"
     system "make", "install"
     pkgshare.install "test"
-    (etc+'htslib.bash').write <<-EOF.undent
+    htsbash = (etc+'htslib.bash')
+    File.delete(htsbash) if File.exists?(htsbash)
+    (htsbash).write <<-EOF.undent
       HTSLIB_DIR=#{prefix}
     EOF
   end
