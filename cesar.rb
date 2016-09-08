@@ -122,16 +122,17 @@ class Cesar < Formula
     prefix.install 'examples'
     prefix.install 'README.md'
 
-    cesar = libexec+'CESAR'
+    cesar = bin+'CESAR'
     File.delete(cesar) if File.exists?(cesar)
     (cesar).write <<-EOF.undent
 #!/bin/bash
-export PYTHONPATH=#{ENV["PYTHONPATH"]} MPLBACKEND=#{ENV["MPLBACKEND"]} exec "python" "#{prefix}/CESAR/CESAR.py" "$@"
+PYTHONPATH=#{ENV["PYTHONPATH"]} MPLBACKEND=#{ENV["MPLBACKEND"]} exec "python" "#{prefix}/CESAR/CESAR.py" "$@"
 EOF
-    bin.install cesar
-    
+
+    File.chmod(0555, cesar)
+
     cd bin do
-      system 'cesar'
+      system 'cesar', '--help'
     end
   end
 
