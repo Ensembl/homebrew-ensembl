@@ -1,8 +1,8 @@
 class Acedb < Formula
-  desc "A C.elegans database"
+  desc "A C.elegans database. The WTSI version"
   homepage "http://www.acedb.org/"
-  url "ssh://git.internal.sanger.ac.uk/repos/git/annotools/acedb.git", :using => :git
-  version '803b7307542aaf777746e39f4f107044757260e9'
+  url "https://github.com/richarddurbin/acedb.git", :using => :git
+  version '86d8c1c92d8a2c58cd090e85a1e17771612bfcb9'
   
   depends_on 'curl'
   depends_on 'flex'
