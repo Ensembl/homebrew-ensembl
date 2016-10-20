@@ -1,4 +1,4 @@
-# Copyright [1999-2016] Wellcome Trust Sanger Institute and the EMBL-European Bioinformatics Institute
+# Copyright [2016] EMBL-European Bioinformatics Institute
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -18,10 +18,21 @@ class Kent < Formula
   version "v335"
   sha256 "19816b701e3fa947a80714a80197d5148f2f699d56bfa4c1d531c28d9b859748"
 
+  option "with-connector-c", "Build with connector-c dependency. Otherwise we depend on mysql-client"
+
   depends_on "ncurses"
-  # mysql-conneector-c brings in the MySQL libs for less effort. 
-  # Does not bring in command line mysql or associated utils
-  depends_on "mysql-connector-c"
+  
+  # we use the Ensembl mysql-client compile. You can use 
+  # mysql-connector-c brings in the MySQL libs for less effort. YMMV
+  
+  if build.with? "connector-c"
+    ohai 'Using mysql-connector-c'
+    depends_on "mysql-connector-c"
+  else
+    ohai 'Using mysql-client from ensembl homebrew'
+    depends_on "ensembl/ensembl/mysql-client"
+  end
+  
   depends_on "libpng"
   depends_on "openssl" 
 
@@ -29,7 +40,11 @@ class Kent < Formula
 
   def install
     libpng = Formula["libpng"]
-    mysql = Formula["mysql-connector-c"]
+    if build.with? "connector-c"
+      mysql = Formula["mysql-connector-c"]
+    else
+      mysql = Formula["ensembl/ensembl/mysql-client"]
+    end
     openssl = Formula["openssl"]
 
     machtype = `uname -m`.chomp
