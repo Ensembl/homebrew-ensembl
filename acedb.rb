@@ -39,7 +39,7 @@ class Acedb < Formula
   end
 end
 
-__DATA__
+__END__
 diff --git a/wmake/truemake b/wmake/truemake
 index 5135672..1b350ab 100644
 --- a/wmake/truemake
