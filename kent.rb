@@ -26,10 +26,8 @@ class Kent < Formula
   # mysql-connector-c brings in the MySQL libs for less effort. YMMV
   
   if build.with? "connector-c"
-    ohai 'Using mysql-connector-c'
     depends_on "mysql-connector-c"
   else
-    ohai 'Using mysql-client from ensembl homebrew'
     depends_on "ensembl/ensembl/mysql-client"
   end
   
