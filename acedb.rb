@@ -41,42 +41,42 @@ end
 
 __END__
 diff --git a/wmake/truemake b/wmake/truemake
-index 5135672..1b350ab 100644
+index 5135672..0c5fc45 100644
 --- a/wmake/truemake
 +++ b/wmake/truemake
 @@ -1116,7 +1116,7 @@ acelibtest : libfree.a libace.a acelibtest.c
-
+ 
  tagcount : libfree.a libace.a tagcount.c
-        $(CC) tagcount.c
--       $(LINKER) -o tagcount tagcount.o -L. -lace -lfree $(GLIB_LIBS) $(LEX_LIBS)
-+       $(LINKER) -o tagcount tagcount.o -L. -lace -lfree $(GLIB_LIBS)
-
-
+ 	$(CC) tagcount.c
+-	$(LINKER) -o tagcount tagcount.o -L. -lace -lfree $(GLIB_LIBS) $(LEX_LIBS)
++	$(LINKER) -o tagcount tagcount.o -L. -lace -lfree $(GLIB_LIBS)
+ 
+ 
  ##########################################
 @@ -1165,7 +1165,7 @@ $(ACESOCK_CLIENT_OBJ): $(ACESOCK_UTILS_HDR) $(ACESOCK_CLIENTLIB_HDR) $(ACESOCK_C
  saceclient:  libfree.a libmd5.a  $(ACESOCK_SOCKET_OBJ) \
               $(ACESOCK_UTILS_OBJ) $(ACESOCK_CLIENTLIB_OBJ) $(ACESOCK_CLIENT_OBJ)
-        $(LINKER) -o $@  $(ACESOCK_SOCKET_OBJ) $(ACESOCK_UTILS_OBJ) $(ACESOCK_CLIENTLIB_OBJ) \
--        $(ACESOCK_CLIENT_OBJ) commandmenu.o -L. -lfree -lmd5 -lm $(GLIB_LIBS) $(LEX_LIBS)
-+        $(ACESOCK_CLIENT_OBJ) commandmenu.o -L. -lfree -lmd5 -lm $(GLIB_LIBS)
-        chmod 755 $(@)$(EXE_SUFFIX)
-
+ 	$(LINKER) -o $@  $(ACESOCK_SOCKET_OBJ) $(ACESOCK_UTILS_OBJ) $(ACESOCK_CLIENTLIB_OBJ) \
+-	 $(ACESOCK_CLIENT_OBJ) commandmenu.o -L. -lfree -lmd5 -lm $(GLIB_LIBS) $(LEX_LIBS)
++	 $(ACESOCK_CLIENT_OBJ) commandmenu.o -L. -lfree -lmd5 -lm $(GLIB_LIBS)
+ 	chmod 755 $(@)$(EXE_SUFFIX)
+ 
  ##################### sxaceclient, client version of xace ###################
 @@ -1377,7 +1377,7 @@ dotplot.o : dotplot.c
-
+ 
  dotterbatch: libfree.a libgd.a libgraph.a dotter.o dotterMain.o dotterKarlin.o dotterng.o translate.o blxparser.o
-        $(LINKER) -o dotterbatch dotter.o dotterKarlin.o dotterMain.o dotterng.o \
--       translate.o blxparser.o $(GRAPHGIF_LIBS) -L. -lfree  $(GLIB_LIBS) $(LEX_LIBS)
-+       translate.o blxparser.o $(GRAPHGIF_LIBS) -L. -lfree  $(GLIB_LIBS)
-
+ 	$(LINKER) -o dotterbatch dotter.o dotterKarlin.o dotterMain.o dotterng.o \
+-	translate.o blxparser.o $(GRAPHGIF_LIBS) -L. -lfree  $(GLIB_LIBS) $(LEX_LIBS)
++	translate.o blxparser.o $(GRAPHGIF_LIBS) -L. -lfree  $(GLIB_LIBS)
+ 
  # I have removed this optimisation stuff from dotter for now because you cannot
  # debug properly with it, EG
 @@ -1457,7 +1457,7 @@ intron2 : libfree.a intron2.o
-        $(LINKER)  -o intron2 intron2.o -L. -lfree $(LIBS)
-
+ 	$(LINKER)  -o intron2 intron2.o -L. -lfree $(LIBS)
+ 
  metacheck : libfree.a libace.a metadata.o
--         $(LINKER) -o metacheck metadata.o -L. -lace -lfree $(LIBS) $(LEX_LIBS)
-+         $(LINKER) -o metacheck metadata.o -L. -lace -lfree $(LIBS)
-
- makeUserPasswd: makeUserPasswd.c libfree.a libmd5.a
-        $(CC) $@.c
+-	  $(LINKER) -o metacheck metadata.o -L. -lace -lfree $(LIBS) $(LEX_LIBS) 
++	  $(LINKER) -o metacheck metadata.o -L. -lace -lfree $(LIBS)
+ 
+ makeUserPasswd: makeUserPasswd.c libfree.a libmd5.a 
+ 	$(CC) $@.c
