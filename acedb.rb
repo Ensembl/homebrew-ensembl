@@ -29,7 +29,7 @@ class Acedb < Formula
   def install
     ENV['ACEDB_MACHINE'] = 'LINUX_64'
     ENV['ACEDB'] = prefix
-    ls_sf 'wmake/makefile', 'makefile'
+    ln_sf 'wmake/makefile', 'makefile'
     system 'make'
     system 'make', 'install', "ACEMBLY_BIN=''"
   end
