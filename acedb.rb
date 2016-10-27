@@ -27,6 +27,7 @@ class Acedb < Formula
   patch :DATA
 
   def install
+    ENV.deparallelize
     ENV['ACEDB_MACHINE'] = 'LINUX_64'
     ENV['ACEDB'] = prefix
     ln_sf 'wmake/makefile', 'makefile'
