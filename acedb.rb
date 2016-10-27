@@ -32,7 +32,7 @@ class Acedb < Formula
     ENV['ACEDB'] = prefix
     ln_sf 'wmake/makefile', 'makefile'
     system 'make'
-    system 'make', 'install', "ACEMBLY_BIN=''"
+    system 'make', 'install', "ACEMBLY_BIN="
   end
 
   test do
