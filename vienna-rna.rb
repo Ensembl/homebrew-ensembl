@@ -1,7 +1,7 @@
 #required because for some reason CurlDownloadStrategy attempts to resolve the 
 #url to a HTML page
 class IgnoreRedirectionsDownloadStrategy < CurlDownloadStrategy
-  def actual_urls
+  def actual_urls(url)
     urls = []
     urls << @url
     urls
@@ -16,7 +16,7 @@ class ViennaRna < Formula
   version '2.2.6'
   
   def install
-    system './configure', "--prefix=#{prefix}"
+    system './configure', "--prefix=#{prefix}", "--without-doc-pdf"
     system 'make'
     system 'make install'
   end
