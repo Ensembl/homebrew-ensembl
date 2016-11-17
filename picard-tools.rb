@@ -7,7 +7,7 @@ class PicardTools < Formula
   version '2.6.0'
 
   def install
-    lib.install "picard.jar"
+    libexec.install "picard.jar"
   end
 
 end
