@@ -24,7 +24,7 @@ class LibSssFix < Formula
     glibc = Formula['glibc']
     sys_libnss_sss = Pathname.new "/usr/lib64/libnss_sss.so.2"
     brew_libnss_sss = Pathname.new glibc.lib+"libnss_sss.so.2"
-    glibc.lib.install_symlink brew_libnss_sss if sys_libnss_sss.exist? && !brew_libnss_sss.exist?
+    glibc.lib.install_symlink sys_libnss_sss if sys_libnss_sss.exist? && !brew_libnss_sss.exist?
     marker = (prefix+'libnss_sss_fix')
     File.delete(marker) if File.exists?(marker)
     (marker).write <<-EOF.undent
