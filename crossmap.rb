@@ -1,3 +1,14 @@
+# Copyright [2016] EMBL-European Bioinformatics Institute
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#     http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 class Crossmap < Formula
   desc "Genomic feature liftover tool"
   homepage "http://crossmap.sourceforge.net/"
@@ -49,7 +60,8 @@ class Crossmap < Formula
     #nose_path = libexec/"nose/lib/python#{version}/site-packages"
     resource("nose").stage do
       system "python", *Language::Python.setup_install_args(libexec/"nose")
-      #(dest_path/"homebrew-numpy-nose.pth").write "#{nose_path}\n"
+      #(dest_path/"homebrew-numpy-nose.pth").write "#{nose_path}
+"
     end
     resource("numpy").stage do
       system "python", "setup.py",

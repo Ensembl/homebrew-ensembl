@@ -1,3 +1,14 @@
+# Copyright [2016] EMBL-European Bioinformatics Institute
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#     http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 class Boost < Formula
   desc "Collection of portable C++ source libraries"
   homepage "https://www.boost.org/"
@@ -39,11 +50,14 @@ class Boost < Formula
     # Force boost to compile with the desired compiler
     open("user-config.jam", "a") do |file|
       #if OS.mac?
-      #  file.write "using darwin : : #{ENV.cxx} ;\n"
+      #  file.write "using darwin : : #{ENV.cxx} ;
+"
       #else
-      #  file.write "using gcc : : #{ENV.cxx} ;\n"
+      #  file.write "using gcc : : #{ENV.cxx} ;
+"
       #end
-      file.write "using mpi ;\n"
+      file.write "using mpi ;
+"
     end
 
     # libdir should be set by --prefix but isn't

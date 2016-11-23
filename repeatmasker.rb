@@ -1,3 +1,14 @@
+# Copyright [2016] EMBL-European Bioinformatics Institute
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#     http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 class Repeatmasker < Formula
   desc "Nucleic and proteic repeat masking tool"
   homepage "http://www.repeatmasker.org/"
@@ -23,13 +34,13 @@ class Repeatmasker < Formula
   def post_install
     system "cp", libexec/"RepeatMaskerConfig.tmpl", libexec/"RepeatMaskerConfig.pm"
     inreplace libexec/"RepeatMaskerConfig.pm" do |f|
-      f.gsub! /^(\s*\$RMBLAST_DIR\s*=)\s*\S+/, "\\1 \"#{Formula['ensembl/ensembl/rmblast'].opt_bin}\";"
+      f.gsub! /^(\s*\$RMBLAST_DIR\s*=)\s*\S+/, "\1 \"#{Formula['ensembl/ensembl/rmblast'].opt_bin}\";"
       f.gsub! /^(\s*\$DEFAULT_SEARCH_ENGINE\s*=)\s*\S+/, '\1 "ncbi"'
-      f.gsub! /^(\s*\$TRF_PRGM\s*=)\s*\S+/, "\\1 \"#{Formula['homebrew/science/trf'].opt_bin}/trf\";"
-      f.gsub! /^(\s*\$HMMER_DIR\s*=)\s*\S+/, "\\1 \"#{Formula['homebrew/science/hmmer'].opt_bin}\";"
+      f.gsub! /^(\s*\$TRF_PRGM\s*=)\s*\S+/, "\1 \"#{Formula['homebrew/science/trf'].opt_bin}/trf\";"
+      f.gsub! /^(\s*\$HMMER_DIR\s*=)\s*\S+/, "\1 \"#{Formula['homebrew/science/hmmer'].opt_bin}\";"
       f.gsub! "HOME", "REPEATMASKER_CACHE" if build.with? "cache"
       if build.with? "phrap"
-        f.gsub! /^(\s*\$CROSSMATCH_DIR\s*=)\s*\S+/, "\\1 \"#{Formula["ensembl/moonshine/phrap"].opt_bin}\";"
+        f.gsub! /^(\s*\$CROSSMATCH_DIR\s*=)\s*\S+/, "\1 \"#{Formula["ensembl/moonshine/phrap"].opt_bin}\";"
         f.gsub! /^(\s*\$DEFAULT_SEARCH_ENGINE\s*=)\s*\S+/, '\1 "crossmatch";'
       end
     end
