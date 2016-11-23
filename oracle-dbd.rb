@@ -24,6 +24,12 @@ class OracleDbd < Formula
     system 'perl', 'Makefile.PL', '-m', "#{oci}/sdk/demo/demo.mk", '-l'
     system 'make'
     system 'make', 'install'
+    script = 'oracle-dbd-version'
+    (script).write <<-EOF.undent
+      #!/bin/sh
+      perl -MDBD::Oracle -e 'print $DBD::Oracle::VERSION."\n"'
+    EOF
+    bin.install script
   end
 
   def caveats; <<-EOS.undent
