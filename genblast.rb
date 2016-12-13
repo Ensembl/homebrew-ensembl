@@ -15,6 +15,7 @@ class Genblast < Formula
   url 'http://genome.sfu.ca/genblast/latest/genblast_v139.zip'
   version '1.39'
   sha256 '7934ef446d9b2f8fa80a6b53a2f001e2531edf2a2749545390e739ffa878e8d4'
+  revision 1
 
   patch :DATA
 
