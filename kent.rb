@@ -76,6 +76,11 @@ class Kent < Formula
       bin.install 'axtBest'
     end
 
+    cd "src/utils/faToNib" do
+      system "make", "compile"
+      bin.install 'faToNib'
+    end
+    
     cd bin do
       mv "calc", "kent-tools-calc"
     end
