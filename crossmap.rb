@@ -60,8 +60,7 @@ class Crossmap < Formula
     #nose_path = libexec/"nose/lib/python#{version}/site-packages"
     resource("nose").stage do
       system "python", *Language::Python.setup_install_args(libexec/"nose")
-      #(dest_path/"homebrew-numpy-nose.pth").write "#{nose_path}
-"
+      #(dest_path/"homebrew-numpy-nose.pth").write "#{nose_path}"
     end
     resource("numpy").stage do
       system "python", "setup.py",
