@@ -50,14 +50,11 @@ class Boost < Formula
     # Force boost to compile with the desired compiler
     open("user-config.jam", "a") do |file|
       #if OS.mac?
-      #  file.write "using darwin : : #{ENV.cxx} ;
-"
+      #  file.write "using darwin" : : #{ENV.cxx} ;
       #else
-      #  file.write "using gcc : : #{ENV.cxx} ;
-"
+      #  file.write "using gcc" : : #{ENV.cxx} ;
       #end
-      file.write "using mpi ;
-"
+      file.write "using mpi" ;
     end
 
     # libdir should be set by --prefix but isn't
