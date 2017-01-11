@@ -9,7 +9,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class Blast < Formula
+class Blast240 < Formula
   desc "Basic Local Alignment Search Tool"
   homepage "http://blast.ncbi.nlm.nih.gov/"
   # doi "10.1016/S0022-2836(05)80360-2"
