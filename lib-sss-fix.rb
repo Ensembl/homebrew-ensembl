@@ -22,14 +22,26 @@ class LibSssFix < Formula
 
   def install
     glibc = Formula['glibc']
-    sys_libnss_sss = Pathname.new "/usr/lib64/libnss_sss.so.2"
     brew_libnss_sss = Pathname.new glibc.lib+"libnss_sss.so.2"
-    glibc.lib.install_symlink sys_libnss_sss if sys_libnss_sss.exist? && !brew_libnss_sss.exist?
-    marker = (prefix+'libnss_sss_fix')
-    File.delete(marker) if File.exists?(marker)
-    (marker).write <<-EOF.undent
-      Installed symbolic link for glibc
-    EOF
+    
+    if ! brew_libnss_sss.exist?
+      locations = %w[/lib /lib64 /usr/lib /usr/lib64]
+      locations.each do |l|
+        sys_libnss_sss = Pathname.new "#{l}/libnss_sss.so.2"
+
+        #Skip if the library does not exist
+        if ! sys_libnss_sss.exist?
+          next
+        end
+
+        glibc.lib.install_symlink sys_libnss_sss
+        marker = (prefix+'libnss_sss_fix')
+        File.delete(marker) if File.exists?(marker)
+        (marker).write <<-EOF.undent
+          Installed symbolic link for glibc
+        EOF
+      end
+    end
   end
 
   test do
