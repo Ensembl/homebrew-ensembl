@@ -42,6 +42,9 @@ class Interproscan < Formula
       # Handle phobius dependencies
       s.gsub! 'bin/phobius/1.01/phobius.pl', "#{phobius.prefix}/phobius.pl"
     end
+    
+    inreplace 'interproscan.sh', 'cd $(dirname "$0")', "cd #{prefix}"
+    mv 'interproscan.sh', 'bin/.'
 
     prefix.install Dir['*']
     resource('panther-models').stage do
