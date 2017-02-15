@@ -20,6 +20,7 @@ class Ensc < Formula
   depends_on "ensembl/ensembl/mysql-client"
   depends_on "ensembl/ensembl/htslib" => :recommended
   depends_on "libconfig" => :recommended
+  depends_on 'libtool'
 
   def install 
     chdir 'src'

@@ -9,17 +9,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class R2r < Formula
-
-  homepage "http://www.bioinf.uni-leipzig.de/~zasha/R2R/"
-  # tag "bioinformatics"
-
-  url "http://www.bioinf.uni-leipzig.de/~zasha/R2R/R2R-1.0.5.tgz"
-  sha256 "c36859749cd40d59c4fd1dd9153e425984eeba8eb5d8ce1fbdcb8e1fdfa0f300"
+class Mysqlnaga  < Formula
+  desc 'mysqlnaga database copying utility'
+  homepage 'https://github.com/EnsemblGenomes/mysqlnaga'
+  url 'https://github.com/EnsemblGenomes/mysqlnaga/archive/v1.0.tar.gz'
+  sha256 '83a3585cb7d875fe62e740295e64ecdd15c7c81faea387cba4fd91ae090f86a4'
+  version '1.0'
 
   def install
-    system "./configure", "--prefix=#{prefix}"
-    system "make"
-    bin.install "src/r2r"
+    bin.install Dir["bin/*"]
   end
 end
+

@@ -28,7 +28,7 @@ class ViennaRna < Formula
   revision 1
   
   def install
-    system './configure', "--prefix=#{prefix}", "--without-doc-pdf"
+    system './configure', "--prefix=#{prefix}", "--without-doc-pdf", "--without-perl", "--without-python"
     system 'make'
     system 'make install'
   end

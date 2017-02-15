@@ -29,10 +29,12 @@ class Maftools < Formula
   end
 
   def install
-    system 'make', 'all'
+    system 'make all'
     lib.install Dir['lib/*.a']
     include.install Dir['lib/*.h']
-    mkpath (prefix+'mafTools')
-    (prefix+'mafTools').install Dir['*']
+    prefix.install Dir['*']
+  end
+  test do
+    system "#{bin}/mafValidator.py --version"
   end
 end

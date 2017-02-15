@@ -9,17 +9,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class R2r < Formula
-
-  homepage "http://www.bioinf.uni-leipzig.de/~zasha/R2R/"
+class Infernal10 < Formula
+  desc "Search DNA databases for RNA structure and sequence similarities"
+  homepage "http://eddylab.org/infernal/"
+  # doi "10.1093/bioinformatics/btp157"
   # tag "bioinformatics"
 
-  url "http://www.bioinf.uni-leipzig.de/~zasha/R2R/R2R-1.0.5.tgz"
-  sha256 "c36859749cd40d59c4fd1dd9153e425984eeba8eb5d8ce1fbdcb8e1fdfa0f300"
+  version "1.0"
+  url "http://eddylab.org/software/infernal/infernal-#{version}.tar.gz"
+  sha256 "099d322c1aa1434f9a37379375f24e02cf4eceb102b12690ba1c65958a73999f"
+
+  keg_only "Genebuild uses version #{version}"
 
   def install
     system "./configure", "--prefix=#{prefix}"
     system "make"
-    bin.install "src/r2r"
+    bin.mkpath
+    system "make", "install"
+  end
+
+  test do
+    system "#{bin}/cmsearch", "-h"
   end
 end
