@@ -13,7 +13,7 @@ class Interproscan < Formula
 
   desc 'Scan sequences (protein and nucleic) against InterPro signatures'
   homepage 'http://www.ebi.ac.uk/interpro/interproscan.html'
-  url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.22-61.0/interproscan-5.22-61.0-64-bit.tar.gz'
+  url 'ftpi'
   sha256 'e45a73631126a10ac0d725035c96081f1c23c138e225208b8db5aa668814e70e'
 
   depends_on 'ensembl/moonshine/tmhmm'
@@ -21,7 +21,7 @@ class Interproscan < Formula
   depends_on 'ensembl/moonshine/phobius'
 
   resource 'panther-models' do
-    url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-11.1.tar.gz'
+    url 'ftpp'
     sha256 'a7bf916e758eac522fc1cd0e07f6460d65a42f7b4a694495a94ffa4bf84ec4ff'
   end
 
@@ -33,7 +33,7 @@ class Interproscan < Formula
     inreplace 'interproscan.properties' do |s|
       # Handle tmhmm config
       s.gsub! 'bin/tmhmm/2.0c/decodeanhmm', "#{tmhmm.bin}/decodeanhmm.Linux_x86_64"
-      s.gsub! 'data/tmhmm/2.0c/TMHMM2.0c.model', "#{tmhmm.lib}"
+      s.gsub! 'data/tmhmm/2.0c/TMHMM2.0c.model', "#{tmhmm.lib}/TMHMM2.0.model"
 
       # Handle signalp dependencies
       s.gsub! 'bin/signalp/4.1/signalp', "#{signalp.bin}/signalp"
