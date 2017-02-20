@@ -18,7 +18,7 @@ class Blast < Formula
   option 'with-src', 'Build Blast from SRC not using precompiled binaries provided by NCBI'
 
   if build.with? 'src'
-    url "ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.30/ncbi-blast-2.2.30+-src.tar.gz"
+    url "http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.30/ncbi-blast-2.2.30+-src.tar.gz"
     version "2.2.30"
     sha256 ""
 
@@ -30,11 +30,11 @@ class Blast < Formula
     end
   else
     if OS.linux? 
-      url 'ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.30/ncbi-blast-2.2.30+-x64-linux.tar.gz'
+      url 'http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.30/ncbi-blast-2.2.30+-x64-linux.tar.gz'
       version "2.2.30"
       sha256 '1e6f2080b09bd5d272d9652c63bcb25abc0b16ffd36bd25973afb31f0387e792'
     elsif OS.mac?
-      url 'ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.30/ncbi-blast-2.2.30+-universal-macosx.tar.gz'
+      url 'http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.30/ncbi-blast-2.2.30+-universal-macosx.tar.gz'
       version '2.2.30'
       sha256 '5ecd357f4094c9e26202de59d0947a30d483c6ef0a6670faa13051602835c3ca'
     else
