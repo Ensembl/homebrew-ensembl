@@ -13,8 +13,9 @@ class Repeatmasker < Formula
   desc "Nucleic and proteic repeat masking tool"
   homepage "http://www.repeatmasker.org/"
   version "4.0.5"
-  url "http://www.repeatmasker.org/RepeatMasker-open-4-0-5.tar.gz"
+  url "http://www.repeatmasker.org/RepeatMasker-open-#{version}.tar.gz"
   sha256 "e4c15c64b90d57ce2448df4c49c37529eeb725e97f3366cc90f794a4c0caeef7"
+  revision 1
 
   option "without-configure", "Do not run configure"
   option "without-cache", "Do not change the cache directory to use REPEATMASKER_CACHE instead of HOME"
@@ -34,14 +35,14 @@ class Repeatmasker < Formula
   def post_install
     system "cp", libexec/"RepeatMaskerConfig.tmpl", libexec/"RepeatMaskerConfig.pm"
     inreplace libexec/"RepeatMaskerConfig.pm" do |f|
-      f.gsub! /^(\s*\$RMBLAST_DIR\s*=)\s*\S+/, "\1 \"#{Formula['ensembl/ensembl/rmblast'].opt_bin}\";"
-      f.gsub! /^(\s*\$DEFAULT_SEARCH_ENGINE\s*=)\s*\S+/, '\1 "ncbi"'
-      f.gsub! /^(\s*\$TRF_PRGM\s*=)\s*\S+/, "\1 \"#{Formula['homebrew/science/trf'].opt_bin}/trf\";"
-      f.gsub! /^(\s*\$HMMER_DIR\s*=)\s*\S+/, "\1 \"#{Formula['homebrew/science/hmmer'].opt_bin}\";"
+      f.gsub! /(RMBLAST_DIR\s*=)\s*\S+/, '\1 "'.concat(HOMEBREW_PREFIX).concat('/bin";')
+      f.gsub! /(DEFAULT_SEARCH_ENGINE\s*=)\s*\S+/, '\1 "ncbi"'
+      f.gsub! /(TRF_PRGM\s*=)\s*\S+/, '\1 "'.concat(Formula['homebrew/science/trf'].opt_bin).concat('/trf";')
+      f.gsub! /(HMMER_DIR\s*=)\s*\S+/, '\1 "'.concat(Formula['homebrew/science/hmmer'].opt_bin).concat('";')
       f.gsub! "HOME", "REPEATMASKER_CACHE" if build.with? "cache"
       if build.with? "phrap"
-        f.gsub! /^(\s*\$CROSSMATCH_DIR\s*=)\s*\S+/, "\1 \"#{Formula["ensembl/moonshine/phrap"].opt_bin}\";"
-        f.gsub! /^(\s*\$DEFAULT_SEARCH_ENGINE\s*=)\s*\S+/, '\1 "crossmatch";'
+        f.gsub! /(CROSSMATCH_DIR\s*=)\s*\S+/, '\1 "'.concat(Formula["ensembl/moonshine/phrap"].opt_bin).concat('";')
+        f.gsub! /(DEFAULT_SEARCH_ENGINE\s*=)\s*\S+/, '\1 "crossmatch";'
       end
     end
 
