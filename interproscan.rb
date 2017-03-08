@@ -31,6 +31,7 @@ class Interproscan < Formula
     tmhmm = Formula['ensembl/moonshine/tmhmm']
     signalp = Formula['ensembl/moonshine/signalp']
     phobius = Formula['ensembl/moonshine/phobius']
+    emboss = Formula['ensembl/ensembl/emboss']
 
     inreplace 'interproscan.properties' do |s|
       # Handle tmhmm config
@@ -44,8 +45,8 @@ class Interproscan < Formula
       # Handle phobius dependencies
       s.gsub! 'bin/phobius/1.01/phobius.pl', "#{phobius.prefix}/phobius.pl"
       
-      # Don't use the bundled version of getorf, it hasn't been compiled for RHEL7
-      s.gsub! 'bin/nucleotide/getorf', "#{HOMEBREW_PREFIX}/bin/getorf"
+      # Use emboss for getorf not bundled version
+      s.gsub! 'bin/nucleotide/getorf', "#{emboss.bin}/getorf"
     end
     
     inreplace 'interproscan.sh', 'cd $(dirname "$0")', "cd #{prefix}"
