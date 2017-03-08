@@ -20,6 +20,7 @@ class Interproscan < Formula
   depends_on 'ensembl/moonshine/tmhmm'
   depends_on 'ensembl/moonshine/signalp'
   depends_on 'ensembl/moonshine/phobius'
+  depends_on 'ensembl/ensembl/emboss'
 
   resource 'panther-models' do
     url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-11.1.tar.gz'
@@ -42,6 +43,9 @@ class Interproscan < Formula
       
       # Handle phobius dependencies
       s.gsub! 'bin/phobius/1.01/phobius.pl', "#{phobius.prefix}/phobius.pl"
+      
+      # Don't use the bundled version of getorf, it hasn't been compiled for RHEL7
+      s.gsub! 'bin/nucleotide/getorf', "#{HOMEBREW_PREFIX}/bin/getorf"
     end
     
     inreplace 'interproscan.sh', 'cd $(dirname "$0")', "cd #{prefix}"
