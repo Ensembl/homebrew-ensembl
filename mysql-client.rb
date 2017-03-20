@@ -19,7 +19,6 @@ class MysqlClient < Formula
 
   depends_on "cmake" => :build
   depends_on "openssl"
-  depends_on "readline"
   depends_on "libtool"
 
   conflicts_with "mysql-cluster", "mariadb", "percona-server",
@@ -66,7 +65,7 @@ class MysqlClient < Formula
       -DDEFAULT_COLLATION=utf8_general_ci
       -DSYSCONFDIR=#{etc}
       -DCOMPILATION_COMMENT=Homebrew
-      -DWITH_EDITLINE=system
+      -DWITH_EDITLINE=bundled
       -DWITH_BOOST=boost
       -DWITH_UNIT_TESTS=OFF
       -DENABLED_LOCAL_INFILE=1
