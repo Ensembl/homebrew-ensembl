@@ -19,7 +19,8 @@ class MysqlClient < Formula
 
   depends_on "cmake" => :build
   depends_on "openssl"
-  depends_on "homebrew/dupes/libedit"
+  depends_on "readline"
+  depends_on "libtool"
 
   conflicts_with "mysql-cluster", "mariadb", "percona-server",
     :because => "mysql, mariadb, and percona install the same client binaries"
