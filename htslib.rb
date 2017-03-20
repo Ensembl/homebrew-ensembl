@@ -19,6 +19,8 @@ class Htslib < Formula
   sha256 "3bbd04f9a0c4c301abd5d19a81920894ac2ee5e86e8aa977e8c2035e01d93ea7"
 
   depends_on "curl"
+  depends_on 'libtool'
+  depends_on 'autoconf'
   patch :DATA
 
   def install
