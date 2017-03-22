@@ -15,6 +15,8 @@ class Sonlib < Formula
   url 'https://github.com/benedictpaten/sonLib.git', :using => :git
   version '0.1'
 
+  patch :DATA
+
   def install
     system 'make', 'all'
     lib.install Dir['lib/*.a']
@@ -23,3 +25,32 @@ class Sonlib < Formula
     (prefix+'sonLib').install Dir['*']
   end
 end
+__END__
+diff --git a/include.mk b/include.mk
+index d536d07..6472c36 100644
+--- a/include.mk
++++ b/include.mk
+@@ -41,17 +41,17 @@ endif
+ # linker input files. See <http://stackoverflow.com/a/8266512/402891>.
+ 
+ #Release compiler flags
+-cflags_opt = -O3 -g -Wall --pedantic -funroll-loops -DNDEBUG 
++cflags_opt = -O3 -g -Wall --pedantic -funroll-loops -DNDEBUG -fPIC
+ #-fopenmp
+-cppflags_opt = -O3 -g -Wall -funroll-loops -DNDEBUG
++cppflags_opt = -O3 -g -Wall -funroll-loops -DNDEBUG -fPIC
+ 
+ #Debug flags (slow)
+-cflags_dbg = -Wall -O0 -Werror --pedantic -g -fno-inline -UNDEBUG -Wno-error=unused-result
+-cppflags_dbg = -Wall -g -O0 -fno-inline -UNDEBUG
++cflags_dbg = -Wall -O0 -Werror --pedantic -g -fno-inline -UNDEBUG -Wno-error=unused-result -fPIC
++cppflags_dbg = -Wall -g -O0 -fno-inline -UNDEBUG -fPIC
+ 
+ #Ultra Debug flags (really slow, checks for memory issues)
+-cflags_ultraDbg = -Wall -Werror --pedantic -g -O1 -fno-inline -fno-omit-frame-pointer -fsanitize=address
+-cppflags_ultraDbg = -g -O1 -fno-inline -fno-omit-frame-pointer -fsanitize=address
++cflags_ultraDbg = -Wall -Werror --pedantic -g -O1 -fno-inline -fno-omit-frame-pointer -fsanitize=address -fPIC
++cppflags_ultraDbg = -g -O1 -fno-inline -fno-omit-frame-pointer -fsanitize=address -fPIC
+ 
+ #Profile flags
+ cflags_prof = -Wall -Werror --pedantic -pg -O3 -g -Wno-error=unused-result
