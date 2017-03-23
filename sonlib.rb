@@ -19,10 +19,12 @@ class Sonlib < Formula
 
   def install
     system 'make', 'all'
-    lib.install Dir['lib/*.a']
-    include.install Dir['lib/*.h']
     mkpath (prefix+'sonLib')
+    mkpath (prefix+'lib')
+    mkpath (prefix+'include')
     (prefix+'sonLib').install Dir['*']
+    lib.install_symlink Dir[prefix+'sonLib/lib/*.a']
+    include.install_symlink Dir[prefix+'sonLib/lib/*.h']
   end
 end
 __END__
