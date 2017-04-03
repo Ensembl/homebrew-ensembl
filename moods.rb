@@ -10,14 +10,16 @@
 # limitations under the License.
 
 class Moods < Formula
+
   desc "MOODS - Motif Occurrence Detection Suite"
+
   homepage "https://github.com/jhkorhonen/MOODS"
- 
   version '1.9.3'
   sha256 "79d9ffe8acb7d32182dd190bfd55ad9e3170d1f69ab53ee7e243d2c1449f50d4"
   url "https://github.com/jhkorhonen/MOODS/releases/download/v#{version}/MOODS-python-#{version}.tar.gz"
 
   depends_on "python" 
+
   def install
     system "python", *Language::Python.setup_install_args(libexec)    
     system "python setup.py install"
@@ -32,4 +34,5 @@ class Moods < Formula
   test do
     system "moods_dna.py -m #{doc}/example-data/matrices/*.{pfm,adm} -s #{doc}/example-data/seq/chr1-5k-55k.fa -p 0.0001"
   end
+
 end
