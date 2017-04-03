@@ -23,7 +23,7 @@ class Hal < Formula
   def install
     ENV.deparallelize
     sonlib = Formula['ensembl/ensembl/sonlib']
-    system 'make', "sonLibRootPath=#{sonlib.opt_prefix}/sonlib"
+    system 'make', "sonLibRootPath=#{sonlib.opt_prefix}/sonLib"
 
     bin.install Dir['bin/*']
     lib.install Dir['lib/*']
