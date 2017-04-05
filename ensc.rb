@@ -13,9 +13,9 @@ class Ensc < Formula
   desc 'C bindings to Ensembl DBs and useful utils'
   homepage 'https://github.com/Ensembl/ensc-core'
 
-  url 'https://github.com/Ensembl/ensc-core/archive/1.0.0.zip'
-  sha256 'b05e9bc5950d07cd410b4eebf6354bb9ed3c8387afd97043109225a3db09a813'
-  version '1.0.0'
+  version '1.0.1'
+  url "https://github.com/Ensembl/ensc-core/archive/#{version}.zip"
+  sha256 '93d6d0d8faaf11a22988272786ddf7d241a8165edaa47d89fd376de7003ca56f'
 
   depends_on "ensembl/ensembl/mysql-client"
   depends_on "ensembl/ensembl/htslib" => :recommended
