@@ -15,10 +15,11 @@ class Repeatmasker < Formula
   version "4.0.5"
   url "http://www.repeatmasker.org/RepeatMasker-open-#{version}.tar.gz"
   sha256 "e4c15c64b90d57ce2448df4c49c37529eeb725e97f3366cc90f794a4c0caeef7"
-  revision 1
+  revision 2
 
   option "without-configure", "Do not run configure"
   option "without-cache", "Do not change the cache directory to use REPEATMASKER_CACHE instead of HOME"
+  option "with-dfam", "Use Hmmer and Dfam to mask sequences"
 
   depends_on "homebrew/science/hmmer" # at least version 3.1 for nhmmer
   depends_on "perl" => :optional
@@ -36,13 +37,15 @@ class Repeatmasker < Formula
     system "cp", libexec/"RepeatMaskerConfig.tmpl", libexec/"RepeatMaskerConfig.pm"
     inreplace libexec/"RepeatMaskerConfig.pm" do |f|
       f.gsub! /(RMBLAST_DIR\s*=)\s*\S+/, '\1 "'.concat(HOMEBREW_PREFIX).concat('/bin";')
-      f.gsub! /(DEFAULT_SEARCH_ENGINE\s*=)\s*\S+/, '\1 "ncbi"'
+      f.gsub! /(DEFAULT_SEARCH_ENGINE\s*=)\s*\S+/, '\1 "ncbi";'
       f.gsub! /(TRF_PRGM\s*=)\s*\S+/, '\1 "'.concat(Formula['homebrew/science/trf'].opt_bin).concat('/trf";')
       f.gsub! /(HMMER_DIR\s*=)\s*\S+/, '\1 "'.concat(Formula['homebrew/science/hmmer'].opt_bin).concat('";')
       f.gsub! "HOME", "REPEATMASKER_CACHE" if build.with? "cache"
       if build.with? "phrap"
         f.gsub! /(CROSSMATCH_DIR\s*=)\s*\S+/, '\1 "'.concat(Formula["ensembl/moonshine/phrap"].opt_bin).concat('";')
         f.gsub! /(DEFAULT_SEARCH_ENGINE\s*=)\s*\S+/, '\1 "crossmatch";'
+      elsif build.with? "dfam"
+        f.gsub! /(DEFAULT_SEARCH_ENGINE\s*=)\s*\S+/, '\1 "hmmer";'
       end
     end
 
@@ -64,7 +67,8 @@ class Repeatmasker < Formula
     if build.with? "repbase"
       system "cp --backup --suffix=.rm #{Formula['ensembl/moonshine/repbase'].opt_libexec}/* #{libexec}/Libraries"
     else
-     system "for F in #{libexec}/Libraries/*.rm; do mv $F ${F%.rm};done"
+     system "for F in #{libexec}/Libraries/*.rm; do if [ -e \"$F\" ]; then mv $F ${F%.rm};fi;done"
+     inreplace "#{libexec}/Libraries/RepeatMaskerLib.embl", /RELEASE 20110419-min/, "RELEASE 20170101-min"
     end
 
     system "#{perl} #{libexec}/util/buildRMLibFromEMBL.pl #{libexec}/Libraries/RepeatMaskerLib.embl > #{libexec}/Libraries/RepeatMasker.lib"
@@ -89,6 +93,16 @@ class Repeatmasker < Formula
   end
 
   test do
-    system "RepeatMasker"
+    (testpath/"hmmer_dna.fa").write(">dna\nATCGAGCTACGAGCGATCATGCGATCATCATAAAAAAAAAAAATATATATATATATATA\n")
+    system "RepeatMasker -engine hmmer #{testpath}/hmmer_dna.fa"
+    assert File.exist?(testpath/"hmmer_dna.fa.masked")
+    assert File.exist?(testpath/"hmmer_dna.fa.out")
+    assert File.exist?(testpath/"hmmer_dna.fa.tbl")
+    (testpath/"blast_dna.fa").write(">dna\nATCGAGCTACGAGCGATCATGCGATCATCATAAAAAAAAAAAATATATATATATATATA\n")
+    (testpath/"blast_dna.lib").write(">TEST1#SIMPLE @test [S:10]\natatatatatatata\n")
+    system "RepeatMasker -engine ncbi -lib #{testpath}/blast_dna.lib #{testpath}/blast_dna.fa"
+    assert File.exist?(testpath/"blast_dna.fa.masked")
+    assert File.exist?(testpath/"blast_dna.fa.out")
+    assert File.exist?(testpath/"blast_dna.fa.tbl")
   end
 end
