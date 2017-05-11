@@ -49,7 +49,7 @@ class Interproscan < Formula
       s.gsub! 'bin/nucleotide/getorf', "#{emboss.bin}/getorf"
     end
     
-    inreplace 'interproscan.sh', 'cd $(dirname "$0")', "cd #{prefix}"
+    inreplace 'interproscan.sh', 'cd "$(dirname "$INSTALL_DIR")"', "cd #{prefix}"
     mv 'interproscan.sh', 'bin/.'
 
     prefix.install Dir['*']
