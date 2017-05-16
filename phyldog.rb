@@ -12,8 +12,7 @@
 class Phyldog < Formula
   desc "Simultaneously build gene and species trees when gene families have undergone duplications and losses"
   homepage "http://pbil.univ-lyon1.fr/software/phyldog/"
-  url "git://dev.prabi.fr/phyldog", :using => :git, :revision => 'v2.0b1'
-  version '2.0b1'
+  url "git://github.com/Boussau/PHYLDOG", :using => :git
 
   depends_on 'cmake' => :build
   depends_on 'ensembl/ensembl/libpll'
@@ -50,31 +49,30 @@ end
 
 __END__
 diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
-index ad98d5d..8cd3b1a 100755
+index 0783ed7..870fdca 100755
 --- a/tests/CMakeLists.txt
 +++ b/tests/CMakeLists.txt
-@@ -34,13 +34,15 @@ target_link_libraries(test_likelihoodEvaluator
-   ${LIBS}
+@@ -34,13 +34,14 @@ target_link_libraries(test_likelihoodEvaluator
+   ${BPP_LIBRARIES}
  )
- 
+
 -ADD_EXECUTABLE(test_SPRs test_SPRs.cpp ${PHYLDOG_SRCS})
 -target_link_libraries(test_SPRs
 -  ${Boost_SERIALIZATION_LIBRARY}
 -  ${Boost_MPI_LIBRARY}
 -  ${MPI_LIBRARIES}
 -  ${PLL_LIBRARIES}
--  ${LIBS}
+-  ${BPP_LIBRARIES}
 -)
 +#ADD_EXECUTABLE(test_SPRs test_SPRs.cpp ${PHYLDOG_SRCS})
 +#target_link_libraries(test_SPRs
-+#  ${Boost_SERIALIZATION_LIBRARY}
-+#  ${Boost_MPI_LIBRARY}
-+#  ${MPI_LIBRARIES}
-+#  ${PLL_LIBRARIES}
-+#  ${LIBS}
++  #${Boost_SERIALIZATION_LIBRARY}
++  #${Boost_MPI_LIBRARY}
++  #${MPI_LIBRARIES}
++  #${PLL_LIBRARIES}
++  #${BPP_LIBRARIES}
 +#)
-+
-+#install(TARGETS  test_SPRs test_likelihoodEvaluator DESTINATION tests)
+
+-install(TARGETS test_SPRs test_likelihoodEvaluator DESTINATION tests)
++#install(TARGETS test_SPRs test_likelihoodEvaluator DESTINATION tests)
 +install(TARGETS test_likelihoodEvaluator DESTINATION tests)
- 
--install(TARGETS  test_SPRs test_likelihoodEvaluator DESTINATION tests)
