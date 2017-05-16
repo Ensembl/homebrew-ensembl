@@ -31,11 +31,11 @@ class Phyldog < Formula
       "-DCMAKE_INSTALL_PREFIX:PATH=#{prefix}",
       "-DCMAKE_LIBRARY_PATH='#{biopp.lib};#{libpll.lib};#{boost.lib}'",
       "-DCMAKE_INCLUDE_PATH='#{biopp.include};#{libpll.include};#{boost.include}'",
-      "-DBoost_NO_BOOST_CMAKE=TRUE",
-      "-DBoost_NO_SYSTEM_PATHS=TRUE",
+      "-DBOOST_NO_BOOST_CMAKE=TRUE",
+      "-DBOOST_NO_SYSTEM_PATHS=TRUE",
       "-DBOOST_ROOT:PATHNAME=#{boost.prefix}",
       "-DBOOST_LIBRARYDIR=#{boost.lib}",
-      "-DBoost_LIBRARY_DIRS:FILEPATH=#{boost.lib}",
+      "-DBOOST_LIBRARY_DIRS:FILEPATH=#{boost.lib}",
     ]
     system 'cmake', *args
     system 'make'
