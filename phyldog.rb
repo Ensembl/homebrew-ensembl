@@ -13,6 +13,7 @@ class Phyldog < Formula
   desc "Simultaneously build gene and species trees when gene families have undergone duplications and losses"
   homepage "http://pbil.univ-lyon1.fr/software/phyldog/"
   url "git://github.com/Boussau/PHYLDOG", :using => :git
+  version 'v2.01b-2017-05-16'
 
   depends_on 'cmake' => :build
   depends_on 'ensembl/ensembl/libpll'
