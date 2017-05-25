@@ -54,7 +54,7 @@ class Boost < Formula
       #else
       #  file.write "using gcc" : : #{ENV.cxx} ;
       #end
-      file.write "using mpi" ;
+      file.write "using mpi ;" ;
     end
 
     # libdir should be set by --prefix but isn't
