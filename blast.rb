@@ -47,7 +47,7 @@ class Blast < Formula
 
   depends_on "freetype" => :optional
   depends_on "gnutls" => :optional
-  depends_on "hdf5" => :optional
+  depends_on "homebrew/science/hdf5" => :optional
   depends_on "jpeg" => :recommended
   depends_on "libpng" => :recommended
   depends_on "lzo" => :optional
