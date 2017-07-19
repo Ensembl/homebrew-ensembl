@@ -24,11 +24,6 @@ class Exonerate24 < Formula
   keg_only "Must be a keg because otherwise it will clash with exonerate 2.2"
 
   def install
-    # Fix the following error. This issue is fixed upstream in 2.4.0.
-    # /usr/bin/ld: socket.o: undefined reference to symbol 'pthread_create@@GLIBC_2.2.5'
-    # /lib/x86_64-linux-gnu/libpthread.so.0: error adding symbols: DSO missing from command line
-    inreplace "configure", 'LDFLAGS="$LDFLAGS -lpthread"', 'LIBS="$LIBS -lpthread"' unless build.devel?
-
     system "./configure", "--disable-debug", "--disable-dependency-tracking",
                           "--prefix=#{prefix}"
     ENV.deparallelize
