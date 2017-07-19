@@ -21,7 +21,7 @@ class Exonerate24 < Formula
   depends_on "glib"
   conflicts_with 'homebrew/science/exonerate', :because => 'Both create the same binaries'
   
-  keg_only: "Must be a keg because otherwise it will clash with exonerate 2.2"
+  keg_only "Must be a keg because otherwise it will clash with exonerate 2.2"
 
   def install
     # Fix the following error. This issue is fixed upstream in 2.4.0.
