@@ -15,6 +15,8 @@ class Maftools < Formula
   url 'https://github.com/dentearl/mafTools.git', :using => :git
   version '0.1'
 
+  keg_only "mafFilter conflicts with kent"
+  
   depends_on :python if MacOS.version <= :snow_leopard
   #depends_on "ensembl/ensembl/sonlib"
   
@@ -31,8 +33,6 @@ class Maftools < Formula
   def install
     ENV.deparallelize
     system 'make all'
-    lib.install Dir['lib/*.a']
-    include.install Dir['lib/*.h']
     prefix.install Dir['*']
   end
   test do
