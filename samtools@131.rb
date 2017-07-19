@@ -9,7 +9,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class Samtools131 < Formula
+class SamtoolsAT131 < Formula
   desc "Tools (written in C using htslib) for manipulating next-generation sequencing data"
   homepage "http://www.htslib.org/"
   # doi "10.1093/bioinformatics/btp352"
