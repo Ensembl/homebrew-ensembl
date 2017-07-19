@@ -9,7 +9,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class Htslib < Formula
+class Htslib131 < Formula
   desc "C library for high-throughput sequencing data formats"
   homepage "http://www.htslib.org/"
   # tag "bioinformatics"
@@ -17,6 +17,8 @@ class Htslib < Formula
   url "https://github.com/samtools/htslib/archive/1.3.1.tar.gz"
   version "1.3.1"
   sha256 "3bbd04f9a0c4c301abd5d19a81920894ac2ee5e86e8aa977e8c2035e01d93ea7"
+
+  keg_only 'Old version set to 1.3.1'
 
   depends_on "curl"
   depends_on 'libtool'
