@@ -29,6 +29,7 @@ class Maftools < Formula
   end
 
   def install
+    ENV.deparallelize
     system 'make all'
     lib.install Dir['lib/*.a']
     include.install Dir['lib/*.h']
