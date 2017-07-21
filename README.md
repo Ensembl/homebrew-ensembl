@@ -22,3 +22,29 @@ Search [open](https://github.com/ensembl/homebrew-ensembl/issues?state=open) and
 
 ## Contributing
 There is no guide for this at the moment
+
+# Common Errors From Compiled Binaries
+
+## libgcc and pthread
+
+```
+libgcc_s.so.1 must be installed for pthread_cancel to work
+```
+
+Solved by https://github.com/Linuxbrew/homebrew-core/pull/2622 where `ligcc_s.so.1` is symlinked in to where glibc can find it. If this does appear again though recompiling the affected formula from source (e.g. `brew reinstall -s bwa`) would work.
+
+## examl
+
+```
+unable to open mca_ess_lsf: libbat.so: cannot open shared object file: No such file or directory
+```
+
+Indicates a lack of the LSF `libbat.so` module on your path. Export LSF's libraries onto your `LD_LIBRARY_PATH`.
+
+## Incompatible GLIBC_VERSION
+
+```
+“version `GLIBC_2.14' not found”
+```
+
+Happens when two binaries have been compiled with different glibc's (more likely different versions of GCC with different versions of glibc). The common error is compiling on a younger version and trying to link back to an older version. Solution is find out where the cross-compile happened and stop it.
