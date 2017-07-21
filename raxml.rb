@@ -18,7 +18,7 @@ class Raxml < Formula
   
   def install
     #Define the portable pthreads to give a performance boost
-    inreplace 'axml.c', '#define _PORTABLE_PTHREADS', 'define _PORTABLE_PTHREADS'
+    inreplace 'axml.c', '#define _PORTABLE_PTHREADS', ''
     system 'make', '-f', 'Makefile.AVX.gcc'
     rm Dir['*.o']
     system 'make', '-f', 'Makefile.AVX.PTHREADS.gcc'
