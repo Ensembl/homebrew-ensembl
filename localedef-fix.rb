@@ -47,6 +47,12 @@ class LocaledefFix < Formula
     ].each do | l |
       system glibc.bin+'localedef', "-i", l[0], "-f", l[1], l[2]
     end
+
+    marker = (prefix+'localedef_fix')
+    File.delete(marker) if File.exists?(marker)
+    (marker).write <<-EOF.undent
+      Installed locales for glibc
+    EOF
   end
 
   test do
