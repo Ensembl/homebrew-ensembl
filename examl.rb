@@ -16,6 +16,10 @@ class Examl < Formula
   sha256 '90a859e0b8fff697722352253e748f03c57b78ec5fbc1ae72f7e702d299dac67'
   version '3.0.17'
   
+  depends_on 'openmpi' => ["with-cxx-bindings"]
+  depends_on :mpi => [:cc, :optional]
+  needs :openmp
+
   def install
     cd 'examl' do
       system 'make', '-f', 'Makefile.AVX.gcc'
