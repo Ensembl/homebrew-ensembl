@@ -17,6 +17,7 @@ class Raxml < Formula
   version '8.2.8'
 
   depends_on 'openmpi' => ["with-cxx-bindings"]
+  needs :openmp
   
   def install
     #Define the portable pthreads to give a performance boost
