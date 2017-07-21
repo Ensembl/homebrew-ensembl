@@ -15,6 +15,8 @@ class Raxml < Formula
   url 'https://github.com/stamatak/standard-RAxML/archive/v8.2.8.tar.gz'
   sha256 'a99bd3c5fcd640eecd6efa3023f5009c13c04a9b1cea6598c53daa5349f496b6'
   version '8.2.8'
+
+  depends_on 'openmpi' => ["with-cxx-bindings"]
   
   def install
     #Define the portable pthreads to give a performance boost
