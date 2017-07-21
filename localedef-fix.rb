@@ -9,7 +9,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class LibSssFix < Formula
+class LocaldefFix < Formula
 
   desc "Brew formula to fix localedef issues as not all required locales are installed by brew (only en_US.UTF-8)"
   homepage "http://www.linuxfromscratch.org/lfs/view/development/chapter06/glibc.html"
