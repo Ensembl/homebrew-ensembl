@@ -17,13 +17,15 @@ class Raxml < Formula
   version '8.2.8'
   
   def install
-    system 'make', '-f', 'Makefile.AVX.gcc', 'CC=icc'
+    #Define the portable pthreads to give a performance boost
+    inreplace 'axml.c', '#define _PORTABLE_PTHREADS', 'define _PORTABLE_PTHREADS'
+    system 'make', '-f', 'Makefile.AVX.gcc'
     rm Dir['*.o']
-    system 'make', '-f', 'Makefile.AVX.PTHREADS.gcc', 'CC=icc'
+    system 'make', '-f', 'Makefile.AVX.PTHREADS.gcc'
     rm Dir['*.o']
-    system 'make', '-f', 'Makefile.SSE3.gcc', 'CC=icc'
+    system 'make', '-f', 'Makefile.SSE3.gcc'
     rm Dir['*.o']
-    system 'make', '-f', 'Makefile.SSE3.PTHREADS.gcc', 'CC=icc'
+    system 'make', '-f', 'Makefile.SSE3.PTHREADS.gcc'
 
     %w(AVX PTHREADS-AVX SSE3 PTHREADS-SSE3).each do | ext |
       bin.install "raxmlHPC-#{ext}"
