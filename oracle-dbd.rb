@@ -21,7 +21,7 @@ class OracleDbd < Formula
 
   def run_cpan(*plenv_version)
     if defined? plenv_version
-      ENV.['PLENV_VERSION'] = plenv_version
+      ENV['PLENV_VERSION'] = plenv_version
     end
     oci = Formula['ensembl/moonshine/oracle-instant-client']
     system 'perl', 'Makefile.PL', '-m', "#{oci}/sdk/demo/demo.mk", '-l'
