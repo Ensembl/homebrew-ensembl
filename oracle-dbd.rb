@@ -19,11 +19,24 @@ class OracleDbd < Formula
   depends_on 'ensembl/moonshine/oracle-instant-client'
   depends_on 'ensembl/ensembl/libaio'
 
-  def install
+  def run_cpan(*plenv_version)
+    if defined? plenv_version
+      ENV.['PLENV_VERSION'] = plenv_version
+    end
     oci = Formula['ensembl/moonshine/oracle-instant-client']
     system 'perl', 'Makefile.PL', '-m', "#{oci}/sdk/demo/demo.mk", '-l'
     system 'make'
     system 'make', 'install'
+  end
+  
+  def install
+    if ENV.has_key?('PLENV_ROOT')
+      %x{#{ENV['PLENV_ROOT']}/bin/plenv versions --bare}.chomp.split.each do | ver |
+        run_cpan(ver)
+      end
+    else
+      run_cpan
+    end
     script = Pathname.new 'oracle-dbd-version'
     (script).write <<-EOF.undent
       #!/bin/sh
