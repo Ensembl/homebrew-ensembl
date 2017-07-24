@@ -16,7 +16,7 @@ class Hal < Formula
   version '451788f'
 
   depends_on 'ensembl/ensembl/sonlib'
-  depends_on 'homebrew/science/hdf5'
+  depends_on 'hdf5'
 
   keg_only 'Use directly because of large numbers of installed bianries and headers'
 

@@ -47,7 +47,7 @@ class Blast240 < Formula
 
   depends_on "freetype" => :optional
   depends_on "gnutls" => :optional
-  depends_on "homebrew/science/hdf5" => :optional
+  depends_on "hdf5" => :optional
   depends_on "jpeg" => :recommended
   depends_on "libpng" => :recommended
   depends_on "lzo" => :optional
@@ -74,7 +74,7 @@ class Blast240 < Formula
       args << (build.with?("jpeg")   ? "--with-jpeg=#{Formula["jpeg"].opt_prefix}" : "--without-jpeg")
       args << (build.with?("libpng") ? "--with-png=#{Formula["libpng"].opt_prefix}" : "--without-png")
       args << (build.with?("pcre")   ? "--with-pcre=#{Formula["pcre"].opt_prefix}" : "--without-pcre")
-      args << (build.with?("hdf5")   ? "--with-hdf5=#{Formula["homebrew/science/hdf5"].opt_prefix}" : "--without-hdf5")
+      args << (build.with?("hdf5")   ? "--with-hdf5=#{Formula[""].opt_prefix}" : "--without-hdf5")
   
       if build.without? "static"
         args << "--with-dll" << "--without-static" << "--without-static-exe"
