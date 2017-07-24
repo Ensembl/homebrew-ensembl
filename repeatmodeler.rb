@@ -42,11 +42,10 @@ class Repeatmodeler < Formula
     prefix.install Dir["*"]
     bin.install_symlink %w[../BuildDatabase ../RepeatModeler]
 
-    %x{plenv which perl}
-    perl = if $?.exitstatus != 0
-      "/usr/bin/perl"
+    perl = if ENV.has_key?('PLENV_ROOT')
+      %x{#{ENV['PLENV_ROOT']}/bin/plenv which perl}.chomp
     else
-      %x{plenv which perl}.chomp
+      "/usr/bin/perl"
     end
     (prefix/"config.txt").write <<-EOS.undent
 
