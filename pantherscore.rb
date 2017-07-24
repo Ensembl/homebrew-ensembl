@@ -12,7 +12,7 @@
 class Pantherscore < Formula
   desc 'Score protein sequences against the PANTHER HMM library'
   homepage 'ftp://ftp.pantherdb.org/hmm_scoring/10.0/1.03/'
-  url 'ftp://ftp.pantherdb.org/hmm_scoring/10.0/1.03/pantherScore1.03.zip'
+  url 'https://github.com/Ensembl/pantherScore/raw/master/pantherscore-1.03.zip'
   sha256 'dad3aea7290e52372fd048a9de9242f80a52888a238eefb48919592b89e280be'
   version '1.03'
 
