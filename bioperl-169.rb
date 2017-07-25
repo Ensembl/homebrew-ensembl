@@ -15,8 +15,24 @@ class Bioperl169 < Formula
   url 'https://github.com/bioperl/bioperl-live/archive/release-1-6-924.tar.gz'
   sha256 '547a65a1c083bd40345514893cf91491d49318f2290dd8d0a539b742327cbe25'
   version '1.6.924'
+  revision 1
+
+  patch :DATA
 
   def install
     libexec.install Dir['*']
   end
 end
+__END__
+diff -aur a/Bio/DB/Flat/BinarySearch.pm a/Bio/DB/Flat/BinarySearch.pm
+--- a/Bio/DB/Flat/BinarySearch.pm
++++ a/Bio/DB/Flat/BinarySearch.pm
+@@ -363,7 +363,7 @@
+         );
+     }
+     else {
+-        $self->{_seqio}->fh($fh);
++        $self->{_seqio}->_fh($fh);
+     }
+
+     return $self->{_seqio}->next_seq;
