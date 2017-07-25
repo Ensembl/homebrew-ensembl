@@ -22,7 +22,7 @@ class Samtools131 < Formula
   keg_only 'Old version set to 1.3.1'
 
   depends_on "homebrew/dupes/ncurses" unless OS.mac?
-  depends_on "ensembl/ensembl/htslib@131"
+  depends_on "ensembl/ensembl/htslib131"
 
   def install
     htslib = Formula["ensembl/ensembl/htslib131"].opt_prefix
