@@ -18,7 +18,7 @@ class Ensc < Formula
   sha256 '2c546064d5498e4a00ff827e7b98ac9eed1a9cbd775de719a40f272025fcfab6'
 
   depends_on "ensembl/ensembl/mysql-client"
-  depends_on "ensembl/ensembl/htslib@131" => :recommended
+  depends_on "ensembl/ensembl/htslib131" => :recommended
   depends_on "libconfig" => :recommended
   depends_on 'libtool'
 

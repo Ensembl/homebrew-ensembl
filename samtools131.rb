@@ -9,7 +9,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class SamtoolsAT131 < Formula
+class Samtools131 < Formula
   desc "Tools (written in C using htslib) for manipulating next-generation sequencing data"
   homepage "http://www.htslib.org/"
   # doi "10.1093/bioinformatics/btp352"
@@ -25,7 +25,7 @@ class SamtoolsAT131 < Formula
   depends_on "ensembl/ensembl/htslib@131"
 
   def install
-    htslib = Formula["ensembl/ensembl/htslib@131"].opt_prefix
+    htslib = Formula["ensembl/ensembl/htslib131"].opt_prefix
     if build.without? "curses"
       ohai "Building without curses"
       system "./configure", "--with-htslib=#{htslib}", "--without-curses"

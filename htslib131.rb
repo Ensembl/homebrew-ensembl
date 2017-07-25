@@ -9,7 +9,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class HtslibAT131 < Formula
+class Htslib131 < Formula
   desc "C library for high-throughput sequencing data formats"
   homepage "http://www.htslib.org/"
   # tag "bioinformatics"
