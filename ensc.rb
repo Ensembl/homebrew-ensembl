@@ -15,7 +15,7 @@ class Ensc < Formula
 
   version '1.1.0'
   url "https://github.com/Ensembl/ensc-core/archive/#{version}.zip"
-  sha256 'b12b58c7ce6def077708203012f453ca66ba15b03018a49f552750d48dc17317'
+  sha256 '2c546064d5498e4a00ff827e7b98ac9eed1a9cbd775de719a40f272025fcfab6'
 
   depends_on "ensembl/ensembl/mysql-client"
   depends_on "ensembl/ensembl/htslib@131" => :recommended
