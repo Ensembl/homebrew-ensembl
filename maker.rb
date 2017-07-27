@@ -6,7 +6,7 @@ class Maker < Formula
   url "http://yandell.topaz.genetics.utah.edu/maker_downloads/static/maker-2.31.9.tgz"
   sha256 "c92f9c8c96c6e7528d0a119224f57cf5e74fadfc5fce5f4b711d0778995cabab"
 
-  depends_on "augustus"
+  depends_on "ensembl/ensembl/augustus"
   depends_on "ensembl/ensembl/blast"
   depends_on "ensembl/ensembl/exonerate22"
   # depends_on "infernal" => :optional
