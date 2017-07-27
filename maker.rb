@@ -20,19 +20,19 @@ class Maker < Formula
   # No formula: depends_on 'genemark-es' => :optional
   # No formula: depends_on 'genemarks' => :optional
 
-  depends_on "Bio::Perl" => :perl
-  depends_on "Bit::Vector" => :perl
-  depends_on "DBD::SQLite" => :perl
-  depends_on "DBI" => :perl
-  depends_on "File::Which" => :perl
-  depends_on "IO::All" => :perl
-  depends_on "IO::Prompt" => :perl
-  depends_on "Inline::C" => [:perl, "Inline"]
-  depends_on "DBD::Pg" => :perl if build.with? "postgresql"
-  depends_on "Perl::Unsafe::Signals" => :perl
-  depends_on "PerlIO::gzip" => :perl
-  depends_on "forks" => :perl
-  depends_on "forks::shared" => :perl
+  # depends_on "Bio::Perl" => :perl
+  # depends_on "Bit::Vector" => :perl
+  # depends_on "DBD::SQLite" => :perl
+  # depends_on "DBI" => :perl
+  # depends_on "File::Which" => :perl
+  # depends_on "IO::All" => :perl
+  # depends_on "IO::Prompt" => :perl
+  # depends_on "Inline::C" => [:perl, "Inline"]
+  # depends_on "DBD::Pg" => :perl if build.with? "postgresql"
+  # depends_on "Perl::Unsafe::Signals" => :perl
+  # depends_on "PerlIO::gzip" => :perl
+  # depends_on "forks" => :perl
+  # depends_on "forks::shared" => :perl
 
   def install
     cd "src" do
