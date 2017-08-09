@@ -19,13 +19,13 @@ class Phyldog < Formula
   depends_on 'openmpi' => ["with-cxx-bindings"]
   depends_on 'ensembl/ensembl/libpll'
   depends_on 'ensembl/ensembl/biopp'
-  depends_on 'ensembl/ensembl/boost'
+  depends_on 'boost-mpi'
   
   patch :DATA
 
   def install
     biopp = Formula['ensembl/ensembl/biopp']
-    boost = Formula['ensembl/ensembl/boost']
+    boost = Formula['boost-mpi']
     libpll = Formula['ensembl/ensembl/libpll']
 
     mkdir 'build'
