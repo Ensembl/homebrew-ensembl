@@ -42,20 +42,21 @@ class Maker < Formula
   # How can we download this and make it available to cpanm?
   resource "cpanfile" do
     url "https://raw.githubusercontent.com/Ensembl/cpanfiles/master/maker/cpanfile"
-    sha256 ""
+    sha256 "4f4b2a2eac3202f9a45f09f1ba8c61347d5da1ee29023827bea79b523fc523dc"
   end
 
   def install
     ENV.prepend_create_path "PERL5LIB", libexec/"lib/perl5"
 
     resource("cpanfile").stage do
-      # do nothing
+      copy 'cpanfile', buildpath+'cpanfile'
     end
 
     resource("cpanm").stage do
-      mv 'cpanmin.us', 'cpanm'
-      system '/usr/bin/env', 'perl', "cpanm", '--notest', '--local-lib-contained', libexec, '--installdeps', '.'
+      copy 'cpanmin.us', buildpath+'cpanm'
     end
+
+    system '/usr/bin/env', 'perl', "cpanm", '--notest', '--local-lib-contained', libexec, '--installdeps', '.'
 
     cd "src" do
       mpi = if build.with?("mpi") then "yes" else "no" end
