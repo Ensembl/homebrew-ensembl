@@ -22,7 +22,7 @@ class Polyphen < Formula
   
   resource "cpanm" do
     url "https://cpanmin.us/"
-    sha256 "453e68066f2faba5c9fe04b4ca47f915fe0001f71405560093a23919e5e30d65"
+    sha256 "d2221f1adb956591fa43cd61d0846b961be1fffa222210f097bfd472a11e0539"
   end
   
   resource "polyphen-databases" do
