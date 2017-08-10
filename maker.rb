@@ -34,13 +34,37 @@ class Maker < Formula
   # depends_on "forks" => :perl
   # depends_on "forks::shared" => :perl
 
+  resource "cpanm" do
+    url "https://cpanmin.us/"
+    sha256 "453e68066f2faba5c9fe04b4ca47f915fe0001f71405560093a23919e5e30d65"
+  end
+
+  # How can we download this and make it available to cpanm?
+  resource "cpanfile" do
+    url "https://raw.githubusercontent.com/Ensembl/cpanfiles/master/maker/cpanfile"
+    sha256 ""
+  end
+
   def install
+    ENV.prepend_create_path "PERL5LIB", libexec/"lib/perl5"
+
+    resource("cpanfile").stage do
+      # do nothing
+    end
+
+    resource("cpanm").stage do
+      mv 'cpanmin.us', 'cpanm'
+      system '/usr/bin/env', 'perl', "cpanm", '--notest', '--local-lib-contained', libexec, '--installdeps', '.'
+    end
+
     cd "src" do
       mpi = if build.with?("mpi") then "yes" else "no" end
       system "(echo #{mpi}; yes '') |perl Build.PL"
       system *%w[./Build install]
     end
+
     libexec.install Dir["*"]
+    
     bin.install_symlink %w[
       ../libexec/bin/gff3_merge
       ../libexec/bin/maker]
