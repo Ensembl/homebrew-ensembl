@@ -34,6 +34,8 @@ class Maker < Formula
   # depends_on "forks" => :perl
   # depends_on "forks::shared" => :perl
 
+  depends_on 'ensembl/ensembl/bioperl-169'
+
   resource "cpanm" do
     url "https://cpanmin.us/"
     sha256 "d2221f1adb956591fa43cd61d0846b961be1fffa222210f097bfd472a11e0539"
@@ -46,7 +48,9 @@ class Maker < Formula
   end
 
   def install
-    ENV.prepend_create_path "PERL5LIB", libexec/"lib/perl5"
+    bioperl = Formula['ensembl/ensembl/bioperl-169']
+
+    ENV.prepend_create_path "PERL5LIB", libexec/"lib/perl5", bioperl
 
     resource("cpanfile").stage do
       copy 'cpanfile', buildpath+'cpanfile'
