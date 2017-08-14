@@ -19,8 +19,6 @@ class Hal < Formula
   depends_on 'ensembl/ensembl/kent'
   depends_on 'hdf5@1.8'
 
-  keg_only 'Use directly because of large numbers of installed binaries and headers'
-
   def install
     ENV.deparallelize
     
