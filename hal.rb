@@ -35,6 +35,7 @@ class Hal < Formula
     system 'make', "sonLibRootPath=#{sonlib.opt_prefix}/sonLib"
 
     bin.install Dir['bin/*']
-    lib.install Dir['lib/*']
+    lib.install Dir['lib/*.a']
+    include.install Dir['lib/*.h']
   end
 end
