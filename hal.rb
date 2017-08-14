@@ -16,6 +16,7 @@ class Hal < Formula
   version '1a89bd2'
 
   depends_on 'ensembl/ensembl/sonlib'
+  depends_on 'ensembl/ensembl/kent'
   depends_on 'hdf5@1.8'
 
   keg_only 'Use directly because of large numbers of installed binaries and headers'
@@ -24,10 +25,15 @@ class Hal < Formula
     ENV.deparallelize
     
     sonlib = Formula['ensembl/ensembl/sonlib']
+    kent = Formula['ensembl/ensembl/kent']
     hdf5 = Formula['hdf5@1.8']
 
     # Add hdf5 onto PATH so we find the 1.8 compiler
     ENV.prepend_create_path "PATH", hdf5.bin
+    ENV['h5prefix'] = "-prefix=#{hdf5.prefix}"
+    # These disabled for the moment because of samtabix dependency
+    # ENV['ENABLE_UDC'] = '1'
+    # ENV['KENTSRC'] = kent.prefix
     system 'make', "sonLibRootPath=#{sonlib.opt_prefix}/sonLib"
 
     bin.install Dir['bin/*']
