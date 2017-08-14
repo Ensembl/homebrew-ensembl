@@ -31,9 +31,9 @@ class Maker < Formula
 
   def install
     bioperl = Formula['ensembl/ensembl/bioperl-169']
-    perllib = buildpath+"perl-libs"
+    perllib = buildpath+"src/perl-libs"
 
-    ENV.prepend_create_path "PERL5LIB", perllib
+    ENV.prepend_create_path "PERL5LIB", perllib+'lib/perl5'
     ENV.prepend_create_path "PERL5LIB", bioperl.libexec
 
     resource("cpanfile").stage do
