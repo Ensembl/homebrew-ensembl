@@ -9,31 +9,13 @@ class Maker < Formula
   depends_on "ensembl/ensembl/augustus"
   depends_on "ensembl/ensembl/blast"
   depends_on "ensembl/ensembl/exonerate22"
-  # depends_on "infernal" => :optional
-  # depends_on "mir-prefer" => :optional
-  # depends_on :mpi => :optional
-  # depends_on "postgresql" => :optional
+  depends_on "infernal"
+  depends_on "mir-prefer"
+  depends_on :mpi
   depends_on "ensembl/ensembl/repeatmasker"
   depends_on "snap"
-  # depends_on "snoscan" => :optional
-  # depends_on "trnascan" => :optional
-  # No formula: depends_on 'genemark-es' => :optional
-  # No formula: depends_on 'genemarks' => :optional
-
-  # depends_on "Bio::Perl" => :perl
-  # depends_on "Bit::Vector" => :perl
-  # depends_on "DBD::SQLite" => :perl
-  # depends_on "DBI" => :perl
-  # depends_on "File::Which" => :perl
-  # depends_on "IO::All" => :perl
-  # depends_on "IO::Prompt" => :perl
-  # depends_on "Inline::C" => [:perl, "Inline"]
-  # depends_on "DBD::Pg" => :perl if build.with? "postgresql"
-  # depends_on "Perl::Unsafe::Signals" => :perl
-  # depends_on "PerlIO::gzip" => :perl
-  # depends_on "forks" => :perl
-  # depends_on "forks::shared" => :perl
-
+  depends_on "snoscan"
+  depends_on "trnascan"
   depends_on 'ensembl/ensembl/bioperl-169'
 
   resource "cpanm" do
@@ -49,8 +31,9 @@ class Maker < Formula
 
   def install
     bioperl = Formula['ensembl/ensembl/bioperl-169']
+    perllib = buildpath+"perl-libs"
 
-    ENV.prepend_create_path "PERL5LIB", libexec/"lib/perl5"
+    ENV.prepend_create_path "PERL5LIB", perllib
     ENV.prepend_create_path "PERL5LIB", bioperl.libexec
 
     resource("cpanfile").stage do
@@ -61,12 +44,19 @@ class Maker < Formula
       copy 'cpanmin.us', buildpath+'cpanm'
     end
 
-    system '/usr/bin/env', 'perl', "cpanm", '--notest', '--local-lib-contained', libexec, '--installdeps', '.'
+    system '/usr/bin/env', 'perl', "cpanm", '--notest', '--local-lib-contained', perllib, '--installdeps', '.'
 
     cd "src" do
-      mpi = if build.with?("mpi") then "yes" else "no" end
+      # mpi = if build.with?("mpi") then "yes" else "no" end
+      mpi = "yes"
       system "(echo #{mpi}; yes '') |perl Build.PL"
       system *%w[./Build install]
+    end
+
+    Pathname.glob("bin/*") do |file|
+      inreplace file do |s|
+        s.gsub! '#!/usr/bin/perl', '#!/usr/bin/env perl'
+      end
     end
 
     libexec.install Dir["*"]
