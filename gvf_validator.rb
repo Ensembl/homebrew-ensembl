@@ -13,7 +13,7 @@ class GvfValidator < Formula
   desc "A syntactic validator for GVF files"
   homepage "http://www.sequenceontology.org/software/GAL.html"
   url "https://raw.githubusercontent.com/The-Sequence-Ontology/GAL/2bf7645f22119ad16ce3e568e71428f1087b8f52/bin/gvf_validator"
-  sha256 ""
+  sha256 "e1a09b1d14be1dd6d9d345f6cd78f984e1ae961089359e40241e5ce941019d5b"
   version "2bf7645"
 
   resource "List::Util" do
@@ -45,7 +45,7 @@ class GvfValidator < Formula
     end
 
     inreplace 'gvf_validator', '#!/usr/bin/perl', '#!/usr/bin/env perl'
-
+    chmod 555, 'gvf_validator'
     bin.install 'gvf_validator'
     bin.env_script_all_files(libexec/"bin", :PERL5LIB => ENV["PERL5LIB"])
   end
