@@ -15,6 +15,7 @@ class TCoffee < Formula
   url "http://www.tcoffee.org/Packages/Beta/Version_9.03.r1336/T-COFFEE_distribution_Version_9.03.r1336.tar.gz"
   sha256 "02147aa10c033b75658e360dc45ed1deaca4b6edc4c95b8bedde169e69568aac"
   # doi "10.1006/jmbi.2000.4042"
+  revision '2'
 
   depends_on 'poa'
   depends_on 'dialign-tx'
@@ -24,6 +25,7 @@ class TCoffee < Formula
   depends_on 'clustal-w'
   depends_on 'mafft'
   depends_on 'muscle'
+  depends_on 'kalign'
 
   def install
     cd 't_coffee_source' do
