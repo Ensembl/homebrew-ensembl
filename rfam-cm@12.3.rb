@@ -20,6 +20,6 @@ class RfamCmAT123 < Formula
   version '12.3'
 
   def install
-    prefix.install 'Rfam.cm.gz'
+    prefix.install 'Rfam.cm'
   end
 end
