@@ -12,23 +12,23 @@
 class GvfValidator < Formula
   desc "A syntactic validator for GVF files"
   homepage "http://www.sequenceontology.org/software/GAL.html"
-  url "https://github.com/The-Sequence-Ontology/GAL/blob/2bf7645f22119ad16ce3e568e71428f1087b8f52/bin/gvf_validator"
+  url "https://raw.githubusercontent.com/The-Sequence-Ontology/GAL/2bf7645f22119ad16ce3e568e71428f1087b8f52/bin/gvf_validator"
   sha256 ""
   version "2bf7645"
 
   resource "List::Util" do
     url "https://cpan.metacpan.org/authors/id/P/PE/PEVANS/Scalar-List-Utils-1.48.tar.gz"
-    sha256 ""
+    sha256 "0e5318308789ba3625e053001da0a6c5218dc73e561a207d1b91131d06c0d09f"
   end
 
   resource "List::MoreUtils" do
     url "https://cpan.metacpan.org/authors/id/R/RE/REHSACK/List-MoreUtils-0.419.tar.gz"
-    sha256 ""
+    sha256 "5f8e65608f5dc583faa6a703d19d277ad46dfc1816e51f8ff34fb8322ed48615"
   end
 
   resource "List::MoreUtils::XS" do
     url "https://cpan.metacpan.org/authors/id/R/RE/REHSACK/List-MoreUtils-XS-0.422.tar.gz"
-    sha256 ""
+    sha256 "b9d3565331ae92121a0d20bff1f02787af11d7a8f67954c842bf4aafed4588df"
   end
 
   def install
