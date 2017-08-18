@@ -45,7 +45,7 @@ class GvfValidator < Formula
     end
 
     inreplace 'gvf_validator', '#!/usr/bin/perl', '#!/usr/bin/env perl'
-    chmod 555, 'gvf_validator'
+    chmod 0555, 'gvf_validator'
     bin.install 'gvf_validator'
     bin.env_script_all_files(libexec/"bin", :PERL5LIB => ENV["PERL5LIB"])
   end
