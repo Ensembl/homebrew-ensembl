@@ -9,7 +9,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class RfamCm@123 < Formula
+class RfamCmAT123 < Formula
 
   description "Collection of RNA families, each represented by multiple sequence alignments, consensus secondary structures and covariance models (CMs)"
   homepage "http://rfam.xfam.org/"
