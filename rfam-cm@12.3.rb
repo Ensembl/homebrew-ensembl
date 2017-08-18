@@ -11,7 +11,7 @@
 
 class RfamCmAT123 < Formula
 
-  description "Collection of RNA families, each represented by multiple sequence alignments, consensus secondary structures and covariance models (CMs)"
+  desc "Collection of RNA families, each represented by multiple sequence alignments, consensus secondary structures and covariance models (CMs)"
   homepage "http://rfam.xfam.org/"
   # tag "bioinformatics"
 
