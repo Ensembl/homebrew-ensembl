@@ -16,7 +16,7 @@ class Ensc < Formula
   version '1.1.0'
   url "https://github.com/Ensembl/ensc-core/archive/#{version}.zip"
   sha256 'b12b58c7ce6def077708203012f453ca66ba15b03018a49f552750d48dc17317'
-  revision '1'
+  revision 1
 
   depends_on "ensembl/ensembl/percona-client"
   depends_on "ensembl/ensembl/htslib131" => :recommended

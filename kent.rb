@@ -17,7 +17,7 @@ class Kent < Formula
   url "https://github.com/ucscGenomeBrowser/kent/archive/v335_base.tar.gz"
   version "v335"
   sha256 "19816b701e3fa947a80714a80197d5148f2f699d56bfa4c1d531c28d9b859748"
-  revision '1'
+  revision 1
 
   option "with-connector-c", "Build with connector-c dependency. Otherwise we depend on mysql-client"
 
