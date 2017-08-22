@@ -43,10 +43,5 @@ depends_on :python if MacOS.version <= :snow_leopard
 
     bin.install_symlink pc+'bin/runProgressiveCactus.sh'
 
-#    system "mkdir ../progressive_cactus"
-#    system "mv * ../progressive_cactus"
-#    libexec.install Dir["../progressive_cactus"]
-    
-#    bin.install_symlink %w[../libexec/progressive_cactus/bin/runProgressiveCactus.sh]
   end
 end
