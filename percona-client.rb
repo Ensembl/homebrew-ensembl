@@ -15,7 +15,6 @@ class PerconaClient < Formula
     :because => "both install MySQL client libraries"
 
   depends_on "cmake" => :build
-  depends_on "pidof" unless MacOS.version >= :mountain_lion
   depends_on "openssl"
 
   # Where the database files should be located. Existing installs have them
