@@ -87,7 +87,7 @@ class PerconaClient < Formula
 
     # Now create symbolic links to get around libperconaserver* being the shared library name
     Dir[lib+"/libperconaserver*"].each do | entry |
-      new_entry = entry.sub(/libperconaserver(.+)/, /libmysql\1/);
+      new_entry = entry.sub(/libperconaserver(.+)/, /libmysql\\1/);
       File.delete(new_entry) if File.exist?(new_entry)
       ln_s entry, new_entry
     end
