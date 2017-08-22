@@ -36,12 +36,17 @@ depends_on :python if MacOS.version <= :snow_leopard
       s.gsub! /(export LD_LIBRARY_PATH=.+)/, '\1'"#{libexec}/progressive_cactus/submodules/tokyocabinet/lib:"
     end
     
-    system "mkdir ../progressive_cactus"
-    system "mv * ../progressive_cactus"
-    libexec.install Dir["../progressive_cactus"]
-    
-    bin.install_symlink %w[
-      ../libexec/progressive_cactus/bin/runProgressiveCactus.sh]
 
+    pc = libexec+'progressive_cactus'
+    pc.mkpath()
+    pc.install Dir['*']
+
+    bin.install_symlink pc+'bin/runProgressiveCactus.sh'
+
+#    system "mkdir ../progressive_cactus"
+#    system "mv * ../progressive_cactus"
+#    libexec.install Dir["../progressive_cactus"]
+    
+#    bin.install_symlink %w[../libexec/progressive_cactus/bin/runProgressiveCactus.sh]
   end
 end
