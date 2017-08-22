@@ -36,10 +36,10 @@ class Boost < Formula
   depends_on "open-mpi" => "c++11"
   depends_on "bzip2" 
 
-  fails_with :llvm do
-    build 2335
-    cause "Dropped arguments to functions when linking with boost"
-  end
+  # fails_with :llvm do
+  #   build 2335
+  #   cause "Dropped arguments to functions when linking with boost"
+  # end
 
   needs :cxx11 
 

@@ -24,10 +24,10 @@ class Blast240 < Formula
 
     fails_with :gcc => "5"
     
-    fails_with :llvm do
-      build 2335
-      cause "Dropped arguments to functions when linking with boost"
-    end
+    # fails_with :llvm do
+    #   build 2335
+    #   cause "Dropped arguments to functions when linking with boost"
+    # end
   else
     if OS.linux? 
       url 'ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.4.0/ncbi-blast-2.4.0+-x64-linux.tar.gz'
