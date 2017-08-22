@@ -88,16 +88,16 @@ class PerconaClient < Formula
     # Don't create databases inside of the prefix!
     # See: https://github.com/Homebrew/homebrew/issues/4975
     rm_rf prefix+"data"
-  end
-  
-  def post_install 
+
     # Now create symbolic links to get around libperconaserver* being the shared library name
-    Dir[lib+"/libperconaserver*"].each do | entry |
-      new_entry = entry.sub(/libperconaserver(.+)/, 'libmysql\\1');
-      ln_sf entry, new_entry
+    lib.each_child(false) do | entry |
+      if entry.to_s =~ /^libperconaserver/
+        new_entry = entry.sub(/libperconaserver(.+)/, 'libmysql\\1')
+        ln_sf lib+entry, lib+new_entry
+      end
     end
   end
-
+  
   test do
     system bin+'mysql', '--version'
   end
