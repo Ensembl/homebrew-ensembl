@@ -1,21 +1,28 @@
-class PerconaClient < Formula
+class PerconaServer < Formula
   desc "Drop-in MySQL replacement"
   homepage "https://www.percona.com"
   url "https://www.percona.com/downloads/Percona-Server-5.6/Percona-Server-5.6.36-82.1/source/tarball/percona-server-5.6.36-82.1.tar.gz"
   version "5.6.36-82.1"
   sha256 "bebab31321e17682bc23f0f1e95211f002ba2a24c21d9a7ce9821cbe2a1ba4ba"
 
-  conflicts_with "mysql-cluster", "mariadb", "percona-server",
-    :because => "mysql, mariadb, and percona install the same client binaries"
+  option "with-test", "Build with unit tests"
+
+  depends_on "cmake" => :build
+  if OS.mac?
+    depends_on "pidof" unless MacOS.version >= :mountain_lion
+  end
+  depends_on "openssl"
+  depends_on "readline" unless OS.mac?
+
+  conflicts_with "mysql-connector-c",
+    :because => "both install `mysql_config`"
+
+  conflicts_with "mariadb", "mysql", "mysql-cluster",
+    :because => "percona, mariadb, and mysql install the same binaries."
   conflicts_with "mysql-connector-c",
     :because => "both install MySQL client libraries"
   conflicts_with "mariadb-connector-c",
     :because => "both install plugins"
-  conflicts_with "mysql-client",
-    :because => "both install MySQL client libraries"
-
-  depends_on "cmake" => :build
-  depends_on "openssl"
 
   # Where the database files should be located. Existing installs have them
   # under var/percona, but going forward they will be under var/mysql to be
@@ -43,11 +50,10 @@ class PerconaClient < Formula
       -DDEFAULT_CHARSET=utf8
       -DDEFAULT_COLLATION=utf8_general_ci
       -DCOMPILATION_COMMENT=Homebrew
-      -DWITH_EDITLINE=system
       -DCMAKE_FIND_FRAMEWORK=LAST
       -DCMAKE_VERBOSE_MAKEFILE=ON
-      -DWITHOUT_SERVER=1
     ]
+    args << "-DWITH_EDITLINE=system" if OS.mac?
 
     # PAM plugin is Linux-only at the moment
     args.concat %w[
@@ -67,10 +73,13 @@ class PerconaClient < Formula
       args << "-DWITH_UNIT_TESTS=OFF"
     end
 
-    # Build with local infile loading support always
+    # Build with local infile loading support
     args << "-DENABLED_LOCAL_INFILE=1"
 
-    system "cmake", ".", *std_cmake_args, *args
+    # Do not build the server
+    args << "-DWITHOUT_SERVER=1"
+
+    system "cmake", *args
     system "make"
     system "make", "install"
 
