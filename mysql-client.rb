@@ -47,6 +47,9 @@ class MysqlClient < Formula
       "COMMAND /usr/bin/libtool -static -o ${TARGET_LOCATION}",
       "COMMAND libtool -static -o ${TARGET_LOCATION}"
 
+    #Patch according to this error https://bugs.mysql.com/bug.php?id=62578
+    inreplace "vio/viosocket.c", "r = read(vio->sd, buf, size);", "while((r = read(vio->sd, buf, size)) == (size_t) -1 && errno == EINTR);"
+    
     # Build without compiler or CPU specific optimization flags to facilitate
     # compilation of gems and other software that queries `mysql-config`.
     ENV.minimal_optimization
