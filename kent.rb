@@ -17,6 +17,7 @@ class Kent < Formula
   url "https://github.com/ucscGenomeBrowser/kent/archive/v335_base.tar.gz"
   version "v335"
   sha256 "19816b701e3fa947a80714a80197d5148f2f699d56bfa4c1d531c28d9b859748"
+  revision '1'
 
   option "with-connector-c", "Build with connector-c dependency. Otherwise we depend on mysql-client"
 
@@ -28,7 +29,7 @@ class Kent < Formula
   if build.with? "connector-c"
     depends_on "mysql-connector-c"
   else
-    depends_on "ensembl/ensembl/mysql-client"
+    depends_on "ensembl/ensembl/percona-client"
   end
   
   depends_on "libpng"
@@ -41,7 +42,7 @@ class Kent < Formula
     if build.with? "connector-c"
       mysql = Formula["mysql-connector-c"]
     else
-      mysql = Formula["ensembl/ensembl/mysql-client"]
+      mysql = Formula["ensembl/ensembl/percona-client"]
     end
     openssl = Formula["openssl"]
 
