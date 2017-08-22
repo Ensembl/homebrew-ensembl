@@ -23,6 +23,8 @@ class PerconaClient < Formula
     :because => "both install MySQL client libraries"
   conflicts_with "mariadb-connector-c",
     :because => "both install plugins"
+    conflicts_with "ensembl/ensembl/mysql-client",
+    :because => "both install the same client libraries"
 
   # Where the database files should be located. Existing installs have them
   # under var/percona, but going forward they will be under var/mysql to be

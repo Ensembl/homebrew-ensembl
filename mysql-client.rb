@@ -27,6 +27,8 @@ class MysqlClient < Formula
     :because => "both install MySQL client libraries"
   conflicts_with "mariadb-connector-c",
     :because => "both install plugins"
+  conflicts_with "ensembl/ensembl/percona-client",
+    :because => "both install MySQL client libraries"
 
   # fails_with :llvm do
   #   build 2326
