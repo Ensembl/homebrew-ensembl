@@ -11,7 +11,7 @@ class Maker < Formula
   depends_on "ensembl/ensembl/exonerate22"
   depends_on "infernal"
   depends_on "mir-prefer"
-  depends_on :mpi
+  depends_on "open-mpi"
   depends_on "ensembl/ensembl/repeatmasker"
   depends_on "snap"
   depends_on "snoscan"
