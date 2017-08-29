@@ -93,7 +93,7 @@ class Boost < Formula
             "--user-config=user-config.jam",
             "install"]
 
-    args << "threading=multi"
+    args << "threading=multi,single"
     args << "link=shared,static"
     args << "address-model=32_64" << "architecture=x86" << "pch=off" if build.universal?
 
