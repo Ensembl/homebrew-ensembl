@@ -10,12 +10,14 @@ class Augustus < Formula
 
   depends_on "bamtools"
   depends_on "ensembl/ensembl/boost"
+  #These 3 needed for CGP
   depends_on "gsl"
   depends_on "lp_solve"
   depends_on "suite-sparse"
 
   def install
     args = []
+    # Turns on CGP
     args << "COMPGENEPRED=true"
 
     system "make", "-C", "auxprogs/filterBam/src", "BAMTOOLS=#{Formula["bamtools"].opt_include}/bamtools", *args
