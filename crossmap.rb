@@ -12,8 +12,8 @@
 class Crossmap < Formula
   desc "Genomic feature liftover tool"
   homepage "http://crossmap.sourceforge.net/"
-  url "https://files.pythonhosted.org/packages/05/e4/a5ba7b144b855637d6888ddaa2dddded2729340eeb8f7aaa866b8d0568bf/CrossMap-0.2.3.tar.gz"
-  sha256 "8e4110156770add1c149b6d839c86422eef5098e3ebe3fe9e5f006264f2375fd"
+  url "https://pypi.python.org/packages/62/d0/937697eb1cd7acbbac0017c4ff79e939bcd7aa9e87c2a2e6afd6c8bf95cc/CrossMap-0.2.6.tar.gz"
+  sha256 "63a91d45af62d9ed0f01f0d9b1e547be9d4f8a240cb29ea916a6398eab8d104f"
 
   depends_on :python if MacOS.version <= :snow_leopard
   depends_on "homebrew/science/openblas"
