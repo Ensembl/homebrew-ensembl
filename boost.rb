@@ -33,7 +33,7 @@ class Boost < Formula
   deprecated_option "with-icu" => "with-icu4c"
 
   depends_on "icu4c" => [:optional, "c++11"]
-  depends_on :mpi => [:cc, :cxx, :f90, :f77]
+  depends_on "mpich"
   depends_on "bzip2" 
 
   # fails_with :llvm do
