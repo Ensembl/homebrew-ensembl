@@ -54,11 +54,10 @@ class Maker < Formula
       system *%w[./Build install]
     end
 
-#     bin.install 'src/bin/gff3_merge'
-#     bin.install 'src/bin/maker'
+    bin.install 'src/bin/gff3_merge'
+    bin.install 'src/bin/maker'
     libexec.install Dir["*"]
-
-#     bin.env_script_all_files(libexec+'src/bin', :PERL5LIB => "#{bioperl.libexec}:#{libexec}/src/perl-libs/lib/perl5")
+    bin.env_script_all_files(libexec+'/bin', :PERL5LIB => "#{bioperl.libexec}:#{libexec}/src/perl-libs/lib/perl5")
   end
 
   def caveats; <<-EOS.undent
