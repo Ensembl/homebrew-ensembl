@@ -23,7 +23,7 @@ class Zopfli < Formula
     system "make"
     bin.install "zopfli"
     if build.head?
-      system "make", "-f", "makefile", "zopflipng"
+      system "make", "zopflipng"
       bin.install "zopflipng"
     end
   end
