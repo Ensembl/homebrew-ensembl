@@ -20,7 +20,7 @@ class Zopfli < Formula
   def install
     # Makefile hardcodes gcc
     inreplace "makefile", "gcc", ENV.cc
-    system "make", "-f", "makefile"
+    system "make"
     bin.install "zopfli"
     if build.head?
       system "make", "-f", "makefile", "zopflipng"
