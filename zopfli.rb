@@ -12,9 +12,9 @@
 class Zopfli < Formula
   desc "New zlib (gzip, deflate) compatible compressor"
   homepage "https://github.com/google/zopfli" 
-  url "https://github.com/google/zopfli/archive/master.zip"
-  version "1.0.0"
-  sha256 "5f13a3ed3cea32b4f73e9ca215ec27a04ca1ae15ef7e78b8705778290da5dcca"
+  url "https://github.com/google/zopfli/archive/zopfli-1.0.1.tar.gz"
+  version "1.0.1"
+  sha256 "29743d727a4e0ecd1b93e0bf89476ceeb662e809ab2e6ab007a0b0344800e9b4"
   head "https://github.com/google/zopfli.git", :using => :git
 
   def install
