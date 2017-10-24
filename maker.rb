@@ -5,6 +5,7 @@ class Maker < Formula
 
   url "http://yandell.topaz.genetics.utah.edu/maker_downloads/static/maker-2.31.9.tgz"
   sha256 "c92f9c8c96c6e7528d0a119224f57cf5e74fadfc5fce5f4b711d0778995cabab"
+  revision 1
 
   depends_on "ensembl/ensembl/augustus"
   depends_on "ensembl/ensembl/blast"
@@ -44,7 +45,7 @@ class Maker < Formula
       copy 'cpanmin.us', buildpath+'cpanm'
     end
 
-    system '/usr/bin/env', 'perl', "cpanm", '--notest', '--local-lib-contained', perllib, '--installdeps', '.'
+    system 'perl', "cpanm", '--notest', '--local-lib-contained', perllib, '--installdeps', '.'
 
     cd "src" do
       # mpi = if build.with?("mpi") then "yes" else "no" end
@@ -53,17 +54,10 @@ class Maker < Formula
       system *%w[./Build install]
     end
 
-    Pathname.glob("bin/*") do |file|
-      inreplace file do |s|
-        s.gsub! '#!/usr/bin/perl', '#!/usr/bin/env perl'
-      end
-    end
-
+    bin.install 'src/bin/gff3_merge'
+    bin.install 'src/bin/maker'
     libexec.install Dir["*"]
-    
-    bin.install_symlink %w[
-      ../libexec/bin/gff3_merge
-      ../libexec/bin/maker]
+    bin.env_script_all_files(libexec/'bin', :PERL5LIB => "#{bioperl.libexec}:#{libexec}/src/perl-libs/lib/perl5")
   end
 
   def caveats; <<-EOS.undent

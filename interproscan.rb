@@ -13,9 +13,9 @@ class Interproscan < Formula
 
   desc 'Scan sequences (protein and nucleic) against InterPro signatures'
   homepage 'http://www.ebi.ac.uk/interpro/interproscan.html'
-  version '5.25-64.0'
-  url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.25-64.0/interproscan-5.25-64.0-64-bit.tar.gz'
-  sha256 '7f123db975b18c0f21778fe3c110afd656fe0c3c0f999c848472f7a9d8df5d80'
+  version '5.26-65.0'
+  url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.26-65.0/interproscan-5.26-65.0-64-bit.tar.gz'
+  sha256 '31b08c069d76a6a784ab6f7594935a9e5eae7ce01c5b0bbdf9b9beaa50c92ba4'
 
   depends_on 'ensembl/moonshine/tmhmm'
   depends_on 'ensembl/moonshine/signalp'
@@ -23,8 +23,8 @@ class Interproscan < Formula
   depends_on 'ensembl/ensembl/emboss'
 
   resource 'panther-models' do
-    url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-11.1.tar.gz'
-    sha256 'a7bf916e758eac522fc1cd0e07f6460d65a42f7b4a694495a94ffa4bf84ec4ff'
+    url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-12.0.tar.gz'
+    sha256 'bb8dcaeb68876b5abe7842ae1d65eecf15c43a0baea6be9514339b487167be79'
   end
 
   def install
@@ -55,7 +55,7 @@ class Interproscan < Formula
     prefix.install Dir['*']
     resource('panther-models').stage do
       (prefix+'data'+'panther').mkdir
-      (prefix+'data'+'panther').install '11.1'
+      (prefix+'data'+'panther').install '12.0'
     end
   end
 end
