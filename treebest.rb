@@ -16,6 +16,8 @@ class Treebest < Formula
   sha256 "5002a21947d0619d1206f4da6ec4a323f3f9c6a2b85717ff585eea3bd678d2bc"
   version '88'
 
+  depends_on 'bison'
+
   def install
     system "make"
     bin.install 'treebest'
