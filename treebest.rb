@@ -13,7 +13,7 @@ class Treebest < Formula
   desc "Tree Building guided by Species Tree"
   homepage "https://github.com/Ensembl/treebest"
   url "https://github.com/Ensembl/treebest/archive/ensembl_production_88.zip"
-  sha256 "303800d5c72625d37ec81172de0b18f9d871dc017085060941ca2ecb99e74898"
+  sha256 "5002a21947d0619d1206f4da6ec4a323f3f9c6a2b85717ff585eea3bd678d2bc"
   version '88'
 
   def install
