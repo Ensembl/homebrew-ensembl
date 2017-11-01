@@ -17,6 +17,7 @@ class Treebest < Formula
   version '88'
 
   depends_on 'bison'
+  depends_on 'flex'
 
   def install
     system "make"
