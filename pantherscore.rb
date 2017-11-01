@@ -16,11 +16,9 @@ class Pantherscore < Formula
   sha256 'dad3aea7290e52372fd048a9de9242f80a52888a238eefb48919592b89e280be'
   version '1.03'
 
-  depends_on "wget"
-
   def install
     cd 'pantherScore1.03' do
-      system 'wget', 'https://raw.githubusercontent.com/Ensembl/pantherScore/master/pantherScore1.03.patch'
+      system 'curl', '-O', 'https://raw.githubusercontent.com/Ensembl/pantherScore/master/pantherScore1.03.patch'
       system 'patch', '-p1', '-i', 'pantherScore1.03.patch'
       inreplace 'pantherScore.pl', '#!/usr/bin/env perl', "#!/usr/bin/env perl
 use lib '#{libexec}';"
