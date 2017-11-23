@@ -15,6 +15,8 @@ class Pecan < Formula
   url 'https://github.com/benedictpaten/pecan.git', :using => :git
   version '0.8.0'
 
+  depends_on 'jdk'
+
   def install
     system 'javac', 'bp/pecan/Pecan.java'
     system 'javac', 'bp/trawler/Trawler.java'

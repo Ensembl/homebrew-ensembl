@@ -12,8 +12,10 @@
 class Badirate < Formula
   desc "Phylogenetic estimations"
   homepage "http://www.ub.edu/softevol/badirate/"
-  url "http://www2.ub.es/softevol/badirate/badirate-1.35.tar.gz"
-  sha256 "9ec70a8a727e8bfb25e5fc58136db60f3c67b54de7fc729adda8ba58325d30b0"
+  url "https://github.com/fgvieira/badirate/archive/7e32c1cdcaaa0de52abb65a9df251cce73a8886b.zip"
+  sha256 "1819fda76d3819c11584b3176adf24b15175bf62827ecc8938e692879a2b6297"
+  version '1.35'
+
   def install
     inreplace 'BadiRate.pl', 'use lib $FindBin::Bin."/lib";', 'use lib $FindBin::Bin."/../libexec";';
     bin.install 'BadiRate.pl'

@@ -12,21 +12,23 @@
 class ProgressiveCactus < Formula
   desc 'Hierarchical Alignment Format library'
   homepage 'https://github.com/glennhickey/progressiveCactus'
-  url 'https://github.com/glennhickey/progressiveCactus.git', :using => :git, :revision => "86d5e3f"
-  version '86d5e3f'
+  url 'https://github.com/glennhickey/progressiveCactus.git', :using => :git, :revision => "f102445"
+  version 'f102445'
 
 depends_on :python if MacOS.version <= :snow_leopard
 
   def install
-
+    ENV["PWD"] = buildpath
     system 'git', 'submodule', 'update', '--init'
 
-    inreplace "submodules/hdf5/test/th5s.c", "\/\/ ret = H5Pset_alloc_time(plist_id, alloc_time);", "\/\* ret = H5Pset_alloc_time(plist_id, alloc_time);\*\/"
-    inreplace "submodules/hdf5/test/th5s.c", "\/\/ CHECK(ret, FAIL, \"H5Pset_alloc_time\");", "\/\* CHECK(ret, FAIL, \"H5Pset_alloc_time\");\*\/"
-    inreplace "submodules/hdf5/tools/lib/h5tools_str.c", "\/\/    ctx->need_prefix = 0;", "\/\*    ctx->need_prefix = 0;\*\/"
-    inreplace "submodules/sonLib/include.mk", "cflags_opt = -O3 -g -Wall --pedantic -funroll-loops -DNDEBUG", "cflags_opt = -O3 -g -Wall --pedantic -funroll-loops -DNDEBUG -fPIC"
+    cd 'submodules/jobTree' do
+      system 'git', 'fetch'
+      system 'git', 'checkout', '072be69'
+    end
+    inreplace "submodules/jobTree/batchSystems/lsf.py" do |s|
+      s.gsub! /\+ \'000\'/, " "
+    end
 
-    ENV["PWD"] = buildpath
     system 'make'
     
     inreplace "bin/runProgressiveCactus.sh" , "binDir=\$(dirname \$0)", "binDir=\'#{libexec}/progressive_cactus/bin\'"

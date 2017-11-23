@@ -18,7 +18,7 @@ class Pantherscore < Formula
 
   def install
     cd 'pantherScore1.03' do
-      system 'wget', 'https://raw.githubusercontent.com/Ensembl/pantherScore/master/pantherScore1.03.patch'
+      system 'curl', '-O', 'https://raw.githubusercontent.com/Ensembl/pantherScore/master/pantherScore1.03.patch'
       system 'patch', '-p1', '-i', 'pantherScore1.03.patch'
       inreplace 'pantherScore.pl', '#!/usr/bin/env perl', "#!/usr/bin/env perl
 use lib '#{libexec}';"
