@@ -11,7 +11,7 @@ class MirPrefer < Formula
   head "https://github.com/hangelwen/miR-PREFeR.git"
 
   depends_on "samtools"
-  depends_on "ensembl/ensembl/viennarna"
+  depends_on "ensembl/ensembl/vienna-rna"
   unless OS.mac?
     depends_on "patchelf" => :build
     depends_on "ncurses"
