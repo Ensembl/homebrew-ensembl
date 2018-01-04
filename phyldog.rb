@@ -17,16 +17,16 @@ class Phyldog < Formula
 
   depends_on 'cmake' => :build
   depends_on 'openmpi' => ["with-cxx-bindings"]
-  depends_on 'homebrew/science/libpll'
-  depends_on 'homebrew/science/biopp'
+  depends_on 'ensembl/ensembl/libpll'
+  depends_on 'ensembl/ensembl/biopp'
   depends_on 'ensembl/ensembl/boost'
   
   patch :DATA
 
   def install
-    biopp = Formula['homebrew/science/biopp']
+    biopp = Formula['ensembl/ensembl/biopp']
     boost = Formula['ensembl/ensembl/boost']
-    libpll = Formula['homebrew/science/libpll']
+    libpll = Formula['ensembl/ensembl/libpll']
 
     mkdir 'build'
     args = [
