@@ -7,7 +7,7 @@ class Mash < Formula
   # tag dervied
 
   url "https://github.com/marbl/Mash/archive/v2.0.tar.gz"
-  sha256 "28f9b0d5ca646065b0b0b8c628552420fa61ac2904777a33c1856c4512640660"
+  sha256 "7bea8cd3c266640bbd97f2e1c9d0168892915c1c14f7d03a9751bf7a3709dd01"
   head "https://github.com/marbl/Mash.git"
 
   needs :cxx11
