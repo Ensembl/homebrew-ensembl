@@ -3,6 +3,8 @@ class Mafft < Formula
   homepage "https://mafft.cbrc.jp/alignment/software/"
   # doi "10.1093/nar/gkf436"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
 
   url "https://mafft.cbrc.jp/alignment/software/mafft-7.305-with-extensions-src.tgz"
   sha256 "26fccbd7091edfe6528a0535d33738546ee57b4a3b6e43332ffc3323e29ff4d1"

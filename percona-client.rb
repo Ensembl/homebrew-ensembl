@@ -2,6 +2,10 @@ class PerconaClient < Formula
   desc "Drop-in MySQL replacement"
   homepage "https://www.percona.com"
   url "https://www.percona.com/downloads/Percona-Server-5.6/Percona-Server-5.6.36-82.1/source/tarball/percona-server-5.6.36-82.1.tar.gz"
+
+  # tag origin homebrew-core
+  # tag dervied
+
   version "5.6.36-82.1"
   sha256 "bebab31321e17682bc23f0f1e95211f002ba2a24c21d9a7ce9821cbe2a1ba4ba"
 

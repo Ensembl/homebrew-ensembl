@@ -3,6 +3,8 @@ class Augustus < Formula
   homepage "http://bioinf.uni-greifswald.de/augustus/"
   # doi "10.1093/nar/gkh379"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
 
   url "http://bioinf.uni-greifswald.de/augustus/binaries/augustus-3.2.2.tar.gz"
   mirror "http://bioinf.uni-greifswald.de/augustus/binaries/old/augustus-3.2.2.tar.gz"

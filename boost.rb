@@ -1,19 +1,11 @@
-# Copyright [2016] EMBL-European Bioinformatics Institute
-# Licensed under the Apache License, Version 2.0 (the License);
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#     http://www.apache.org/licenses/LICENSE-2.0
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an AS IS BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 class Boost < Formula
   desc "Collection of portable C++ source libraries"
   homepage "https://www.boost.org/"
   url "https://downloads.sourceforge.net/project/boost/boost/1.60.0/boost_1_60_0.tar.bz2"
   sha256 "686affff989ac2488f79a97b9479efb9f2abae035b5ed4d8226de6857933fd3b"
+
+  # tag origin homebrew-core
+  # tag dervied
 
   # Handle compile failure with boost/graph/adjacency_matrix.hpp
   # https://github.com/Homebrew/homebrew/pull/48262

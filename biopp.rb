@@ -1,19 +1,11 @@
-# Copyright [2016] EMBL-European Bioinformatics Institute
-# Licensed under the Apache License, Version 2.0 (the License);
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#     http://www.apache.org/licenses/LICENSE-2.0
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an AS IS BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 class Biopp < Formula
   desc "Bio++ is a set of C++ libraries for Bioinformatics."
   homepage "http://biopp.univ-montp2.fr"
   url "http://biopp.univ-montp2.fr/repos/sources/bpp-phyl-omics-2.2.0.tar.gz"
   sha256 "a48f4c6f0ea1758c1f6dc8a262d5cbad95769739d46ce9af08527107a548bfaa"
+
+  # tag origin homebrew-science
+  # tag dervied
 
   depends_on "cmake" => :build
 

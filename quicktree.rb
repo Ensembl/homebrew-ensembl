@@ -2,6 +2,9 @@ class Quicktree < Formula
   desc "Phylogenetic neighbor-joining tree builder"
   homepage "https://www.sanger.ac.uk/resources/software/quicktree/"
 
+  # tag origin homebrew-science
+  # tag dervied
+
   url "https://github.com/khowe/quicktree/archive/v2.2.tar.gz"
   sha256 "e44d9147a81888d6bfed5e538367ecd4e5d373ae882d5eb9649e5e33f54f1bd6"
 

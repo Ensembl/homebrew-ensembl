@@ -1,14 +1,3 @@
-# Copyright [2016] EMBL-European Bioinformatics Institute
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#     http://www.apache.org/licenses/LICENSE-2.0
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 # Creates the Kent Source with libraries and include paths
 
 class Kent < Formula
@@ -18,6 +7,9 @@ class Kent < Formula
   version "v335"
   sha256 "19816b701e3fa947a80714a80197d5148f2f699d56bfa4c1d531c28d9b859748"
   revision 1
+
+  # tag origin homebrew-science
+  # tag dervied
 
   option "with-connector-c", "Build with connector-c dependency. Otherwise we depend on mysql-client"
 

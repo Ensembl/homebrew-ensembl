@@ -5,6 +5,8 @@ class Snoscan < Formula
   sha256 "e6ad2f10354cb0c4c44d46d5f298476dbe250a4817afcc8d1c56d252e08ae19e"
   # doi "10.1126/science.283.5405.1168"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
 
   def install
     # Delete 0 byte sized files delivered by the archive

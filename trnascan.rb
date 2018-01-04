@@ -4,6 +4,8 @@ class Trnascan < Formula
 
   # doi "10.1093/nar/25.5.0955"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
 
   url "http://eddylab.org/software/tRNAscan-SE/tRNAscan-SE.tar.Z"
   version "1.23"

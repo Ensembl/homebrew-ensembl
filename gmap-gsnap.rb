@@ -5,6 +5,8 @@ class GmapGsnap < Formula
   sha256 "f3eca0b66ff9770c5965d43b3532e59d839e593de00fa3550141527f3c7f1d2c"
   # doi "10.1093/bioinformatics/btq057"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
 
   depends_on "samtools"
 

@@ -13,8 +13,6 @@ class Epcr < Formula
   desc "In-silico PCR from NCBI"
   homepage "https://sourceforge.net/projects/simulatepcr/"
 
-  # tag "bioinformatics"
-
   url "ftp://ftp.ncbi.nlm.nih.gov/pub/schuler/e-PCR/e-PCR-2.3.12-1-src.tar.gz"
   sha256 "92613a09cbba3eab66916488063b56e2a3b50a82e5308b1731b6b90d232b8275"
 

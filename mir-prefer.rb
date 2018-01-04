@@ -3,6 +3,8 @@ class MirPrefer < Formula
   homepage "https://github.com/hangelwen/miR-PREFeR"
   # doi "10.1093/bioinformatics/btu380"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
   url "https://github.com/hangelwen/miR-PREFeR/archive/v0.24.tar.gz"
   sha256 "457545478e2d3bc7497d350f3972cf0855b82fa7cb0263a6d91756732f487faf"
   revision 1

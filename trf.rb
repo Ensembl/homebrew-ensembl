@@ -15,6 +15,8 @@ class Trf < Formula
 
   # doi "10.1093/nar/27.2.573"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
 
   # The license does not permit redistribution. https://tandem.bu.edu/trf/trf.license.html
   bottle :unneeded

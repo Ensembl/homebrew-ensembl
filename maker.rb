@@ -2,6 +2,8 @@ class Maker < Formula
   homepage "http://www.yandell-lab.org/software/maker.html"
   # doi '10.1101/gr.6743907' => 'MAKER', '10.1186/1471-2105-12-491' => 'MAKER2', '10.1104/pp.113.230144' => 'MAKER-P'
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
 
   url "http://yandell.topaz.genetics.utah.edu/maker_downloads/static/maker-2.31.9.tgz"
   sha256 "c92f9c8c96c6e7528d0a119224f57cf5e74fadfc5fce5f4b711d0778995cabab"

@@ -3,6 +3,8 @@ class CdHit < Formula
   homepage "http://cd-hit.org"
   # doi "10.1093/bioinformatics/btl158"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
 
   url "https://github.com/weizhongli/cdhit/releases/download/V4.6.8/cd-hit-v4.6.8-2017-0621-source.tar.gz"
   version "4.6.8"

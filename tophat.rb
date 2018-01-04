@@ -6,6 +6,8 @@ class Tophat < Formula
   revision 7
   # doi "10.1093/bioinformatics/btp120"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
 
   bottle :disable, "needs to be rebuilt with latest boost"
 

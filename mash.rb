@@ -3,6 +3,8 @@ class Mash < Formula
   homepage "https://github.com/marbl/Mash"
   # tag "bioinformatics"
   # doi "10.1101/029827"
+  # tag origin homebrew-science
+  # tag dervied
 
   url "https://github.com/marbl/Mash/archive/v2.0.tar.gz"
   sha256 "28f9b0d5ca646065b0b0b8c628552420fa61ac2904777a33c1856c4512640660"

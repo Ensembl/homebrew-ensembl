@@ -3,6 +3,8 @@ class Genewise < Formula
   homepage "https://www.ebi.ac.uk/~birney/wise2/"
   # doi "10.1101/gr.1865504"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
   url "https://www.ebi.ac.uk/~birney/wise2/wise2.4.1.tar.gz"
   sha256 "240e2b12d6cd899040e2efbcb85b0d3c10245c255f3d07c1db45d0af5a4d5fa1"
   revision 1

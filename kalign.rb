@@ -3,6 +3,9 @@ class Kalign < Formula
   url "http://msa.sbc.su.se/downloads/kalign/kalign-2.04.tar.gz"
   sha256 "8cf20ac4e1807dc642e7ffba8f42a117313beccaee4f87c5555d53a2eeac4cbb"
 
+  # tag origin homebrew-science
+  # tag dervied
+
   def install
     # Hard coded prefix:
     inreplace "Makefile.in", "/usr/local/bin/", "#{bin}/"

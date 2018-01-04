@@ -5,6 +5,8 @@ class Lastz < Formula
   sha256 "a4c2c7a77430387e96dbc9f5bdc75874334c672be90f5720956c0f211abf9f5a"
   head "https://github.com/lastz/lastz"
   # tag "bioinformatics"
+  # tag origin homebrew-science
+  # tag dervied
 
   def install
     system "make", "definedForAll=-Wall"
