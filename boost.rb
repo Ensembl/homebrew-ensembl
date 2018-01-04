@@ -33,7 +33,7 @@ class Boost < Formula
   deprecated_option "with-icu" => "with-icu4c"
 
   depends_on "icu4c" => [:optional, "c++11"]
-  depends_on "open-mpi" => "c++11"
+  depends_on "mpich"
   depends_on "bzip2" 
 
   # fails_with :llvm do
@@ -99,12 +99,12 @@ class Boost < Formula
 
     # Trunk starts using "clang++ -x c" to select C compiler which breaks C++11
     # handling using ENV.cxx11. Using "cxxflags" and "linkflags" still works.
-    if build.cxx11?
+#     if build.cxx11?
       args << "cxxflags=-std=c++11"
-      if ENV.compiler == :clang
-        args << "cxxflags=-stdlib=libc++" << "linkflags=-stdlib=libc++"
-      end
-    end
+#       if ENV.compiler == :clang
+#         args << "cxxflags=-stdlib=libc++" << "linkflags=-stdlib=libc++"
+#       end
+#     end
 
     # Fix error: bzlib.h: No such file or directory
     # and /usr/bin/ld: cannot find -lbz2
