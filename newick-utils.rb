@@ -43,6 +43,6 @@ end
 __END__
 --- a/tests/test_nw_gen.sh
 +++ b/tests/test_nw_gen.sh
-@@ -138,0 +139,2 @@
+@@ -138,0 +138,2 @@
 +pass=TRUE
 +
