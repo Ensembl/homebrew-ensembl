@@ -1,4 +1,4 @@
-# Copyright [2016] EMBL-European Bioinformatics Institute
+
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -13,7 +13,6 @@ class RfamCmAT123 < Formula
 
   desc "Collection of RNA families, each represented by multiple sequence alignments, consensus secondary structures and covariance models (CMs)"
   homepage "http://rfam.xfam.org/"
-  # tag "bioinformatics"
 
   url "ftp://ftp.ebi.ac.uk/pub/databases/Rfam/12.3/Rfam.cm.gz"
   sha256 "84ef7279814828b6171bebc773f3eda0eecec81a5d39ef2ea941e6d25b6a87b1"

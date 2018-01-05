@@ -1,4 +1,4 @@
-# Copyright [2016] EMBL-European Bioinformatics Institute
+
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -18,8 +18,8 @@ class Ensc < Formula
   sha256 'b12b58c7ce6def077708203012f453ca66ba15b03018a49f552750d48dc17317'
   revision 1
 
-  depends_on "ensembl/ensembl/percona-client"
-  depends_on "ensembl/ensembl/htslib131" => :recommended
+  depends_on "ensembl/external/percona-client"
+  depends_on "ensembl/external/htslib131" => :recommended
   depends_on "libconfig" => :recommended
   depends_on 'libtool'
 

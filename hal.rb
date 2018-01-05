@@ -1,4 +1,4 @@
-# Copyright [2016] EMBL-European Bioinformatics Institute
+
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -16,14 +16,14 @@ class Hal < Formula
   version '1a89bd2'
 
   depends_on 'ensembl/ensembl/sonlib'
-  depends_on 'ensembl/ensembl/kent'
+  depends_on 'ensembl/external/kent'
   depends_on 'hdf5@1.8'
 
   def install
     ENV.deparallelize
     
     sonlib = Formula['ensembl/ensembl/sonlib']
-    kent = Formula['ensembl/ensembl/kent']
+    kent = Formula['ensembl/external/kent']
     hdf5 = Formula['hdf5@1.8']
 
     # Add hdf5 onto PATH so we find the 1.8 compiler

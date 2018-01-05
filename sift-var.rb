@@ -1,4 +1,4 @@
-# Copyright [2016] EMBL-European Bioinformatics Institute
+
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -22,8 +22,8 @@ class SiftVar < Formula
   end
 
   #Code from Sift claims it needs legacy (talks about blastpgp) but other docs claim the converse
-  depends_on 'ensembl/ensembl/blast'
-  depends_on 'ensembl/ensembl/blimps'
+  depends_on 'ensembl/external/blast'
+  depends_on 'ensembl/external/blimps'
 
   keg_only 'Source the appropriate env files to bring in'
 
@@ -35,8 +35,8 @@ class SiftVar < Formula
     end
 
     perl_version = `which perl`.chomp
-    blast = Formula['ensembl/ensembl/blast']
-    blimps = Formula['ensembl/ensembl/blimps']
+    blast = Formula['ensembl/external/blast']
+    blimps = Formula['ensembl/external/blimps']
     rm buildpath/'config/config_env.txt'
     (buildpath/'config/config_env.txt').write  <<-EOF.undent
 SITE_PERL=#{perl_version}

@@ -1,4 +1,4 @@
-# Copyright [2016] EMBL-European Bioinformatics Institute
+
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -12,8 +12,6 @@
 class Epcr < Formula
   desc "In-silico PCR from NCBI"
   homepage "https://sourceforge.net/projects/simulatepcr/"
-
-  # tag "bioinformatics"
 
   url "ftp://ftp.ncbi.nlm.nih.gov/pub/schuler/e-PCR/e-PCR-2.3.12-1-src.tar.gz"
   sha256 "92613a09cbba3eab66916488063b56e2a3b50a82e5308b1731b6b90d232b8275"

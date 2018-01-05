@@ -1,4 +1,4 @@
-# Copyright [2016] EMBL-European Bioinformatics Institute
+
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -17,16 +17,16 @@ class Phyldog < Formula
 
   depends_on 'cmake' => :build
   depends_on 'openmpi' => ["with-cxx-bindings"]
-  depends_on 'homebrew/science/libpll'
-  depends_on 'homebrew/science/biopp'
-  depends_on 'ensembl/ensembl/boost'
+  depends_on 'ensembl/external/libpll'
+  depends_on 'ensembl/external/biopp'
+  depends_on 'ensembl/external/boost'
   
   patch :DATA
 
   def install
-    biopp = Formula['homebrew/science/biopp']
-    boost = Formula['ensembl/ensembl/boost']
-    libpll = Formula['homebrew/science/libpll']
+    biopp = Formula['ensembl/external/biopp']
+    boost = Formula['ensembl/external/boost']
+    libpll = Formula['ensembl/external/libpll']
 
     mkdir 'build'
     args = [
