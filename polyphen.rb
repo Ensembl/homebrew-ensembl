@@ -15,8 +15,8 @@ class Polyphen < Formula
   url "http://genetics.bwh.harvard.edu/pph2/dokuwiki/_media/polyphen-2.2.2r405c.tar.gz"
   sha256 'cfad3092ae7f40b490847a2d6b5c85c4d648a855b5d89c16a980f77c585b1bb9'
 
-  depends_on 'ensembl/ensembl/blast'
-  depends_on 'ensembl/ensembl/kent'
+  depends_on 'ensembl/external/blast'
+  depends_on 'ensembl/external/kent'
 
   keg_only 'Code creates conflicting binaries with existing packages. Must be self-contained'
   
@@ -48,14 +48,14 @@ class Polyphen < Formula
     end
 
     #Setting up blast
-    blast = Formula['ensembl/ensembl/blast']
+    blast = Formula['ensembl/external/blast']
     blastdir=(prefix+'blast'+'bin')
     blastdir.mkdir
     ln_s((blast.bin+'blastp'), (blastdir+'blastp'))
     ln_s((blast.bin+'blastdbcmd'), (blastdir+'blastdbcmd'))
 
     #Setting up blat
-    kent = Formula['ensembl/ensembl/kent']
+    kent = Formula['ensembl/external/kent']
     ln_s((kent.bin+'blat'), (bin+'blat'))
     ln_s((kent.bin+'twoBitToFa'), (bin+'twoBitToFa'))
 

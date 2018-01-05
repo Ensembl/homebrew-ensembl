@@ -17,16 +17,16 @@ class Phyldog < Formula
 
   depends_on 'cmake' => :build
   depends_on 'openmpi' => ["with-cxx-bindings"]
-  depends_on 'ensembl/ensembl/libpll'
-  depends_on 'ensembl/ensembl/biopp'
-  depends_on 'ensembl/ensembl/boost'
+  depends_on 'ensembl/external/libpll'
+  depends_on 'ensembl/external/biopp'
+  depends_on 'ensembl/external/boost'
   
   patch :DATA
 
   def install
-    biopp = Formula['ensembl/ensembl/biopp']
-    boost = Formula['ensembl/ensembl/boost']
-    libpll = Formula['ensembl/ensembl/libpll']
+    biopp = Formula['ensembl/external/biopp']
+    boost = Formula['ensembl/external/boost']
+    libpll = Formula['ensembl/external/libpll']
 
     mkdir 'build'
     args = [

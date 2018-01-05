@@ -20,7 +20,7 @@ class Interproscan < Formula
   depends_on 'ensembl/moonshine/tmhmm'
   depends_on 'ensembl/moonshine/signalp'
   depends_on 'ensembl/moonshine/phobius'
-  depends_on 'ensembl/ensembl/emboss'
+  depends_on 'ensembl/external/emboss'
 
   resource 'panther-models' do
     url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-12.0.tar.gz'
@@ -31,7 +31,7 @@ class Interproscan < Formula
     tmhmm = Formula['ensembl/moonshine/tmhmm']
     signalp = Formula['ensembl/moonshine/signalp']
     phobius = Formula['ensembl/moonshine/phobius']
-    emboss = Formula['ensembl/ensembl/emboss']
+    emboss = Formula['ensembl/external/emboss']
 
     inreplace 'interproscan.properties' do |s|
       # Handle tmhmm config
