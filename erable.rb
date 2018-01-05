@@ -18,6 +18,7 @@ class Erable < Formula
 
   def install
     cd "erable1.0_Unix_Linux" do
+      inreplace 'configure', '-std=c++98', '-std=c++11'
       system "./configure"
       system "make"
     end
