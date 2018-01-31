@@ -18,6 +18,9 @@ class Ortheus < Formula
   depends_on 'ensembl/ensembl/sonlib'
   depends_on 'ensembl/ensembl/semphy'
 
+  # Patch needed until the pull-request is accepted
+  patch :DATA
+
   def install
     sonlib = Formula['ensembl/ensembl/sonlib']
     ENV.deparallelize
@@ -35,3 +38,17 @@ class Ortheus < Formula
     (prefix+'ortheus').install Dir['*']
   end
 end
+__END__
+diff --git a/old/EstimateTree.py b/old/EstimateTree.py
+index aa35889..95749bf 100644
+--- a/old/EstimateTree.py
++++ b/old/EstimateTree.py
+@@ -344,7 +344,7 @@ def estimateTreeAlign(seqFiles, outputTreeFile, treeArgs):
+             j = origSeqFileOrder.index(seqFiles[i[0]])
+             return "%s_%s" % (treeArgs.LEAF_SPECIES[j], str(i[0]))
+         labelTree(tree, fn)
+-        tree, dupCount, lossCount = calculateProbableRootOfGeneTree(speciesTree, tree, processID=lambda x : x.split("_")[0])
++        dupCount, lossCount, tree = calculateProbableRootOfGeneTree(speciesTree, tree, processID=lambda x : x.split("_")[0])
+         def fn2(tree):
+             if tree.internal:
+                 fn2(tree.left)
