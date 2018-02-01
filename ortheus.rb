@@ -14,6 +14,7 @@ class Ortheus < Formula
   homepage 'http://hgwdev.cse.ucsc.edu/~benedict/code/Ortheus.html'
   url 'https://github.com/benedictpaten/ortheus.git', :using => :git
   version '0.5.0'
+  revision 1
 
   depends_on 'ensembl/ensembl/sonlib'
   depends_on 'ensembl/ensembl/semphy'
