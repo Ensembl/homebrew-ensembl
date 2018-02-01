@@ -13,8 +13,7 @@ class Ortheus < Formula
   desc 'Probabilistic method for the inference of ancestor (aka tree) alignments'
   homepage 'http://hgwdev.cse.ucsc.edu/~benedict/code/Ortheus.html'
   url 'https://github.com/benedictpaten/ortheus.git', :using => :git
-  version '0.5.0'
-  revision 1
+  version '0.5.0-ensembl-1'
 
   depends_on 'ensembl/ensembl/sonlib'
   depends_on 'ensembl/ensembl/semphy'
