@@ -13,7 +13,8 @@ class Ortheus < Formula
   desc 'Probabilistic method for the inference of ancestor (aka tree) alignments'
   homepage 'http://hgwdev.cse.ucsc.edu/~benedict/code/Ortheus.html'
   url 'https://github.com/benedictpaten/ortheus.git', :using => :git
-  version '0.5.0-ensembl-1'
+  version '0.5.0'
+  revision 1
 
   depends_on 'ensembl/ensembl/sonlib'
   depends_on 'ensembl/ensembl/semphy'
@@ -39,16 +40,16 @@ class Ortheus < Formula
   end
 end
 __END__
-diff --git a/old/EstimateTree.py b/old/EstimateTree.py
-index aa35889..95749bf 100644
---- a/old/EstimateTree.py
-+++ b/old/EstimateTree.py
-@@ -344,7 +344,7 @@ def estimateTreeAlign(seqFiles, outputTreeFile, treeArgs):
-             j = origSeqFileOrder.index(seqFiles[i[0]])
-             return "%s_%s" % (treeArgs.LEAF_SPECIES[j], str(i[0]))
-         labelTree(tree, fn)
--        tree, dupCount, lossCount = calculateProbableRootOfGeneTree(speciesTree, tree, processID=lambda x : x.split("_")[0])
-+        dupCount, lossCount, tree = calculateProbableRootOfGeneTree(speciesTree, tree, processID=lambda x : x.split("_")[0])
-         def fn2(tree):
-             if tree.internal:
-                 fn2(tree.left)
+diff --git a/old/tree.py b/old/tree.py
+index 9d085f1..1bcc9a4 100644
+--- a/old/tree.py
++++ b/old/tree.py
+@@ -709,7 +709,7 @@ def calculateProbableRootOfGeneTree(speciesTree, geneTree, processID=lambda x :
+     #run dup calc on each tree
+     #return tree with fewest number of dups
+     if geneTree.traversalID.midEnd <= 3:
+-        return (0, 0, geneTree)
++        return (geneTree, 0, 0)
+     checkGeneTreeMatchesSpeciesTree(speciesTree, geneTree, processID)
+     l = []
+     def fn(tree):
