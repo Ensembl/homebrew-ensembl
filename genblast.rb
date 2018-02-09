@@ -26,7 +26,7 @@ class Genblast < Formula
     File.open((etc+'genblast.bash'), 'w') { |file| file.write("export GBLAST_PATH=#{HOMEBREW_PREFIX}/bin\n") }
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     To run genblast you need to specify set GBLAST_PATH which points
     to the directory where your blast format binary and blast binaries
     are, otherwise it will use the current directory.

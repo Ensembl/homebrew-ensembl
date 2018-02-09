@@ -45,7 +45,7 @@ class OracleDbd < Formula
     bin.install script
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     This package installs DBD::Oracle to your current Perl's library directory. 
     If you did not want to do this then do not run this program.
     EOS

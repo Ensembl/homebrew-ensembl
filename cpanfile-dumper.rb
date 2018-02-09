@@ -36,7 +36,7 @@ class CpanfileDumper < Formula
   end
 
   test do
-    (testpath/"cpanfile").write <<-EOS.undent
+    (testpath/"cpanfile").write <<~EOS
       requires 'JSON'
     EOS
     system bin/'cpanfile-dumper', (testpath/'cpanfile')

@@ -30,7 +30,7 @@ class AsperaClient < Formula
     prefix.install "cli/product-info.mf"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     You can find the file asperaweb_id_dsa.openssh in
       #{etc}/asperaweb_id_dsa.openssh
     EOS

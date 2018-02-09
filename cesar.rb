@@ -96,7 +96,7 @@ class Cesar < Formula
     ENV.append "LDFLAGS", "-shared"
     ENV["ATLAS"] = "None"
     ENV["BLAS"] = ENV["LAPACK"] = "#{openblas_dir}/lib/libopenblas.so"
-    config = <<-EOS.undent
+    config = <<~EOS
       [openblas]
       libraries = openblas
       library_dirs = #{openblas_dir}/lib
