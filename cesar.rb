@@ -135,7 +135,7 @@ class Cesar < Formula
 
     cesar = bin+'CESAR'
     File.delete(cesar) if File.exists?(cesar)
-    (cesar).write <<-EOF.undent
+    (cesar).write <<~EOF
 #!/bin/bash
 PYTHONPATH=#{ENV["PYTHONPATH"]} MPLBACKEND=#{ENV["MPLBACKEND"]} exec "python" "#{prefix}/CESAR/CESAR.py" "$@"
 EOF

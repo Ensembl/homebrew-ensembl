@@ -38,7 +38,7 @@ class OracleDbd < Formula
       run_cpan('/usr/bin/perl')
     end
     script = Pathname.new 'oracle-dbd-version'
-    (script).write <<-EOF.undent
+    (script).write <<~EOF
       #!/bin/sh
       perl -MDBD::Oracle -e 'print $DBD::Oracle::VERSION."\n"'
     EOF

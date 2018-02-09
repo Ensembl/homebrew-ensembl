@@ -38,7 +38,7 @@ class SiftVar < Formula
     blast = Formula['ensembl/external/blast']
     blimps = Formula['ensembl/external/blimps']
     rm buildpath/'config/config_env.txt'
-    (buildpath/'config/config_env.txt').write  <<-EOF.undent
+    (buildpath/'config/config_env.txt').write  <<~EOF
 SITE_PERL=#{perl_version}
 SIFT_HOME=#{prefix}
 TMP_DIR=/tmp
@@ -68,7 +68,7 @@ PERL_LIB=#{libexec}/lib/perl5/
     prefix.install 'web'
     bsh = etc+'sift.bash'
     rm bsh if bsh.exist?
-    bsh.write <<-EOF.undent
+    bsh.write <<~EOF
       export PERL5LIB=#{libexec}/lib/perl5:$PERL5LIB
       export SIFT_HOME=#{prefix}
       export PATH=$SIFT_HOME/bin:$PATH

@@ -37,7 +37,7 @@ class LibSssFix < Formula
         glibc.lib.install_symlink sys_libnss_sss
         marker = (prefix+'libnss_sss_fix')
         File.delete(marker) if File.exists?(marker)
-        (marker).write <<-EOF.undent
+        (marker).write <<~EOF
           Installed symbolic link for glibc
         EOF
       end

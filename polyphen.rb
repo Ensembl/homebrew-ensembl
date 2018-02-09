@@ -69,7 +69,7 @@ class Polyphen < Formula
     end
     env_file = etc+'polyphen.env'
     rm(env_file) if env_file.exist?
-    env_file.write <<-EOF.undent
+    env_file.write <<~EOF
 export PPH=#{prefix}
 export PERL5LIB=#{libexec}/lib/perl5:#{prefix}/perl:$PERL5LIB
 export PATH=#{bin}:$PATH

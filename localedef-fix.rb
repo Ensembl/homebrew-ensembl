@@ -50,7 +50,7 @@ class LocaledefFix < Formula
 
     marker = (prefix+'localedef_fix')
     File.delete(marker) if File.exists?(marker)
-    (marker).write <<-EOF.undent
+    (marker).write <<~EOF
       Installed locales for glibc
     EOF
   end
