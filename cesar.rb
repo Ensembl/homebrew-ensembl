@@ -16,7 +16,7 @@ class Cesar < Formula
   sha256 "e096f519308bba587f429703e1167c82699ca20b32a13ced0010a4604ff344fe"
   version "31d99ca"
 
-  depends_on :python if MacOS.version <= :snow_leopard
+  depends_on "python" if MacOS.version <= :snow_leopard
   depends_on "homebrew/science/openblas"
   depends_on "homebrew/science/qhull"
   depends_on "freetype"

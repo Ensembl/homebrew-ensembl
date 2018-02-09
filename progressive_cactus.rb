@@ -15,7 +15,7 @@ class ProgressiveCactus < Formula
   url 'https://github.com/glennhickey/progressiveCactus.git', :using => :git, :revision => "f102445"
   version 'f102445'
 
-depends_on :python if MacOS.version <= :snow_leopard
+depends_on "python" if MacOS.version <= :snow_leopard
 
   def install
     ENV["PWD"] = buildpath

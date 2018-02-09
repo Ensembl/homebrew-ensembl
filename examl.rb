@@ -17,7 +17,6 @@ class Examl < Formula
   version '3.0.17'
   
   depends_on 'openmpi' => ["with-cxx-bindings"]
-  depends_on :mpi => [:cc, :optional]
   needs :openmp
 
   def install
