@@ -22,7 +22,6 @@ class PostgresClient < Formula
   depends_on "util-linux"
 
   def install 
-    ENV.libxml2
     ENV["XML2_CONFIG"] = "xml2-config --exec-prefix=/usr"
     ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib} -L#{Formula["readline"].opt_lib}"
     ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include} -I#{Formula["readline"].opt_include}"
