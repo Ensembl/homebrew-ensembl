@@ -13,9 +13,9 @@ class Ensc < Formula
   desc 'C bindings to Ensembl DBs and useful utils'
   homepage 'https://github.com/Ensembl/ensc-core'
 
-  version '1.1.0'
+  version '1.2.1'
   url "https://github.com/Ensembl/ensc-core/archive/#{version}.zip"
-  sha256 'b12b58c7ce6def077708203012f453ca66ba15b03018a49f552750d48dc17317'
+  sha256 'b3fb0dc6317ed65c10d9f7ae70c3a4824d7cd856985ccc7cd12f4d2f98c29087'
   revision 1
 
   depends_on "ensembl/external/percona-client"
