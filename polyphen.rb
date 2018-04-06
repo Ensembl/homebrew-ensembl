@@ -27,7 +27,7 @@ class Polyphen < Formula
   
   resource "polyphen-databases" do
     url "ftp://genetics.bwh.harvard.edu/pph2/bundled/polyphen-2.2.2-databases-2011_12.tar.bz2"
-    sha256 ""
+    sha256 "5ea16740f5f795e9e86b53d8749887b53e3fb400c1a735d045f6f4d11ae01340"
   end
 
   def install
