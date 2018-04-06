@@ -17,8 +17,8 @@ class Cesar < Formula
   version "31d99ca"
 
   depends_on "python@2" if MacOS.version <= :snow_leopard
-  depends_on "homebrew/science/openblas"
-  depends_on "homebrew/science/qhull"
+  depends_on "openblas"
+  depends_on "qhull"
   depends_on "freetype"
   depends_on "libpng"
   

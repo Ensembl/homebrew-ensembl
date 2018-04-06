@@ -16,7 +16,7 @@ class Crossmap < Formula
   sha256 "8e4110156770add1c149b6d839c86422eef5098e3ebe3fe9e5f006264f2375fd"
 
   depends_on "python@2" if MacOS.version <= :snow_leopard
-  depends_on "homebrew/science/openblas"
+  depends_on "openblas"
 
   resource "nose" do
     url "https://pypi.python.org/packages/source/n/nose/nose-1.3.7.tar.gz"
