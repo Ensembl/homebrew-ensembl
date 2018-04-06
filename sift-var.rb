@@ -23,7 +23,7 @@ class SiftVar < Formula
 
   #Code from Sift claims it needs legacy (talks about blastpgp) but other docs claim the converse
   depends_on 'ensembl/external/blast'
-  depends_on 'ensembl/external/blimps'
+  depends_on 'ensembl/ensembl/blimps'
 
   keg_only 'Source the appropriate env files to bring in'
 
@@ -36,7 +36,7 @@ class SiftVar < Formula
 
     perl_version = `which perl`.chomp
     blast = Formula['ensembl/external/blast']
-    blimps = Formula['ensembl/external/blimps']
+    blimps = Formula['ensembl/ensembl/blimps']
     rm buildpath/'config/config_env.txt'
     (buildpath/'config/config_env.txt').write  <<~EOF
 SITE_PERL=#{perl_version}
