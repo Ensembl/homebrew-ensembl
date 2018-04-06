@@ -20,6 +20,9 @@ class Maftools < Formula
   depends_on "python@2" if MacOS.version <= :snow_leopard
   #depends_on "ensembl/ensembl/sonlib"
   
+  # Patch needed until the pull-request is accepted
+  patch :DATA
+
   resource "numpy" do
     url "https://pypi.python.org/packages/e0/4c/515d7c4ac424ff38cc919f7099bf293dd064ba9a600e1e3835b3edefdb18/numpy-1.11.1.tar.gz"
     sha256 "dc4082c43979cc856a2bf352a8297ea109ccb3244d783ae067eb2ee5b0d577cd"
@@ -39,3 +42,23 @@ class Maftools < Formula
     system "#{bin}/mafValidator.py --version"
   end
 end
+__END__
+diff --git a/mafExtractor/Makefile b/mafExtractor/Makefile
+index 2a2821b..500f92f 100644
+--- a/mafExtractor/Makefile
++++ b/mafExtractor/Makefile
+@@ -22,12 +22,12 @@ src/buildVersion.c: ${sources} ${dependencies}
+ 
+ ${bin}/mafExtractor: src/mafExtractor.c ${dependencies} ${API}
+ 	mkdir -p $(dir $@)
+-	${cxx} ${cflags} -O3 $< ${API} -o $@.tmp
++	${cxx} ${cflags} -O3 $< ${API} -o $@.tmp -lm
+ 	mv $@.tmp $@
+ 
+ test/mafExtractor: src/mafExtractor.c ${dependencies} ${testAPI}
+ 	mkdir -p $(dir $@)
+-	${cxx} ${cflags} -g -O0 $< ${testAPI} -o $@.tmp
++	${cxx} ${cflags} -g -O0 $< ${testAPI} -o $@.tmp -lm
+ 	mv $@.tmp $@
+ 
+ %.o: %.c %.h
