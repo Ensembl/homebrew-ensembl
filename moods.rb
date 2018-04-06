@@ -18,7 +18,7 @@ class Moods < Formula
   sha256 "79d9ffe8acb7d32182dd190bfd55ad9e3170d1f69ab53ee7e243d2c1449f50d4"
   url "https://github.com/jhkorhonen/MOODS/releases/download/v#{version}/MOODS-python-#{version}.tar.gz"
 
-  depends_on "python"
+  depends_on "python@2"
 
   def install
     system "python", *Language::Python.setup_install_args(libexec)    
