@@ -12,8 +12,8 @@
 class Crossmap < Formula
   desc "Genomic feature liftover tool"
   homepage "http://crossmap.sourceforge.net/"
-  url "https://files.pythonhosted.org/packages/05/e4/a5ba7b144b855637d6888ddaa2dddded2729340eeb8f7aaa866b8d0568bf/CrossMap-0.2.3.tar.gz"
-  sha256 "8e4110156770add1c149b6d839c86422eef5098e3ebe3fe9e5f006264f2375fd"
+  url "https://files.pythonhosted.org/packages/d5/ba/d3025c812acc530509f410faa37734d103b66a3787cc466b703517dc6a03/CrossMap-0.2.8.tar.gz"
+  sha256 "783a89f7378495dc0f1dbbb1b56b780cc4aeeb20d683c2721560952305083c47"
 
   depends_on "python@2" if MacOS.version <= :snow_leopard
   depends_on "openblas"
@@ -39,8 +39,8 @@ class Crossmap < Formula
   end
 
   resource "pysam" do
-    url "https://files.pythonhosted.org/packages/76/62/908776209238850eca22e7139cc23ce2ba14b2941ceb438b1572f84e8d82/pysam-0.9.1.2.tar.gz"
-    sha256 "da49d15c3adca67c46d0aa418e8d2b27d1667890a444886dd95d6da55e6e5e2b"
+    url "https://files.pythonhosted.org/packages/be/70/16cdd6c5ef799b2db2af4fd5f9720df0f3206b0a06ed40e03692aa80ae25/pysam-0.11.1.tar.gz"
+    sha256 "fbc710f82cb4334b3b88be9b7a9781547456fdcb2135755b68e041e96fc28de1"
   end
 
   def install
