@@ -6,8 +6,11 @@ set -euo pipefail
 # Enable Ctrl+C if run interactively
 test -t 1 && USE_TTY="-t"
 
+COMMIT_RANGE=${TRAVIS_COMMIT_RANGE:-master..$TRAVIS_BRANCH}
+echo "Testing changed files in $COMMIT_RANGE"
+
 # Test each changed file independently
-for filename in $(git diff --name-only "$TRAVIS_COMMIT_RANGE" | grep '\.rb$')
+for filename in $(git diff --name-only "$COMMIT_RANGE" | grep '\.rb$')
 do
     # Notes:
     # - Mount the whole tap to use the new version of each formula
