@@ -6,6 +6,7 @@ set -euo pipefail
 # Enable Ctrl+C if run interactively
 test -t 1 && USE_TTY="-t"
 
+git fetch origin master
 COMMIT_RANGE=${TRAVIS_COMMIT_RANGE:-origin/master..$TRAVIS_BRANCH}
 echo "Testing changed files in $COMMIT_RANGE"
 
