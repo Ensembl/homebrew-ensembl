@@ -7,7 +7,7 @@ set -euo pipefail
 test -t 1 && USE_TTY="-t"
 
 # Test each changed file independently
-for filename in $(git diff --name-only "$TRAVIS_COMMIT_RANGE")
+for filename in $(git diff --name-only "$TRAVIS_COMMIT_RANGE" | grep '\.rb$')
 do
     # Notes:
     # - Mount the whole tap to use the new version of each formula
