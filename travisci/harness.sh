@@ -6,7 +6,7 @@ set -euo pipefail
 # Enable Ctrl+C if run interactively
 test -t 1 && USE_TTY="-t"
 
-COMMIT_RANGE=${TRAVIS_COMMIT_RANGE:-master..$TRAVIS_BRANCH}
+COMMIT_RANGE=${TRAVIS_COMMIT_RANGE:-origin/master..$TRAVIS_BRANCH}
 echo "Testing changed files in $COMMIT_RANGE"
 
 # Test each changed file independently
