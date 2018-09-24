@@ -13,8 +13,8 @@ class EnsemblGitTools < Formula
   desc "Library of extended Git functions for working with Ensembl"
   homepage "https://github.com/ensembl/ensembl-git-tools"
 
-  url "https://github.com/Ensembl/ensembl-git-tools/archive/1.0.7.tar.gz"
-  sha256 "9a17c5c953f8781f263be01f4ce5ddb4e587a42439d974ebc7ad99587eb46ff0"
+  url "https://github.com/Ensembl/ensembl-git-tools/archive/1.0.8.tar.gz"
+  sha256 "58724017c2440b054cb82c322b9dd34368fd480095cad5c2189940129e7ef61f"
 
   def install
     bin.install Dir["bin/*"]
