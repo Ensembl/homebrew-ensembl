@@ -9,15 +9,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class Ensc < Formula
-  desc 'C bindings to Ensembl DBs'
-  homepage 'https://github.com/Ensembl/ensc-core'
+class EnscAnnotationTools < Formula
+  desc 'Utils for the Ensembl Genome Annotation System'
+  homepage 'https://github.com/Ensembl/ensc-annotation-tools'
 
-  version '1.3.0'
-  url "https://github.com/Ensembl/ensc-core/archive/#{version}.zip"
-  sha256 '996de8c995ff035084f1c8532bee804455209fb9e831acbd50cebaa97970fd1c'
+  version '0.1.0'
+  url "https://github.com/Ensembl/ensc-core/archive/master.zip"
+  sha256 'aef31f25a42daa03af73e7d6dbd343984d39e3b678f6fa80005c538a80f71e8a'
 
+  depends_on "ensembl/ensembl/ensc"
   depends_on "ensembl/external/percona-client"
+  depends_on "ensembl/external/htslib131" => :recommended
+  depends_on "libconfig" => :recommended
   depends_on 'libtool'
 
   def install 
@@ -26,6 +29,11 @@ class Ensc < Formula
     system "./configure --prefix=#{prefix}"
     system 'make'
     system 'make install'
+  end
+
+  test do
+    system 'indicate'
+    system 'translate'
   end
 
 end
