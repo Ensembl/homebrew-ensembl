@@ -13,9 +13,9 @@ class EnscAnnotationTools < Formula
   desc 'Utils for the Ensembl Genome Annotation System'
   homepage 'https://github.com/Ensembl/ensc-annotation-tools'
 
-  version '0.1.0'
-  url "https://github.com/Ensembl/ensc-core/archive/master.zip"
-  sha256 'aef31f25a42daa03af73e7d6dbd343984d39e3b678f6fa80005c538a80f71e8a'
+  version '0.2.0'
+  url "https://github.com/Ensembl/ensc-annotation-tools/archive/master.zip"
+  sha256 'f262d8dd3b9396f56cd86452c7d198a5b37d172e8b936cb5f067daca1e440508'
 
   depends_on "ensembl/ensembl/ensc"
   depends_on "ensembl/external/percona-client"
