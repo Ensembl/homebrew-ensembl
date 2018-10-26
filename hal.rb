@@ -12,8 +12,8 @@
 class Hal < Formula
   desc 'Hierarchical Alignment Format library'
   homepage 'https://github.com/ComparativeGenomicsToolkit/hal'
-  url 'https://github.com/ComparativeGenomicsToolkit/hal.git', :using => :git, :revision => '276eb8c'
-  version '276eb8c'
+  url 'https://github.com/ComparativeGenomicsToolkit/hal.git', :using => :git, :revision => 'd864ed8ba23f402e9a8a0f26d0daf0d7b5ca89de'
+  version 'd864ed8'
 
   depends_on 'ensembl/ensembl/sonlib'
   depends_on 'ensembl/external/kent'
