@@ -42,6 +42,12 @@ class Crossmap < Formula
     url "https://files.pythonhosted.org/packages/be/70/16cdd6c5ef799b2db2af4fd5f9720df0f3206b0a06ed40e03692aa80ae25/pysam-0.11.1.tar.gz"
     sha256 "fbc710f82cb4334b3b88be9b7a9781547456fdcb2135755b68e041e96fc28de1"
   end
+  
+  # Patch CrossMap's lack of reverse complementing bases from VCF files when target mapped strand is negative
+  patch do
+    url "https://raw.githubusercontent.com/Ensembl/CrossMap-Patch/ec5042fef9d7e714ac92f23314fa2c350c4b3d49/CrossMap-0.2.8.patch"
+    sha256 "6517d3caa3d78d2f72a95c45f9fc59b9c71d586b9ed0eaa8c0230ee1b22e60f5"
+  end
 
   def install
     openblas_dir = Formula["openblas"].opt_prefix
