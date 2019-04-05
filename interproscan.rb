@@ -14,7 +14,6 @@ class Interproscan < Formula
   desc 'Scan sequences (protein and nucleic) against InterPro signatures'
   homepage 'http://www.ebi.ac.uk/interpro/interproscan.html'
   version '5.34-73.0'
-  url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.33-72.0/interproscan-5.33-72.0-64-bit.tar.gz'
   url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.34-73.0/interproscan-5.34-73.0-64-bit.tar.gz'
   sha256 '5cb23451a33dec87928a7860dee7d3750ad3559bab4f4e43c1f09f2679006dea'
 
@@ -24,8 +23,8 @@ class Interproscan < Formula
   depends_on 'ensembl/external/emboss'
 
   resource 'panther-models' do
-    url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-12.0.tar.gz'
-    sha256 'bb8dcaeb68876b5abe7842ae1d65eecf15c43a0baea6be9514339b487167be79'
+    url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-14.1.tar.gz'
+    sha256 'b42c4ce489bb0ed443d987a7556e4c57d4cf6b8f80eec43ea7f283b792c2868b'
   end
 
   def install
