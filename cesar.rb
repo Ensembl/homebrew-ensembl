@@ -18,7 +18,7 @@ class Cesar < Formula
   def install
     system 'make'
     bin.install 'cesar'
-    bin.install Dir['extra/*']
+    bin.install Dir['extra']
   end
 
   def caveats; <<~EOS
