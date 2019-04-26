@@ -12,12 +12,22 @@
 class Cesar < Formula
   desc "Coding Exon Structure Aware Realigner 2.0"
   homepage "https://github.com/hillerlab/CESAR2.0"
-  url "https://github.com/hillerlab/CESAR2.0.git", :using => :git
-  version "bf8b7060b0888a0f371702469fe06aec50eec485"
+  url "https://github.com/hillerlab/CESAR2.0.git", :using => :git, :revision 'bf8b7060b0888a0f371702469fe06aec50eec485'
+  version "2.0"
 
   def install
     system 'make'
     bin.install 'cesar'
-    bin.install 'extra'
+    bin.install Dir['extra/*']
+  end
+
+  def caveats; <<~EOS
+    You need to use the full opt path to execute cesar
+     #{opt_prefix}/bin/cesar
+    EOS
+  end
+
+  def test
+    system "#{opt_prefix}/bin/cesar #{opt_prefix}/bin/extra/example1.fa"
   end
 end
