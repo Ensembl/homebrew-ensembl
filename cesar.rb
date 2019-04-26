@@ -13,10 +13,11 @@ class Cesar < Formula
   desc "Coding Exon Structure Aware Realigner 2.0"
   homepage "https://github.com/hillerlab/CESAR2.0"
   url "https://github.com/hillerlab/CESAR2.0.git", :using => :git
-  version "eee348664a912c8b0e570129b28366697add5d4e"
+  version "bf8b7060b0888a0f371702469fe06aec50eec485"
 
   def install
     system 'make'
     bin.install 'cesar'
+    bin.install 'extra'
   end
 end
