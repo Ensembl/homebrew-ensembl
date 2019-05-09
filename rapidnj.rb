@@ -13,7 +13,7 @@ class Rapidnj < Formula
   desc "RapidNJ: fast neighbour-joining trees"
   homepage "https://birc.au.dk/software/rapidnj/"
   url "http://users-birc.au.dk/cstorm/software/rapidnj/rapidnj-src-2.3.2.zip"
-  sha256 "9245e84a0d0b412572571ac85dd4599f0b0417718aef687fa014ec119d67b67a"
+  sha256 "80a30a42cb5390920b4dd2132801083ae67146f9821807b40a4ee9160292e070"
 
   def install
     system "make"
