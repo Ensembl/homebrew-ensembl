@@ -16,6 +16,7 @@ class Rapidnj < Formula
   sha256 "80a30a42cb5390920b4dd2132801083ae67146f9821807b40a4ee9160292e070"
 
   def install
+    inreplace 'src/distanceCalculation/KimuraDistance.cpp', '#ifdef __SSE4_2__', '#ifdef _DISABLE_THIS_'
     system "make"
 
     cd "bin" do
