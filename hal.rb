@@ -17,14 +17,14 @@ class Hal < Formula
 
   depends_on 'ensembl/ensembl/sonlib'
   depends_on 'ensembl/external/kent'
-  depends_on 'hdf5@1.8'
+  depends_on 'hdf5@1.10'
 
   def install
     ENV.deparallelize
     
     sonlib = Formula['ensembl/ensembl/sonlib']
     kent = Formula['ensembl/external/kent']
-    hdf5 = Formula['hdf5@1.8']
+    hdf5 = Formula['hdf5@1.10']
 
     # Add hdf5 onto PATH so we find the 1.8 compiler
     ENV.prepend_create_path "PATH", hdf5.bin
