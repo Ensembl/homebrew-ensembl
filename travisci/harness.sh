@@ -24,7 +24,7 @@ do
     # - Don't upgrade the formulae already installed as this image is expected to be updated regularly
     docker run ${USE_TTY:-} -i \
                -v "$PWD:/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/homebrew-ensembl" \
-               muffato/ensembl-basic-dependencies-linuxbrew \
+               muffato/ensembl-linuxbrew-basic-dependencies \
                brew install --build-from-source "ensembl/ensembl/$(basename "${filename%.rb}")"
                #/bin/bash
 done
