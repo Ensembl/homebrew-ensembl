@@ -1,0 +1,12 @@
+language: "generic"
+
+sudo: required
+services:
+    - docker
+
+install:
+    - docker pull muffato/ensembl-linuxbrew-basic-dependencies
+
+script:
+    - ./travisci/harness.sh
+
