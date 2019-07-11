@@ -13,16 +13,9 @@ class Interproscan < Formula
 
   desc 'Scan sequences (protein and nucleic) against InterPro signatures'
   homepage 'http://www.ebi.ac.uk/interpro/interproscan.html'
-  version '5.34-73.0'
-  url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.34-73.0/interproscan-5.34-73.0-64-bit.tar.gz'
-  sha256 '5cb23451a33dec87928a7860dee7d3750ad3559bab4f4e43c1f09f2679006dea'
-
-  # below is added as the panther package was updated after the formula was
-  # upgraded. Adding a revision will force brew to upgrade the formula. I chose
-  # the same version for the revision as the panther version.
-  # NOTE Remove the revision when the interproscan formula is updated next
-  # NOTE time!
-  revision '14.1'
+  version '5.36-75.0'
+  url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.36-75.0/interproscan-5.36-75.0-64-bit.tar.gz'
+  sha256 '00f86d227631d3bf18dd190b4486e3b1be713ea9bf269f7f5fad72718f115376'
 
   depends_on 'ensembl/moonshine/tmhmm'
   depends_on 'ensembl/moonshine/signalp'
