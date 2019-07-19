@@ -11,10 +11,10 @@
 
 class Libaio < Formula
   desc 'Native Asynchronous I/O interface library'
-  homepage 'https://git.fedorahosted.org/cgit/libaio.git'
-  url 'https://git.fedorahosted.org/cgit/libaio.git/snapshot/libaio-0.3.110-1.tar.gz'
-  sha256 '5c69f43b71d0979b870f49a6cb9e2547ae2344575d8428698ebf5fde13b33529'
+  homepage 'https://pagure.io/libaio'
   version '0.3.110-1'
+  url "https://pagure.io/libaio/archive/libaio-#{version}/libaio-libaio-#{version}.tar.gz"
+  sha256 '2241532aeec68f816c66dc0c1c753bda5398ee0ff72189a71206cd87cf1026c0'
 
   def install
     system 'make', "prefix=#{prefix}", 'install'
