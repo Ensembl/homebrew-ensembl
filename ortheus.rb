@@ -12,15 +12,12 @@
 class Ortheus < Formula
   desc 'Probabilistic method for the inference of ancestor (aka tree) alignments'
   homepage 'http://hgwdev.cse.ucsc.edu/~benedict/code/Ortheus.html'
-  url 'https://github.com/benedictpaten/ortheus.git', :using => :git
-  version '0.5.0'
-  revision 1
+  url "https://github.com/Ensembl/ortheus/archive/ensembl_release_candidate_2.zip"
+  sha256 "e18c57d6ecbea88941080ba52a51058d03972bd67bef965aff7b34479ddcda2d"
+  version 'rc2'
 
   depends_on 'ensembl/ensembl/sonlib'
   depends_on 'ensembl/ensembl/semphy'
-
-  # Patch needed until the pull-request is accepted
-  patch :DATA
 
   def install
     sonlib = Formula['ensembl/ensembl/sonlib']
@@ -39,17 +36,3 @@ class Ortheus < Formula
     (prefix+'ortheus').install Dir['*']
   end
 end
-__END__
-diff --git a/old/tree.py b/old/tree.py
-index 9d085f1..1bcc9a4 100644
---- a/old/tree.py
-+++ b/old/tree.py
-@@ -709,7 +709,7 @@ def calculateProbableRootOfGeneTree(speciesTree, geneTree, processID=lambda x :
-     #run dup calc on each tree
-     #return tree with fewest number of dups
-     if geneTree.traversalID.midEnd <= 3:
--        return (0, 0, geneTree)
-+        return (geneTree, 0, 0)
-     checkGeneTreeMatchesSpeciesTree(speciesTree, geneTree, processID)
-     l = []
-     def fn(tree):
