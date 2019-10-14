@@ -12,9 +12,9 @@
 class Treebest < Formula
   desc "Tree Building guided by Species Tree"
   homepage "https://github.com/Ensembl/treebest"
-  url "https://github.com/Ensembl/treebest/archive/ensembl_production_88.zip"
-  sha256 "5002a21947d0619d1206f4da6ec4a323f3f9c6a2b85717ff585eea3bd678d2bc"
-  version '88'
+  url "https://github.com/Ensembl/treebest/archive/ensembl_release_candidate_5.zip"
+  sha256 "9b58573d26153eafdbab4af80d04418e7e9d0047ad5f70753bb8f0260dbfde09"
+  version 'rc5'
 
   depends_on 'bison'
   depends_on 'flex'
