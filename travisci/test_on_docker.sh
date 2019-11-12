@@ -2,10 +2,13 @@
 
 set -euo pipefail
 
-# .deps is mounted read-only under Travis, so take a copy of it
-LINUXBREW_PATH=$(brew --prefix)
-rm -rf "$LINUXBREW_PATH/Homebrew/Library/Taps/ensembl/homebrew-external"
-cp -a "$LINUXBREW_PATH/Homebrew/Library/Taps/ensembl/homebrew-ensembl/.deps/homebrew-external" "$LINUXBREW_PATH/Homebrew/Library/Taps/ensembl/homebrew-external"
+# directories are mounted read-only under Travis, so take a copy
+TARGET_TAP_DIR="$(brew --prefix)/Homebrew/Library/Taps/ensembl"
+for d in homebrew-*
+do
+	rm -rf "$TARGET_TAP_DIR/$d"
+	cp -a "$d" "$TARGET_TAP_DIR/$d"
+done
 
 brew deps --union "$@" | if grep -q ensembl/moonshine/
 then
