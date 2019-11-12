@@ -17,10 +17,26 @@ fi
 echo "Testing changed files in $COMMIT_RANGE"
 
 # Tap information
-TAP_DIR_NAME="$(basename "$PWD")"
-TAP_PATH="/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl/$TAP_DIR_NAME"
+DOCKER_TAP_PATH="/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/ensembl"
+# The tap being tested
+TAP_LOCAL_PATH="$PWD"
+TAP_DIR_NAME="$(basename "$TAP_LOCAL_PATH")"
+TAP_DOCKER_PATH="$DOCKER_TAP_PATH/$TAP_DIR_NAME"
 TAP_NAME="ensembl/${TAP_DIR_NAME#homebrew-}"
 echo "Tap name is $TAP_NAME"
+# The other main Ensembl tap (needs to be downloaded)
+OTHER_TAP_NAME="homebrew-external"
+OTHER_TAP_URL="https://github.com/Ensembl/$OTHER_TAP_NAME"
+OTHER_TAP_LOCAL_PATH="$PWD/.deps/$OTHER_TAP_NAME"
+OTHER_TAP_DOCKER_PATH="$DOCKER_TAP_PATH/$OTHER_TAP_NAME"
+rm -rf "$OTHER_TAP_LOCAL_PATH"
+mkdir -p "$OTHER_TAP_LOCAL_PATH"
+git clone --depth 1 "$OTHER_TAP_URL" "$OTHER_TAP_LOCAL_PATH"
+
+# List the mount points
+MOUNTS=()
+MOUNTS+=("-v" "$TAP_LOCAL_PATH:$TAP_DOCKER_PATH")
+MOUNTS+=("-v" "$OTHER_TAP_LOCAL_PATH:$OTHER_TAP_DOCKER_PATH")
 
 # Get the list of files that have changed
 CHANGED_FILES=()
@@ -38,13 +54,11 @@ then
 fi
 echo "Changed files: ${CHANGED_FILES[@]}"
 
-# Transform the files into formula names and mount points
+# Transform the files into formula names
 ALL_FORMULAE=()
-MOUNTS=()
 for filename in "${CHANGED_FILES[@]}"
 do
     ALL_FORMULAE+=("$TAP_NAME/${filename%.rb}")
-    MOUNTS+=("-v" "$PWD/$filename:$TAP_PATH/$filename")
 done
 
 # Get the list of formulae they are a dependency of
@@ -57,10 +71,11 @@ do
 done
 echo "Formulae to test (incl. reverse dependencies): ${ALL_FORMULAE[@]}"
 
+#echo \
 docker run ${USE_TTY:-} -i \
        "${MOUNTS[@]}" \
        --env HOMEBREW_NO_AUTO_UPDATE=1 \
        muffato/ensembl-linuxbrew-basic-dependencies \
-       brew install --build-from-source "${ALL_FORMULAE[@]}"
+       "$TAP_DOCKER_PATH/travisci/test_on_docker.sh" "${ALL_FORMULAE[@]}"
        #/bin/bash
 
