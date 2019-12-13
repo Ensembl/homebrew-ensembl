@@ -12,8 +12,8 @@
 class Sonlib < Formula
   desc 'Small general purpose library for C and Python with focus on bioinformatics'
   homepage 'https://github.com/benedictpaten/sonLib'
-  url 'https://github.com/benedictpaten/sonLib.git', :using => :git, :revision => '1afbd97'
-  version '1afbd97'
+  url 'https://github.com/benedictpaten/sonLib.git', :using => :git, :revision => 'c51f0ae'
+  version 'c51f0ae'
 
   patch :DATA
 
