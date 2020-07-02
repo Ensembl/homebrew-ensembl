@@ -35,20 +35,20 @@ class Interproscan < Formula
 
     inreplace 'interproscan.properties' do |s|
       # Handle tmhmm config
-      s.gsub! 'bin/tmhmm/2.0c/decodeanhmm', "#{tmhmm.bin}/decodeanhmm.Linux_x86_64"
-      s.gsub! 'data/tmhmm/2.0c/TMHMM2.0c.model', "#{tmhmm.lib}/TMHMM2.0.model"
+      s.gsub! '${bin.directory}/tmhmm/2.0c/decodeanhmm', "#{tmhmm.bin}/decodeanhmm.Linux_x86_64"
+      s.gsub! '${data.directory}/tmhmm/2.0c/TMHMM2.0c.model', "#{tmhmm.lib}/TMHMM2.0.model"
 
       # Handle signalp dependencies
-      s.gsub! 'bin/signalp/4.1/signalp', "#{signalp.bin}/signalp"
-      s.gsub! 'bin/signalp/4.1/lib', "#{signalp.lib}"
-      
+      s.gsub! '${bin.directory}/signalp/4.1/signalp', "#{signalp.bin}/signalp"
+      s.gsub! '${bin.directory}/signalp/4.1/lib', "#{signalp.lib}"
+
       # Handle phobius dependencies
-      s.gsub! 'bin/phobius/1.01/phobius.pl', "#{phobius.prefix}/phobius.pl"
-      
+      s.gsub! '${bin.directory}/phobius/1.01/phobius.pl', "#{phobius.prefix}/phobius.pl"
+
       # Use emboss for getorf not bundled version
-      s.gsub! 'bin/nucleotide/getorf', "#{emboss.bin}/getorf"
+      s.gsub! '${bin.directory}/nucleotide/getorf', "#{emboss.bin}/getorf"
     end
-    
+
     inreplace 'interproscan.sh', 'cd "$(dirname "$INSTALL_DIR")"', "cd #{prefix}"
     mv 'interproscan.sh', 'bin/.'
 
