@@ -11,9 +11,9 @@
 
 class R2r < Formula
 
-  homepage "http://www.bioinf.uni-leipzig.de/~zasha/R2R/"
+  homepage "https://sourceforge.net/projects/weinberg-r2r"
 
-  url "http://www.bioinf.uni-leipzig.de/~zasha/R2R/R2R-1.0.5.tgz"
+  url "https://downloads.sourceforge.net/project/weinberg-r2r/R2R-1.0.5.tgz"
   sha256 "c36859749cd40d59c4fd1dd9153e425984eeba8eb5d8ce1fbdcb8e1fdfa0f300"
 
   def install
