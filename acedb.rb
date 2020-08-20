@@ -20,7 +20,7 @@ class Acedb < Formula
   depends_on 'flex'
   depends_on 'byacc'
   depends_on 'readline'
-  depends_on 'libxmu'
+  depends_on 'linuxbrew/xorg/libxmu'
   depends_on 'gtk+'
 
   # Patch needed to remove all references to LEX_LIB to 
