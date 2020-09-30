@@ -32,10 +32,10 @@ class Cactus < Formula
 
 
   # Cactus dependencies
-  resource "toil" do
-    url "https://files.pythonhosted.org/packages/8b/34/fc70fa71a0345deb681040620ff2106da857c33711557221d02007b9d37e/toil-4.1.0.tar.gz"
-    sha256 "3345eef1bb14fbf80dd4638bb8f0ee0c1aca2bdf89665214b4ecfb1d8965b470"
-  end
+#  resource "toil" do
+#    url "https://files.pythonhosted.org/packages/8b/34/fc70fa71a0345deb681040620ff2106da857c33711557221d02007b9d37e/toil-4.1.0.tar.gz"
+#    sha256 "3345eef1bb14fbf80dd4638bb8f0ee0c1aca2bdf89665214b4ecfb1d8965b470"
+#  end
 
   resource "networkx" do
     url "https://files.pythonhosted.org/packages/ef/d0/f706a9e5814a42c544fa1b2876fc33e5d17e1f2c92a5361776632c4f41ab/networkx-2.5.tar.gz"
@@ -67,11 +67,39 @@ class Cactus < Formula
     sha256 "1ee0a0b6c2376680fea6642d5080baa419fd73df104a62d58a8baf7a8bbe4564"
   end
 
+   resource "numpy" do
+    url "https://files.pythonhosted.org/packages/bf/e8/15aea783ea72e2d4e51e3ec365e8dc4a1a32c9e5eb3a6d695b0d58e67cdd/numpy-1.19.2.zip"
+    sha256 "0d310730e1e793527065ad7dde736197b705d0e4c9999775f212b03c44a8484c"
+  end
+
+   resource "py" do
+    url "https://files.pythonhosted.org/packages/97/a6/ab9183fe08f69a53d06ac0ee8432bc0ffbb3989c575cc69b73a0229a9a99/py-1.9.0.tar.gz"
+    sha256 "9ca6883ce56b4e8da7e79ac18787889fa5206c79dcc67fb065376cd2fe03f342"
+  end
+
+   resource "toml" do
+    url "https://files.pythonhosted.org/packages/da/24/84d5c108e818ca294efe7c1ce237b42118643ce58a14d2462b3b2e3800d5/toml-0.10.1.tar.gz"
+    sha256 "926b612be1e5ce0634a2ca03470f95169cf16f939018233a670519cb4ac58b0f"
+  end
+
+   resource "pluggy" do
+    url "https://files.pythonhosted.org/packages/f8/04/7a8542bed4b16a65c2714bf76cf5a0b026157da7f75e87cc88774aa10b14/pluggy-0.13.1.tar.gz"
+    sha256 "15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0"
+  end
+
+   resource "iniconfig" do
+    url "https://files.pythonhosted.org/packages/aa/6e/60dafce419de21f2f3f29319114808cac9f49b6c15117a419737a4ce3813/iniconfig-1.0.1.tar.gz"
+    sha256 "e5f92f89355a67de0595932a6c6c02ab4afddc6fcdc0bfc5becd0d60884d3f69"
+  end
+
   def install
   	ENV.deparallelize
   	
   	# create virtual environment
 	venv = virtualenv_create(libexec, "python3")
+
+	# install cactus python dependencies stated above
+	venv.pip_install resources
 
 	# little hack to install toil's dependencies (which are loads) => maybe a proper recipe for toil will be needed
 	system "#{libexec}/bin/pip", 
@@ -80,8 +108,6 @@ class Cactus < Formula
 		"-r", 
 		"toil-requirement.txt" 
 
-	# install cactus python dependencies stated above
-	venv.pip_install resources
 	
 	# fix `pip` command because Cactus has nested-pip calls 
 	inreplace "setup.py", 
