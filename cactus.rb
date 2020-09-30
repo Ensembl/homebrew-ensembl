@@ -18,7 +18,6 @@ class Cactus < Formula
   homepage "https://github.com/ComparativeGenomicsToolkit/cactus" 
   url "https://github.com/ComparativeGenomicsToolkit/cactus/releases/download/v1.2.1/cactus-v1.2.1.tar.gz"
   sha256 "15482b6d07e5d1ed3984ad89dc89f71886ae052cdd25e7688a635ab672a75bd3"
-  license "NOASSERTION"
   version "1.2.1" 
 
   bottle :unneeded
