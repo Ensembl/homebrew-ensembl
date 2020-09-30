@@ -130,7 +130,7 @@ class Cactus < Formula
     # installation
     bin.install Dir['bin/*']
     lib.install Dir['lib/*.a']
-    include.install Dir['lib/*.h']
+    include.install Dir['include/*.h']
     share.install Dir['share/*']
 
 	# create symbolic links for Cactus be able to use toil 
