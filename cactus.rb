@@ -26,7 +26,7 @@ class Cactus < Formula
   depends_on "pkg-config" => :build
   depends_on "hdf5" => "enable-cxx"
   depends_on "lzo"
-  depends_on "python3"
+  depends_on "python@3.8"
 
 
 
@@ -95,7 +95,7 @@ class Cactus < Formula
   	ENV.deparallelize
   	
   	# create virtual environment
-	venv = virtualenv_create(libexec, "python3")
+	venv = virtualenv_create(libexec, "python3.8")
 
 	# install cactus python dependencies stated above
 	venv.pip_install resources
