@@ -9,6 +9,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+require 'fileutils'
+
 class Cactus < Formula
   include Language::Python::Virtualenv
   
@@ -67,8 +69,7 @@ class Cactus < Formula
 
   def install
   	ENV.deparallelize
-
-
+  	
   	# create virtual environment
 	venv = virtualenv_create(libexec, "python3")
 
@@ -90,24 +91,6 @@ class Cactus < Formula
 	# install cactus python dependencies
 	venv.pip_install_and_link buildpath
 
-
-	# create symbolic links for toil at Cactus bin directory
-	system "ln", 
-		"-s", 
-		"#{libexec}/bin/_toil_kubernetes_executor", 
-		"#{prefix}/bin/_toil_kubernetes_executor"
-	
-	system 
-		"ln", 
-		"-s", 
-		"#{libexec}/bin/_toil_mesos_executor", 
-		"#{prefix}/bin/_toil_mesos_executor"
-	
-	system "ln", 
-		"-s", 
-		"#{libexec}/bin/_toil_worker", 
-		"#{prefix}/bin/_toil_worker"
-
 	
 	# Compilation adjustments
     inreplace "submodules/sonLib/include.mk",
@@ -118,16 +101,28 @@ class Cactus < Formula
     # Cactus compilation
     system "make"
 
+    # installation
     bin.install Dir['bin/*']
-    lib.install Dir['lib/*.a']
+    lib.install Dir['lib/*']
+    include.install Dir['include/*']
+    share.install Dir['share/*']
+
+	# create symbolic links for toil at Cactus bin directory
+	bin.install_symlink "#{libexec}/bin/_toil_worker"
+	bin.install_symlink "#{libexec}/bin/_toil_kubernetes_executor"
+	bin.install_symlink "#{libexec}/bin/_toil_mesos_executor"
+
+	#copy python script
+	FileUtils.cp_r "submodules",
+		"#{prefix}"
+
   end
 
   def caveats
     <<~EOS
       To use HAL python scripts such as hal2mafMP.py, add the submodules directory to the PYTHONPATH with
 
-        export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=#{HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/highlighters
-        export PYTHONPATH=$(pwd)/submodules:$PYTHONPATH
+        export PYTHONPATH=#{prefix}/submodules:$PYTHONPATH
     EOS
   end
 
