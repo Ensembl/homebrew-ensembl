@@ -109,7 +109,7 @@ class Cactus < Formula
 		"toil-requirement.txt" 
 
 	
-	# fix `pip` command because Cactus has nested-pip calls 
+	# fix `pip` command because Cactus has nested-pip calls for sonLib
 	inreplace "setup.py", 
 		"pip", 
 		"#{libexec}/bin/pip"
@@ -129,16 +129,16 @@ class Cactus < Formula
 
     # installation
     bin.install Dir['bin/*']
-    lib.install Dir['lib/*']
-    include.install Dir['include/*']
+    lib.install Dir['lib/*.a']
+    include.install Dir['lib/*.h']
     share.install Dir['share/*']
 
-	# create symbolic links for toil at Cactus bin directory
+	# create symbolic links for Cactus be able to use toil 
 	bin.install_symlink "#{libexec}/bin/_toil_worker"
 	bin.install_symlink "#{libexec}/bin/_toil_kubernetes_executor"
 	bin.install_symlink "#{libexec}/bin/_toil_mesos_executor"
 
-	#copy python script
+	#copy python script from submodules to be included at PYTHONPATH
 	FileUtils.cp_r "submodules",
 		"#{prefix}"
 
