@@ -26,7 +26,7 @@ class Cactus < Formula
   depends_on "pkg-config" => :build
   depends_on "hdf5" => "enable-cxx"
   depends_on "lzo"
-  depends_on "python@3.8"
+  depends_on "homebrew/linuxbrew-core/python@3.8"
 
 
 
