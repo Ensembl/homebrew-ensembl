@@ -12,7 +12,7 @@ class Red < Formula
   desc "Red (REpeat Detector): an intelligent, rapid, accurate tool for detecting repeats de-novo on the genomic scale."
   homepage "http://toolsmith.ens.utulsa.edu/"
   url "http://toolsmith.ens.utulsa.edu/red/data/DataSet2Unix64.tar.gz"
-  version "05/22/2015"
+  version "05.22.2015"
   sha256 "3be62e399b7e321b3e82da6e9e33d7af060d23e97d5fd22f8b3cfcc0d140f8bb"
 
   def install
