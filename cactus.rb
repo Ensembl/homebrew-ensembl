@@ -15,10 +15,10 @@ class Cactus < Formula
   include Language::Python::Virtualenv
   
   desc "Official home of genome aligner based upon notion of Cactus graphs" 
-  homepage "https://github.com/ComparativeGenomicsToolkit/cactus" 
-  url "https://github.com/ComparativeGenomicsToolkit/cactus/releases/download/v1.2.1/cactus-v1.2.1.tar.gz"
-  sha256 "15482b6d07e5d1ed3984ad89dc89f71886ae052cdd25e7688a635ab672a75bd3"
-  version "1.2.1" 
+  homepage "https://github.com/ComparativeGenomicsToolkit/cactus"
+  url "https://github.com/ComparativeGenomicsToolkit/cactus/releases/download/v1.2.3/cactus-v1.2.3.tar.gz"
+  sha256 "49e686f3381e3cf7f7a7696a8506fb1edadc21468f7ac56f8ea49e4d1618c8c2" 
+  head "https://github.com/ComparativeGenomicsToolkit/cactus.git"
 
   bottle :unneeded
 
@@ -50,7 +50,7 @@ class Cactus < Formula
 	# Forcing the installment of cactus python (binary) dependencies without using
 	# invidual package source code (.tar.gz) via `venv.pip_install resources` 
 	system "#{libexec}/bin/pip", 
-		"install", 
+		"install",
 		"-r", 
 		"toil-requirement.txt" 
 
@@ -74,14 +74,16 @@ class Cactus < Formula
     include.install Dir['include/*.h']
     share.install Dir['share/*']
 
-	# create symbolic links for Cactus be able to use toil 
-	bin.install_symlink "#{libexec}/bin/_toil_worker"
-	bin.install_symlink "#{libexec}/bin/_toil_kubernetes_executor"
-	bin.install_symlink "#{libexec}/bin/_toil_mesos_executor"
+    # create symbolic links for Cactus be able to use toil 
+    bin.install_symlink "#{libexec}/bin/_toil_worker"
+    bin.install_symlink "#{libexec}/bin/_toil_kubernetes_executor"
+    bin.install_symlink "#{libexec}/bin/_toil_mesos_executor"
 
 	#copy python script from submodules to be included at PYTHONPATH
-	FileUtils.cp_r "submodules",
-		"#{prefix}"
+	path=%x(#{libexec}/bin/python3 -c \"import sysconfig; print(sysconfig.get_paths()['purelib'])\").strip
+    FileUtils.cp_r "submodules/hal",
+    	path
+ 	
 
   end
 
@@ -98,9 +100,12 @@ class Cactus < Formula
 
   def caveats
     <<~EOS
-      To use HAL python scripts such as hal2mafMP.py, add the submodules directory to the PYTHONPATH with
+     	HAL python scripts are already ready to go. For instance:
 
-        export PYTHONPATH=#{prefix}/submodules:$PYTHONPATH
+     	source #{libexec}/bin/activate
+     	python3 -c "import hal"
+     	deactivate
+
     EOS
   end
 
