@@ -100,7 +100,8 @@ class Cactus < Formula
 
   def caveats
     <<~EOS
-     	HAL python scripts are already ready to go. For instance:
+     	Cactus Python scripts are already configured to use Cactus' own virtualenv.
+     	If you need to use it, do this:
 
      	source #{libexec}/bin/activate
      	python3 -c "import hal"
