@@ -16,9 +16,7 @@ class Red < Formula
   sha256 "3be62e399b7e321b3e82da6e9e33d7af060d23e97d5fd22f8b3cfcc0d140f8bb"
 
   def install
-    cd "redUnix64" do
-      bin.install "Red"
-    end
+    bin.install "Red"
   end
 
   test do
