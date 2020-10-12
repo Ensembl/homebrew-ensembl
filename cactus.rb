@@ -32,10 +32,10 @@ class Cactus < Formula
   def install
     ENV.deparallelize
 
-    # create virtual environment
+    # creating a virtual environment
     venv = virtualenv_create(libexec, 'python3')
 
-    # fix `pip` command because Cactus has nested-pip calls for sonLib
+    # fixing `pip` command because Cactus has nested-pip calls for sonLib
     inreplace 'setup.py',
               'pip',
               "#{libexec}/bin/pip"
@@ -51,7 +51,12 @@ class Cactus < Formula
            '-r',
            'toil-requirement.txt'
 
-    # install cactus python dependencies
+    # fixing pythion bashbang on this executable file to call virtualEnv's python
+    inreplace 'submodules/sonLib/sonLib_daemonize.py',
+              '/usr/bin/env python3',
+              "#{libexec}/bin/python3"
+
+    # installing cactus and sonLib (subcall) as a python dependencies
     venv.pip_install_and_link buildpath
 
     # Compilation adjustments
@@ -60,21 +65,21 @@ class Cactus < Formula
               '.h.inv'
     ENV['CXX_ABI_DEF'] = '-D_GLIBCXX_USE_CXX11_ABI=1'
 
-    # Cactus compilation
+    # Compiling cactus
     system 'make'
 
-    # installation
+    # Final installment adjustments
     bin.install Dir['bin/*']
     lib.install Dir['lib/*.a']
     include.install Dir['include/*.h']
     share.install Dir['share/*']
 
-    # create symbolic links for Cactus be able to use toil
+    # Creating symbolic links for Cactus be able to use toil
     bin.install_symlink "#{libexec}/bin/_toil_worker"
     bin.install_symlink "#{libexec}/bin/_toil_kubernetes_executor"
     bin.install_symlink "#{libexec}/bin/_toil_mesos_executor"
 
-    # copy python script from submodules to be included at VirtualEnv's lib
+    # Copying python script from submodules to be included at VirtualEnv's lib
     path = `#{libexec}/bin/python3 -c \"import sysconfig; print(sysconfig.get_paths()['purelib'])\"`.strip
     FileUtils.cp_r 'submodules/hal',
                    path
