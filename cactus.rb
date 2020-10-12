@@ -40,12 +40,12 @@ class Cactus < Formula
               'pip',
               "#{libexec}/bin/pip"
 
-    # Extracting python dependencies from setup.py because
-    # the pip call Python.rb use --no-dependencies flag
-    extract_python_dependencies(libexec)
+    # Installing Cactus' python dependencies 
+    system "#{libexec}/bin/pip",
+           'install',
+           "#{buildpath}"    
 
-    # Forcing the installment of cactus python (binary) dependencies without using
-    # invidual package source code (.tar.gz) via `venv.pip_install resources`
+    # Installing Cactu's requirements
     system "#{libexec}/bin/pip",
            'install',
            '-r',
@@ -57,7 +57,7 @@ class Cactus < Formula
               "#{libexec}/bin/python3"
 
     # installing cactus and sonLib (subcall) as a python dependencies
-    venv.pip_install_and_link buildpath
+    #venv.pip_install_and_link buildpath
 
     # Compilation adjustments
     inreplace 'submodules/sonLib/include.mk',
@@ -74,26 +74,24 @@ class Cactus < Formula
     include.install Dir['include/*.h']
     share.install Dir['share/*']
 
-    # Creating symbolic links for Cactus be able to use toil
+
+    # Creating symbolic links for Cactus be able to use toil from libexec
     bin.install_symlink "#{libexec}/bin/_toil_worker"
     bin.install_symlink "#{libexec}/bin/_toil_kubernetes_executor"
     bin.install_symlink "#{libexec}/bin/_toil_mesos_executor"
+
+    # Creating symbolic links to call Cactus from libexec
+    bin.install_symlink "#{libexec}/bin/cactus"
+    bin.install_symlink "#{libexec}/bin/cactus-align"
+    bin.install_symlink "#{libexec}/bin/cactus-blast"
+    bin.install_symlink "#{libexec}/bin/cactus-prepare"
+    bin.install_symlink "#{libexec}/bin/cactus-prepare-toil"
+    bin.install_symlink "#{libexec}/bin/cactus-preprocess"
 
     # Copying python script from submodules to be included at VirtualEnv's lib
     path = `#{libexec}/bin/python3 -c \"import sysconfig; print(sysconfig.get_paths()['purelib'])\"`.strip
     FileUtils.cp_r 'submodules/hal',
                    path
-  end
-
-  private def extract_python_dependencies(libexec)
-    wrapper = 'from distutils.core import run_setup;
-    result = run_setup("setup.py", stop_after="init");
-    f = open("toil-requirement.txt","a");
-    f.write("\n".join(result.install_requires));
-    f.close();'
-    File.write('toil-requirement.py', wrapper.split(/\s*;\s*/).join("\n"), mode: 'a')
-    system "#{libexec}/bin/python3",
-           'toil-requirement.py'
   end
 
   def caveats
