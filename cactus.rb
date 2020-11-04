@@ -25,6 +25,7 @@ class Cactus < Formula
 
   depends_on 'pkg-config' => :build
   depends_on 'gcc@7' => :build
+  depends_on 'hiredis' => :build
   depends_on 'hdf5' => 'enable-cxx'
   depends_on 'lzo'
   depends_on 'python3'
