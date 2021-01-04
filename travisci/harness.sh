@@ -52,7 +52,7 @@ then
     git --no-pager diff --name-only "$COMMIT_RANGE"
     exit 0
 fi
-echo "Changed files: ${CHANGED_FILES[@]}"
+echo "Changed files:" "${CHANGED_FILES[@]}"
 
 # Transform the files into formula names
 ALL_FORMULAE=()
@@ -69,7 +69,7 @@ do
         ALL_FORMULAE+=("$TAP_NAME/$(basename "$line")")
     done < <(grep -l "\<depends_on[[:space:]]\+.$TAP_NAME/${filename%.rb}\>" ./*.rb | sed 's/\.rb$//')
 done
-echo "Formulae to test (incl. reverse dependencies): ${ALL_FORMULAE[@]}"
+echo "Formulae to test (incl. reverse dependencies):" "${ALL_FORMULAE[@]}"
 
 #echo \
 docker run ${USE_TTY:-} -i \
