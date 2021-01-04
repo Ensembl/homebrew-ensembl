@@ -13,7 +13,6 @@ class Interproscan < Formula
 
   desc 'Scan sequences (protein and nucleic) against InterPro signatures'
   homepage 'http://www.ebi.ac.uk/interpro/interproscan.html'
- 
   version '5.48-83.0'
   url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.48-83.0/interproscan-5.48-83.0-64-bit.tar.gz'
   sha256 '372351cd83de731b432ea576d96eed03df0ba7aec5d6a1e706abb7524b73b39f'
