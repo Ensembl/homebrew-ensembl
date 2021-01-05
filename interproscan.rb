@@ -22,11 +22,6 @@ class Interproscan < Formula
   depends_on 'ensembl/moonshine/phobius'
   depends_on 'ensembl/external/emboss'
 
-  resource 'panther-models' do
-    url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/data/panther-data-14.1.tar.gz'
-    sha256 'b42c4ce489bb0ed443d987a7556e4c57d4cf6b8f80eec43ea7f283b792c2868b'
-  end
-
   def install
     tmhmm = Formula['ensembl/moonshine/tmhmm']
     signalp = Formula['ensembl/moonshine/signalp']
@@ -53,9 +48,5 @@ class Interproscan < Formula
     mv 'interproscan.sh', 'bin/.'
 
     prefix.install Dir['*']
-    resource('panther-models').stage do
-      (prefix+'data'+'panther').mkdir
-      (prefix+'data'+'panther').install '14.1'
-    end
   end
 end
