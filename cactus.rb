@@ -24,11 +24,11 @@ class Cactus < Formula
   bottle :unneeded
 
   depends_on 'pkg-config' => :build
-  depends_on 'gcc@7' => :build
+  depends_on 'gcc' => :build
   depends_on 'hiredis' => :build
   depends_on 'hdf5' => 'enable-cxx'
   depends_on 'lzo'
-  depends_on 'python3'
+  depends_on 'python@3.8' => :build
 
   def install
     ENV.deparallelize
@@ -41,30 +41,41 @@ class Cactus < Formula
               'pip',
               "#{libexec}/bin/pip"
 
-    # Installing Cactus' python dependencies 
-    system "#{libexec}/bin/pip",
-           'install',
-           "#{buildpath}"    
-
-    # Installing Cactu's requirements
-    system "#{libexec}/bin/pip",
-           'install',
-           '-r',
-           'toil-requirement.txt'
+    # Newest version of Toil that provides --doubleMem feature
+    inreplace 'toil-requirement.txt',
+              '4.2.0',
+              '5.2.0'
 
     # fixing pythion bashbang on this executable file to call virtualEnv's python
     inreplace 'submodules/sonLib/sonLib_daemonize.py',
               '/usr/bin/env python3',
               "#{libexec}/bin/python3"
 
-    # installing cactus and sonLib (subcall) as a python dependencies
-    #venv.pip_install_and_link buildpath
-
     # Compilation adjustments
     inreplace 'submodules/sonLib/include.mk',
               '.h',
               '.h.inv'
     ENV['CXX_ABI_DEF'] = '-D_GLIBCXX_USE_CXX11_ABI=1'
+
+
+    # Installing Cactus following: https://github.com/ComparativeGenomicsToolkit/cactus#build-from-source
+    system "#{libexec}/bin/pip",
+           'install',
+           '--upgrade',
+           'setuptools',
+           'pip'
+    
+    system "#{libexec}/bin/pip",
+           'install',
+           '--upgrade',
+           '-r',
+           'toil-requirement.txt'
+
+    system "#{libexec}/bin/pip",
+           'install',
+           '--upgrade',
+           "#{buildpath}"
+
 
     # Compiling cactus
     system 'make'
@@ -93,6 +104,9 @@ class Cactus < Formula
     path = `#{libexec}/bin/python3 -c \"import sysconfig; print(sysconfig.get_paths()['purelib'])\"`.strip
     FileUtils.cp_r 'submodules/hal',
                    path
+
+    #
+    prefix.install Dir['submodules']
   end
 
   def caveats
@@ -103,6 +117,8 @@ class Cactus < Formula
       source #{libexec}/bin/activate
       python3 -c "import hal"
       deactivate
+
+      HAL, sonLib, and other Cactus submodules are installed at: #{opt_prefix}/submodules
       
     EOS
   end
