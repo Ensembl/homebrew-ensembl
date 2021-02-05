@@ -28,7 +28,7 @@ class Cactus < Formula
   depends_on 'hiredis' => :build
   depends_on 'hdf5' => 'enable-cxx'
   depends_on 'lzo'
-  depends_on 'python@3.8' => :build
+  depends_on 'python3' => :build
 
   def install
     ENV.deparallelize
