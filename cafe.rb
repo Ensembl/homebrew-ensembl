@@ -11,20 +11,28 @@
 
 class Cafe < Formula
   desc "Computational Analysis of gene Family Evolution"
-  homepage "http://sites.bio.indiana.edu/~hahnlab/Software.html"
-  url "http://downloads.sourceforge.net/project/cafehahnlab/Previous_versions/cafehahnlab-code_v2.2.tgz"
-  sha256 "82853f2df095417708182e4115666162c7cbf67f53778d6a6fa26c1ff58d7473"
+  homepage "https://hahnlab.github.io/CAFE/"
+  url "https://github.com/hahnlab/CAFE/archive/v4.2.1.tar.gz"
+  sha256 "c9f0bdb9071105c1d23162f355632cab1a017e5798b95042b86c04bae86ff4aa"
+  version "4.2.1"
 
-  # Without "gcc", ld can't find libm and libpthread, e.g.
-  # mathfunc.c:(.text+0x5afe): undefined reference to `__log_finite'
-  # cafe_main.c:(.text+0x6f08): undefined reference to `pthread_create'
-  depends_on 'gcc'
+  depends_on "gcc"
+  depends_on "autoconf" => :build
+  depends_on "automake" => :build
 
   def install
-    cd 'cafe.2.2/cafe' do
-      system 'make'
-      mv 'bin/shell', 'bin/cafeshell'
-      bin.install 'bin/cafeshell'
-    end
+    inreplace "cafe/cafe_commands.cpp",
+      "std::abs",
+      "fabs"
+    system "autoreconf -i configure.ac"
+    system "./configure", "--disable-debug",
+                          "--disable-dependency-tracking",
+                          "--disable-silent-rules",
+                          "--prefix=#{prefix}"
+    system "make"
+    bin.install "release/cafe"
+  end
+  test do
+      system "#{bin}/cafe"
   end
 end
