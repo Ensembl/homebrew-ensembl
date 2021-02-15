@@ -10,10 +10,10 @@
 # limitations under the License.
 
 class Acedb < Formula
-  desc "A C.elegans database. The WTSI version"
+  desc "A C.elegans database. The WormBase version"
   homepage "http://www.acedb.org/"
-  url "https://github.com/richarddurbin/acedb.git", :using => :git
-  version '86d8c1c92d8a2c58cd090e85a1e17771612bfcb9'
+  url "https://github.com/WormBase/acedb.git", :using => :git
+  version 'a0eb67856282eefad70329308990a82d5c1f4aa1'
   
   depends_on 'curl'
   depends_on 'flex'
