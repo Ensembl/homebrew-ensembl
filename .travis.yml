@@ -3,6 +3,9 @@ language: "minimal"
 services:
     - docker
 
+env:
+  - DOCKER_IMAGE=thibauthourlier/ensembl-linuxbrew-basic-dependencies
+
 install:
     - docker pull thibauthourlier/ensembl-linuxbrew-basic-dependencies
 
