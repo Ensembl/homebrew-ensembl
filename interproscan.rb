@@ -13,9 +13,9 @@ class Interproscan < Formula
 
   desc 'Scan sequences (protein and nucleic) against InterPro signatures'
   homepage 'http://www.ebi.ac.uk/interpro/interproscan.html'
-  version '5.48-83.0'
-  url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.48-83.0/interproscan-5.48-83.0-64-bit.tar.gz'
-  sha256 '372351cd83de731b432ea576d96eed03df0ba7aec5d6a1e706abb7524b73b39f'
+  version '5.50-84.0'
+  url 'ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/5/5.50-84.0/interproscan-5.50-84.0-64-bit.tar.gz'
+  sha256 '3b792b33a14091a144a13ba35d70fbaa45abb8102f240a6da4e24bb07babaac4'
 
   depends_on 'ensembl/moonshine/tmhmm'
   depends_on 'ensembl/moonshine/signalp'
