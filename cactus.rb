@@ -17,8 +17,8 @@ class Cactus < Formula
 
   desc 'Official home of genome aligner based upon notion of Cactus graphs'
   homepage 'https://github.com/ComparativeGenomicsToolkit/cactus'
-  url 'https://github.com/ComparativeGenomicsToolkit/cactus/releases/download/v1.2.3/cactus-v1.2.3.tar.gz'
-  sha256 '49e686f3381e3cf7f7a7696a8506fb1edadc21468f7ac56f8ea49e4d1618c8c2'
+  url 'https://github.com/ComparativeGenomicsToolkit/cactus/releases/download/v1.3.0/cactus-v1.3.0.tar.gz'
+  sha256 'dba6579006221ae7482ab8f1bedffb5684f34e98f3fc73aca049078fe2a059c8'
   head 'https://github.com/ComparativeGenomicsToolkit/cactus.git'
 
   bottle :unneeded
