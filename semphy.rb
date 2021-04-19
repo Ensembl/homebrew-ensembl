@@ -18,6 +18,12 @@ class Semphy < Formula
 
 
   def install
+
+    # forcing -std=c++98 for newst gcc version
+    inreplace 'lib/Makefile', 'CPPFLAGS=', 'CPPFLAGS= -std=c++98'
+    inreplace 'programs/Makefile.generic', 'CPPFLAGS=', 'CPPFLAGS= -std=c++98'
+
+
     #Manual in-replace as diff/patch did not work and created bad line terminators
     cd 'lib' do
       inreplace 'cmdline2EvolObjs.h', '"recognizeFormat.h"', "\"recognizeFormat.h\"
