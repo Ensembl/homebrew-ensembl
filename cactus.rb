@@ -17,17 +17,16 @@ class Cactus < Formula
 
   desc 'Official home of genome aligner based upon notion of Cactus graphs'
   homepage 'https://github.com/ComparativeGenomicsToolkit/cactus'
-  url 'https://github.com/ComparativeGenomicsToolkit/cactus/releases/download/v1.2.3/cactus-v1.2.3.tar.gz'
-  sha256 '49e686f3381e3cf7f7a7696a8506fb1edadc21468f7ac56f8ea49e4d1618c8c2'
+  url 'https://github.com/ComparativeGenomicsToolkit/cactus/releases/download/v1.3.0/cactus-v1.3.0.tar.gz'
+  sha256 'dba6579006221ae7482ab8f1bedffb5684f34e98f3fc73aca049078fe2a059c8'
   head 'https://github.com/ComparativeGenomicsToolkit/cactus.git'
 
   bottle :unneeded
 
-  depends_on 'pkg-config' => :build
-  depends_on 'gcc' => :build
   depends_on 'hiredis' => :build
   depends_on 'hdf5' => 'enable-cxx'
   depends_on 'lzo'
+  depends_on 'zlib' => :build
   depends_on 'python3' => :build
 
   def install
@@ -57,6 +56,16 @@ class Cactus < Formula
               '.h.inv'
     ENV['CXX_ABI_DEF'] = '-D_GLIBCXX_USE_CXX11_ABI=1'
 
+    # Kyoto zlib and lzo dependencies from #{HOMEBREW_PREFIX}/lib and #{HOMEBREW_PREFIX}/include
+    zlib = Formula['zlib']
+    lzo = Formula['lzo']
+
+    make  = %W[
+      CPPFLAGS="-I#{zlib.opt_include} -I#{lzo.opt_include}"
+      LDFLAGS="-L#{zlib.opt_lib} -L#{lzo.opt_lib}"
+      ${MAKE} PREFIX=${CWD}
+    ]
+    inreplace 'Makefile', '${MAKE} PREFIX=${CWD}', make.join(' ')
 
     # Installing Cactus following: https://github.com/ComparativeGenomicsToolkit/cactus#build-from-source
     system "#{libexec}/bin/pip",
@@ -64,7 +73,7 @@ class Cactus < Formula
            '--upgrade',
            'setuptools',
            'pip'
-    
+
     system "#{libexec}/bin/pip",
            'install',
            '--upgrade',
@@ -74,8 +83,7 @@ class Cactus < Formula
     system "#{libexec}/bin/pip",
            'install',
            '--upgrade',
-           "#{buildpath}"
-
+           buildpath.to_s
 
     # Compiling cactus
     system 'make'
@@ -85,7 +93,6 @@ class Cactus < Formula
     lib.install Dir['lib/*.a']
     include.install Dir['include/*.h']
     share.install Dir['share/*']
-
 
     # Creating symbolic links for Cactus be able to use toil from libexec
     bin.install_symlink "#{libexec}/bin/_toil_worker"
@@ -105,21 +112,20 @@ class Cactus < Formula
     FileUtils.cp_r 'submodules/hal',
                    path
 
-    #
     prefix.install Dir['submodules']
   end
 
   def caveats
-    <<-EOS
-      Cactus Python scripts are already configured to use Cactus' own virtualenv.
-      If you need to use it, do this:
-
-      source #{libexec}/bin/activate
-      python3 -c "import hal"
-      deactivate
-
-      HAL, sonLib, and other Cactus submodules are installed at: #{opt_prefix}/submodules
-      
+    <<~EOS
+                  Cactus Python scripts are already configured to use Cactus' own virtualenv.
+                  If you need to use it, do this:
+      #{'      '}
+                  source #{libexec}/bin/activate
+                  python3 -c "import hal"
+                  deactivate
+      #{'      '}
+                  HAL, sonLib, and other Cactus submodules are installed at: #{opt_prefix}/submodules
+            #{'      '}
     EOS
   end
 
