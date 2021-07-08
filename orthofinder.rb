@@ -14,16 +14,16 @@ class Orthofinder < Formula
 
   desc "OrthoFinder: phylogenetic orthology inference for comparative genomics"
   homepage "https://davidemms.github.io/"
-  url "https://github.com/davidemms/OrthoFinder/releases/download/2.5.2/OrthoFinder_source.tar.gz"
-  sha256 "e0752b66866e23a11f0592e880fac5f67258f9cf926f926dec8849564c41b8f7"
-  version "2.5.2"
+  url "https://github.com/davidemms/OrthoFinder/releases/download/2.5.4/OrthoFinder_source.tar.gz"
+  sha256 "a735c81999e8e3026ad62536b14e5b0391c9fc632f872f99857936ac60003ba5"
+  version "2.5.4"
 
   bottle :unneeded
 
   depends_on 'python@3'
   depends_on 'ensembl/external/diamond'
   depends_on 'ensembl/external/mcl'
-  depends_on 'ensembl/external/fastme'
+  depends_on 'fastme'
 
   def install
     venv = virtualenv_create(libexec, 'python3')
