@@ -15,7 +15,6 @@ class Crossmap < Formula
   url "https://files.pythonhosted.org/packages/d5/ba/d3025c812acc530509f410faa37734d103b66a3787cc466b703517dc6a03/CrossMap-0.2.8.tar.gz"
   sha256 "783a89f7378495dc0f1dbbb1b56b780cc4aeeb20d683c2721560952305083c47"
 
-  depends_on "python@2" if MacOS.version <= :snow_leopard
   depends_on "openblas"
 
   resource "nose" do

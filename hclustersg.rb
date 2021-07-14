@@ -17,7 +17,7 @@ class Hclustersg < Formula
 
   def install
     cd 'hcluster' do
-      system 'make'
+      system 'make', "CXX=#{ENV.cxx}", "CFLAGS=-std=c++98"
       bin.install 'hcluster_sg'
     end
   end

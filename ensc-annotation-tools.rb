@@ -15,7 +15,7 @@ class EnscAnnotationTools < Formula
 
   version '0.2.0'
   url "https://github.com/Ensembl/ensc-annotation-tools/archive/master.zip"
-  sha256 'f262d8dd3b9396f56cd86452c7d198a5b37d172e8b936cb5f067daca1e440508'
+  sha256 'cc01dd4452e43f161bacb9161939a2650f74641cb2d4718a6bdb4da18b8fea76'
 
   depends_on "ensembl/ensembl/ensc"
   depends_on "ensembl/external/percona-client"

@@ -26,7 +26,14 @@ class ViennaRna < Formula
   sha256 '7bd2d385ef7496ed54fd0576c6664cd88b93543d30932a13a2e3354d9ccdb530'
   version '2.2.6'
   revision 1
-  
+
+  depends_on "gcc@6"
+
+  fails_with gcc: "7"
+  fails_with gcc: "8"
+  fails_with gcc: "9"
+  fails_with gcc: "10"
+
   def install
     system './configure', "--prefix=#{prefix}", "--without-doc-pdf", "--without-perl", "--without-python"
     system 'make'

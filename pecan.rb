@@ -15,7 +15,7 @@ class Pecan < Formula
   url 'https://github.com/benedictpaten/pecan.git', :using => :git
   version '0.8.0'
 
-  depends_on 'jdk@8'
+  depends_on 'adoptopenjdk'
 
   def install
     system 'javac', 'bp/pecan/Pecan.java'

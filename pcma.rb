@@ -15,6 +15,13 @@ class Pcma < Formula
   version '2.0'
   sha256 '4b92d412126d393baa3ede501cafe9606ada9a66af6217d56befd6ec2e0c01ba'
 
+  depends_on "gcc@6"
+
+  fails_with gcc: "7"
+  fails_with gcc: "8"
+  fails_with gcc: "9"
+  fails_with gcc: "10"
+
   def install
     system "make", "pcma"
     bin.install 'pcma'

@@ -18,9 +18,16 @@ class Treebest < Formula
 
   depends_on 'bison'
   depends_on 'flex'
+  depends_on "gcc@6" => :build
+
+  fails_with gcc: "7"
+  fails_with gcc: "8"
+  fails_with gcc: "9"
+  fails_with gcc: "10"
+
 
   def install
-    system "make"
+    system "make", "CC=#{ENV.cc}"
     bin.install 'treebest'
   end
 

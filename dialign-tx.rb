@@ -14,6 +14,13 @@ class DialignTx < Formula
   url "http://dialign-tx.gobics.de/DIALIGN-TX_1.0.2.tar.gz"
   sha256 "fb3940a48a12875332752a298f619f0da62593189cd257d28932463c7cebcb8f"
 
+  depends_on "gcc@6"
+
+  fails_with gcc: "7"
+  fails_with gcc: "8"
+  fails_with gcc: "9"
+  fails_with gcc: "10"
+
   def install
     cd 'source' do
       system "make", "CPPFLAGS=-O3 -funroll-loops -std=gnu89 -pedantic"

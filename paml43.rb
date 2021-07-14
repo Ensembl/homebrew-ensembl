@@ -16,9 +16,16 @@ class Paml43 < Formula
   version "4.3.0"
   sha256 "e1d91af7c1ab86851395a2fc7dd7e8c2ca641d53c2f159cf5399cf18c73f6aa0"
 
+  depends_on "gcc@6" => :build
+
+  fails_with gcc: "7"
+  fails_with gcc: "8"
+  fails_with gcc: "9"
+  fails_with gcc: "10"
+
   def install
     cd 'src' do
-      system 'make'
+      system 'make', "CC=#{ENV.cc}"
       bin.install %w(chi2 pamp mcmctree basemlg evolver yn00 baseml codeml)
     end
   end

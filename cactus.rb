@@ -27,7 +27,7 @@ class Cactus < Formula
   depends_on 'hdf5' => 'enable-cxx'
   depends_on 'lzo'
   depends_on 'zlib' => :build
-  depends_on 'python3' => :build
+  depends_on 'python@3.8' => :build
 
   def install
     ENV.deparallelize
@@ -43,7 +43,7 @@ class Cactus < Formula
     # Newest version of Toil that provides --doubleMem feature
     inreplace 'toil-requirement.txt',
               '4.2.0',
-              '5.2.0'
+              '5.3.0'
 
     # fixing pythion bashbang on this executable file to call virtualEnv's python
     inreplace 'submodules/sonLib/sonLib_daemonize.py',
@@ -55,17 +55,6 @@ class Cactus < Formula
               '.h',
               '.h.inv'
     ENV['CXX_ABI_DEF'] = '-D_GLIBCXX_USE_CXX11_ABI=1'
-
-    # Kyoto zlib and lzo dependencies from #{HOMEBREW_PREFIX}/lib and #{HOMEBREW_PREFIX}/include
-    zlib = Formula['zlib']
-    lzo = Formula['lzo']
-
-    make  = %W[
-      CPPFLAGS="-I#{zlib.opt_include} -I#{lzo.opt_include}"
-      LDFLAGS="-L#{zlib.opt_lib} -L#{lzo.opt_lib}"
-      ${MAKE} PREFIX=${CWD}
-    ]
-    inreplace 'Makefile', '${MAKE} PREFIX=${CWD}', make.join(' ')
 
     # Installing Cactus following: https://github.com/ComparativeGenomicsToolkit/cactus#build-from-source
     system "#{libexec}/bin/pip",

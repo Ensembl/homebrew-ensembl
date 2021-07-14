@@ -11,20 +11,26 @@
 
 class PostgresClient < Formula
   desc "PostgreSQL client libraries and binaries"
-  url "https://ftp.postgresql.org/pub/source/v9.5.4/postgresql-9.5.4.tar.gz"
-  sha256 "31c2aa8b6de0e767a047a585a3dec762b1051d0041525497dd1579ba5a861e68"
+  url "https://ftp.postgresql.org/pub/source/v9.5.25/postgresql-9.5.25.tar.gz"
+  sha256 "b7a900932f5a1e439956436b10a587bd9ee7023424e5fa7e8c483bff3940c334"
   version '9.5.4'
 
-  depends_on "openssl"
+  depends_on "ensembl/external/openssl@1.0"
   depends_on "readline"
   depends_on "libxml2"
   depends_on "libxslt"
   depends_on "util-linux"
+  depends_on "gcc@6"
+
+  fails_with gcc: "7"
+  fails_with gcc: "8"
+  fails_with gcc: "9"
+  fails_with gcc: "10"
 
   def install 
     ENV["XML2_CONFIG"] = "xml2-config --exec-prefix=/usr"
-    ENV.prepend "LDFLAGS", "-L#{Formula["openssl"].opt_lib} -L#{Formula["readline"].opt_lib}"
-    ENV.prepend "CPPFLAGS", "-I#{Formula["openssl"].opt_include} -I#{Formula["readline"].opt_include}"
+    ENV.prepend "LDFLAGS", "-L#{Formula["ensembl/external/openssl@1.0"].opt_lib} -L#{Formula["readline"].opt_lib}"
+    ENV.prepend "CPPFLAGS", "-I#{Formula["ensembl/external/openssl@1.0"].opt_include} -I#{Formula["readline"].opt_include}"
 
     args = %W[
       --disable-debug
