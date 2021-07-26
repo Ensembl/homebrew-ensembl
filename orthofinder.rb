@@ -28,18 +28,21 @@ class Orthofinder < Formula
   def install
     venv = virtualenv_create(libexec, 'python3')
     system "#{libexec}/bin/pip", 'install', 'numpy', 'scipy'
-    rewrite_shebang detected_python_shebang, 'orthofinder.py',
-                                             'scripts_of/__main__.py',
-                                             'scripts_of/consensus_tree.py',
-                                             'scripts_of/files.py',
-                                             'scripts_of/orthologues.py',
-                                             'scripts_of/program_caller.py',
-                                             'scripts_of/stag.py',
-                                             'scripts_of/stride.py',
-                                             'scripts_of/trim.py',
-                                             'scripts_of/trees_msa.py',
-                                             'tools/convert_orthofinder_tree_ids.py',
-                                             'tools/make_ultrametric.py'
+    # Replace shebang with virtualenv python
+    venv_shebang = python_shebang_rewrite_info("#{libexec}/bin/python")
+    rewrite_shebang venv_shebang, 'orthofinder.py',
+                                  'scripts_of/__main__.py',
+                                  'scripts_of/consensus_tree.py',
+                                  'scripts_of/files.py',
+                                  'scripts_of/orthologues.py',
+                                  'scripts_of/program_caller.py',
+                                  'scripts_of/stag.py',
+                                  'scripts_of/stride.py',
+                                  'scripts_of/trees_msa.py',
+                                  'scripts_of/trim.py',
+                                  'tools/convert_orthofinder_tree_ids.py',
+                                  'tools/create_files_for_hogs.py',
+                                  'tools/make_ultrametric.py'
     # Remove local binaries so the homebrew ones are used instead
     system 'rm', '-rf', 'scripts_of/bin'
     bin.install "orthofinder.py" => "orthofinder"
