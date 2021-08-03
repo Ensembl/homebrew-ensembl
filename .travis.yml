@@ -5,7 +5,7 @@ services:
     - docker
 
 install:
-    - docker pull muffato/ensembl-linuxbrew-basic-dependencies
+    - docker pull thibauthourlier/ensembl-linuxbrew-basic-dependencies
 
 script:
     - ./travisci/harness.sh

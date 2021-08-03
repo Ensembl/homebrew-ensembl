@@ -75,7 +75,7 @@ echo "Formulae to test (incl. reverse dependencies):" "${ALL_FORMULAE[@]}"
 docker run ${USE_TTY:-} -i \
        "${MOUNTS[@]}" \
        --env HOMEBREW_NO_AUTO_UPDATE=1 \
-       muffato/ensembl-linuxbrew-basic-dependencies \
+       thibauthourlier/ensembl-linuxbrew-basic-dependencies \
        "$TAP_DOCKER_PATH/travisci/test_on_docker.sh" "${ALL_FORMULAE[@]}"
        #/bin/bash
 
