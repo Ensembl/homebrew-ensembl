@@ -10,7 +10,6 @@ do
 	cp -a "$d" "$TARGET_TAP_DIR/$d"
 done
 
-echo ":$HOMEBREW_NO_AUTO_UPDATE:"
 brew deps --union "$@" | if grep -q ensembl/moonshine/
 then
     echo Test skipped because the formulae rely on ensembl/moonshine, which is not available:
@@ -19,6 +18,8 @@ else
     brew install --build-from-source "$@"
     for F in "$@"; do
       echo "$F"
+      brew --prefix "$F"
+      ls /home/linuxbrew/.linuxbrew/Cellar/orthofinder
       brew test $F
     done
 fi
