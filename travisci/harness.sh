@@ -31,7 +31,7 @@ OTHER_TAP_LOCAL_PATH="$PWD/.deps/$OTHER_TAP_NAME"
 OTHER_TAP_DOCKER_PATH="$DOCKER_TAP_PATH/$OTHER_TAP_NAME"
 rm -rf "$OTHER_TAP_LOCAL_PATH"
 mkdir -p "$OTHER_TAP_LOCAL_PATH"
-git clone --depth 1 "$OTHER_TAP_URL" "$OTHER_TAP_LOCAL_PATH"
+git clone --branch feature/codon_cluster --depth 1 "$OTHER_TAP_URL" "$OTHER_TAP_LOCAL_PATH"
 
 # List the mount points
 MOUNTS=()
