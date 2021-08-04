@@ -17,9 +17,6 @@ class Maftools < Formula
 
   keg_only "mafFilter conflicts with kent"
   
-  depends_on "python@2" if MacOS.version <= :snow_leopard
-  #depends_on "ensembl/ensembl/sonlib"
-  
   # Patch needed until the pull-request is accepted
   patch :DATA
 
