@@ -18,8 +18,6 @@ class Orthofinder < Formula
   sha256 "a735c81999e8e3026ad62536b14e5b0391c9fc632f872f99857936ac60003ba5"
   version "2.5.4"
 
-  bottle :unneeded
-
   depends_on 'python@3'
   depends_on 'ensembl/external/diamond'
   depends_on 'ensembl/external/mcl'

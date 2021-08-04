@@ -10,7 +10,7 @@
 # limitations under the License.
 
 class Cesar < Formula
-  desc "Coding Exon Structure Aware Realigner 2.0"
+  desc "Coding Exon Structure Aware Realigner 2.0 AAA"
   homepage "https://github.com/hillerlab/CESAR2.0"
   url "https://github.com/hillerlab/CESAR2.0.git", :using => :git, :revision => 'bf8b7060b0888a0f371702469fe06aec50eec485'
   version "2.0"
