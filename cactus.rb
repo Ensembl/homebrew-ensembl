@@ -14,75 +14,45 @@ require 'fileutils'
 
 class Cactus < Formula
   include Language::Python::Virtualenv
+  include Language::Python::Shebang
 
   desc 'Official home of genome aligner based upon notion of Cactus graphs'
   homepage 'https://github.com/ComparativeGenomicsToolkit/cactus'
-  url 'https://github.com/ComparativeGenomicsToolkit/cactus/releases/download/v1.3.0/cactus-v1.3.0.tar.gz'
-  sha256 'dba6579006221ae7482ab8f1bedffb5684f34e98f3fc73aca049078fe2a059c8'
+  url 'https://github.com/ComparativeGenomicsToolkit/cactus/releases/download/v2.0.5/cactus-v2.0.5.tar.gz'
+  sha256 '039c4588cbf4a061c0091c5cf1ba154aec216f595561efc21d4a1e6d3c69e1f7'
   head 'https://github.com/ComparativeGenomicsToolkit/cactus.git'
-
-  bottle :unneeded
 
   depends_on 'hiredis' => :build
   depends_on 'hdf5' => 'enable-cxx'
-  depends_on 'lzo'
-  depends_on 'zlib' => :build
-  depends_on 'python3' => :build
+  depends_on 'python@3'
 
   def install
     ENV.deparallelize
 
     # creating a virtual environment
-    venv = virtualenv_create(libexec, 'python3')
-
-    # fixing `pip` command because Cactus has nested-pip calls for sonLib
-    inreplace 'setup.py',
-              'pip',
-              "#{libexec}/bin/pip"
-
-    # Newest version of Toil that provides --doubleMem feature
-    inreplace 'toil-requirement.txt',
-              '4.2.0',
-              '5.2.0'
+    virtualenv_create(libexec, 'python3')
 
     # fixing pythion bashbang on this executable file to call virtualEnv's python
-    inreplace 'submodules/sonLib/sonLib_daemonize.py',
-              '/usr/bin/env python3',
-              "#{libexec}/bin/python3"
+    rewrite_shebang python_shebang_rewrite_info("#{opt_libexec}/bin/python3"), 'submodules/sonLib/sonLib_daemonize.py'
 
-    # Compilation adjustments
-    inreplace 'submodules/sonLib/include.mk',
-              '.h',
-              '.h.inv'
     ENV['CXX_ABI_DEF'] = '-D_GLIBCXX_USE_CXX11_ABI=1'
-
-    # Kyoto zlib and lzo dependencies from #{HOMEBREW_PREFIX}/lib and #{HOMEBREW_PREFIX}/include
-    zlib = Formula['zlib']
-    lzo = Formula['lzo']
-
-    make  = %W[
-      CPPFLAGS="-I#{zlib.opt_include} -I#{lzo.opt_include}"
-      LDFLAGS="-L#{zlib.opt_lib} -L#{lzo.opt_lib}"
-      ${MAKE} PREFIX=${CWD}
-    ]
-    inreplace 'Makefile', '${MAKE} PREFIX=${CWD}', make.join(' ')
 
     # Installing Cactus following: https://github.com/ComparativeGenomicsToolkit/cactus#build-from-source
     system "#{libexec}/bin/pip",
            'install',
-           '--upgrade',
+           '-U',
            'setuptools',
-           'pip'
+           'pip==21.3.1'
 
     system "#{libexec}/bin/pip",
            'install',
-           '--upgrade',
+           '-U',
            '-r',
            'toil-requirement.txt'
 
     system "#{libexec}/bin/pip",
            'install',
-           '--upgrade',
+           '-U',
            buildpath.to_s
 
     # Compiling cactus
