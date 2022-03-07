@@ -29,9 +29,9 @@ class Orthofinder < Formula
     virtualenv_create(libexec, 'python3')
     system "#{libexec}/bin/pip", 'install', 'numpy', 'scipy'
 
-    # detected_python_shebang won't work below becayse it will point to "#!/usr/local/opt/python@3.9/bin/python3"
-    # and we need to point to "<formula_dir>orthofinder/<formula_version>/libexec/bin/python3" 
-    rewrite_shebang python_shebang_rewrite_info("#{libexec}/bin/python3"), 'orthofinder.py',
+    # detected_python_shebang won't work below because it will point to "#!/usr/local/opt/python@3.9/bin/python3"
+    # and we need to point to "<linuxbrew_dir>/opt/orthofinder/libexec/bin/python3"
+    rewrite_shebang python_shebang_rewrite_info("#{opt_libexec}/bin/python3"), 'orthofinder.py',
                     'scripts_of/__main__.py',
                     'scripts_of/consensus_tree.py',
                     'scripts_of/files.py',
