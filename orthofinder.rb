@@ -31,18 +31,23 @@ class Orthofinder < Formula
 
     # detected_python_shebang won't work below because it will point to "#!/usr/local/opt/python@3.9/bin/python3"
     # and we need to point to "<linuxbrew_dir>/opt/orthofinder/libexec/bin/python3"
-    rewrite_shebang python_shebang_rewrite_info("#{opt_libexec}/bin/python3"), 'orthofinder.py',
-                    'scripts_of/__main__.py',
-                    'scripts_of/consensus_tree.py',
-                    'scripts_of/files.py',
-                    'scripts_of/orthologues.py',
-                    'scripts_of/program_caller.py',
-                    'scripts_of/stag.py',
-                    'scripts_of/stride.py',
-                    'scripts_of/trim.py',
-                    'scripts_of/trees_msa.py',
-                    'tools/convert_orthofinder_tree_ids.py',
-                    'tools/make_ultrametric.py'
+    # can't use built-in "rewrite_shebang" function because Travis uses a very old version of Linuxbrew
+    files = ['orthofinder.py',
+             'scripts_of/__main__.py',
+             'scripts_of/consensus_tree.py',
+             'scripts_of/files.py',
+             'scripts_of/orthologues.py',
+             'scripts_of/program_caller.py',
+             'scripts_of/stag.py',
+             'scripts_of/stride.py',
+             'scripts_of/trim.py',
+             'scripts_of/trees_msa.py',
+             'tools/convert_orthofinder_tree_ids.py',
+             'tools/make_ultrametric.py']
+    inreplace files do |s|
+      s.gsub! %r{^#! ?/usr/bin/(?:env )?python(?:[23](?:\.\d{1,2})?)?( |$)}, "#!#{opt_libexec}/bin/python3"
+    end
+
     # Remove local binaries so the homebrew ones are used instead
     system 'rm', '-rf', 'scripts_of/bin'
     bin.install 'orthofinder.py' => 'orthofinder'
