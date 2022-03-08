@@ -14,7 +14,6 @@ require 'fileutils'
 
 class Cactus < Formula
   include Language::Python::Virtualenv
-  include Language::Python::Shebang
 
   desc 'Official home of genome aligner based upon notion of Cactus graphs'
   homepage 'https://github.com/ComparativeGenomicsToolkit/cactus'
@@ -33,7 +32,9 @@ class Cactus < Formula
     virtualenv_create(libexec, 'python3')
 
     # fixing pythion bashbang on this executable file to call virtualEnv's python
-    rewrite_shebang python_shebang_rewrite_info("#{opt_libexec}/bin/python3"), 'submodules/sonLib/sonLib_daemonize.py'
+    inreplace 'submodules/sonLib/sonLib_daemonize.py' do |s|
+      s.gsub! %r{^#! ?/usr/bin/(?:env )?python(?:[23](?:\.\d{1,2})?)?( |$)}, "#!#{opt_libexec}/bin/python3"
+    end
 
     ENV['CXX_ABI_DEF'] = '-D_GLIBCXX_USE_CXX11_ABI=1'
 
