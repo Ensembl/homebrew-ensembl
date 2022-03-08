@@ -11,7 +11,6 @@
 # limitations under the License.
 
 class Orthofinder < Formula
-  include Language::Python::Shebang
   include Language::Python::Virtualenv
 
   desc 'OrthoFinder: phylogenetic orthology inference for comparative genomics'
