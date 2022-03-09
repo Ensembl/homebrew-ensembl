@@ -4,8 +4,8 @@ sudo: required
 services:
     - docker
 
-install:
-    - docker pull muffato/ensembl-linuxbrew-basic-dependencies
+before_install:
+    - docker build -t ensembl/homebrew-ensembl .
 
 script:
     - ./travisci/harness.sh
