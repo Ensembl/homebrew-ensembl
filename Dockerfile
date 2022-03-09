@@ -7,6 +7,10 @@ FROM muffato/ensembl-linuxbrew-basic-dependencies
 RUN sudo sed -i '/^mozilla\/DST_Root_CA_X3/s/^/!/' /etc/ca-certificates.conf \
  && sudo update-ca-certificates -f
 
+# The above is to avoid the message "Warning: ensembl/external is shallow clone"
+RUN brew untap ensembl/external \
+ && brew tap ensembl/external
+
 # Unlink linuxbrew's curl as it uses old certificates
 RUN brew unlink curl
 
