@@ -21,12 +21,23 @@ class Cactus < Formula
   sha256 '039c4588cbf4a061c0091c5cf1ba154aec216f595561efc21d4a1e6d3c69e1f7'
   head 'https://github.com/ComparativeGenomicsToolkit/cactus.git'
 
-  depends_on 'hiredis' => :build
-  depends_on 'hdf5' => 'enable-cxx'
+  depends_on 'hiredis'
+  depends_on 'hdf5' => :build
+  depends_on 'libxml2' => :build
+  depends_on 'bzip2'
   depends_on 'python@3'
+  depends_on 'gcc'
 
   def install
     ENV.deparallelize
+
+    # some env variables needed by Cactus
+    ENV['CACTUS_LIBXML2_INCLUDE_PATH'] = "#{Formula['libxml2'].opt_include}/libxml2"
+    ENV['HDF5_USE_SHLIB'] = 'yes'
+    ENV['LIBS'] = "-L#{Formula['bzip2'].opt_lib} -L#{Formula['libxml2'].opt_lib}"
+
+    # gcc-10 and above flipped a default from -fcommon to -fno-common.
+    ENV['CFLAGS'] = '-fcommon'
 
     # creating a virtual environment
     virtualenv_create(libexec, 'python3')
@@ -35,8 +46,6 @@ class Cactus < Formula
     inreplace 'submodules/sonLib/sonLib_daemonize.py' do |s|
       s.gsub! %r{^#! ?/usr/bin/(?:env )?python(?:[23](?:\.\d{1,2})?)?( |$)}, "#!#{opt_libexec}/bin/python3"
     end
-
-    ENV['CXX_ABI_DEF'] = '-D_GLIBCXX_USE_CXX11_ABI=1'
 
     # Installing Cactus following: https://github.com/ComparativeGenomicsToolkit/cactus#build-from-source
     system "#{libexec}/bin/pip",
@@ -63,7 +72,7 @@ class Cactus < Formula
     bin.install Dir['bin/*']
     lib.install Dir['lib/*.a']
     include.install Dir['include/*.h']
-    share.install Dir['share/*']
+    
 
     # Creating symbolic links for Cactus be able to use toil from libexec
     bin.install_symlink "#{libexec}/bin/_toil_worker"

@@ -1,21 +1,21 @@
-# This container (i) disables the DST Root CA X3 certificate 
-# because it has experied on September 2021, and (ii) updates 
-# the directory /etc/ssl/certs that hold SSLs certificates.
+# Docker image with linuxbrew matching cluster's linuxbrew version
+FROM linuxbrew/brew:3.1.0
 
-FROM muffato/ensembl-linuxbrew-basic-dependencies
+# Install some required packages
+RUN apt-get update \
+ && apt-get -y install build-essential curl pkg-config \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN sudo sed -i '/^mozilla\/DST_Root_CA_X3/s/^/!/' /etc/ca-certificates.conf \
- && sudo update-ca-certificates -f
+# switch to the linuxbrew user from root
+USER linuxbrew
 
-# The above is to avoid the message "Warning: ensembl/external is shallow clone"
-RUN brew untap ensembl/external \
- && brew tap ensembl/external
+# avoid autoupdate while testing formulas
+ENV HOMEBREW_NO_AUTO_UPDATE 1
 
-# Unlink linuxbrew's curl as it uses old certificates
-RUN brew unlink curl
+# Turn off analytics and tap brew
+RUN brew analytics off 
 
-# clean up
-RUN sudo apt-get clean \
- && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
- && brew cleanup \
+# cleanning up
+RUN brew cleanup \
  && rm -rf /home/linuxbrew/.cache/Homebrew
