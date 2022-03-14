@@ -13,8 +13,20 @@ USER linuxbrew
 # avoid autoupdate while testing formulas
 ENV HOMEBREW_NO_AUTO_UPDATE 1
 
-# Turn off analytics and tap brew
-RUN brew analytics off 
+# Setup moonshine
+ENV HOMEBREW_ENSEMBL_MOONSHINE_ARCHIVE /home/linuxbrew/ENSEMBL_MOONSHINE_ARCHIVE
+ENV HOMEBREW_NO_AUTO_UPDATE 1
+RUN mkdir -p $HOMEBREW_ENSEMBL_MOONSHINE_ARCHIVE
+
+# Turn off analytics and tap brew & Ensembl repositories
+RUN brew analytics off \
+ && brew tap denji/nginx \
+ && brew tap ensembl/ensembl \
+ && brew tap ensembl/external \
+ && brew tap ensembl/moonshine \
+ # Disable so far due to the following error: Cannot tap ensembl/web: invalid syntax in tap!
+ #&& brew tap ensembl/web \  
+ && brew tap ensembl/cask
 
 # cleanning up
 RUN brew cleanup \
