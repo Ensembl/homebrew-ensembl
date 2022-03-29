@@ -21,7 +21,6 @@ class Cactus < Formula
   sha256 'dba6579006221ae7482ab8f1bedffb5684f34e98f3fc73aca049078fe2a059c8'
   head 'https://github.com/ComparativeGenomicsToolkit/cactus.git'
 
-  bottle :unneeded
 
   depends_on 'hiredis' => :build
   depends_on 'hdf5' => 'enable-cxx'
